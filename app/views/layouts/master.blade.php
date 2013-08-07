@@ -17,16 +17,17 @@
 <!-- NAVBAR
 ================================================== -->
   <body>
+  <div class="container">
     <div class="navbar-wrapper">
-      <div class="container">
+      
 
         <div class="navbar navbar-inverse navbar-static-top">
           <div class="container">
-    	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-    	      <span class="icon-bar"></span>
-    	      <span class="icon-bar"></span>
-    	      <span class="icon-bar"></span>
-    	    </button>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
             <a class="navbar-brand" href="#">Project name</a>
             <div class="nav-collapse collapse">
               <ul class="nav navbar-nav">
@@ -52,9 +53,8 @@
 
       </div>
     </div>
-
-
-    <!-- Carousel
+    
+<!-- Carousel
     ================================================== -->
     <div id="myCarousel" class="carousel slide">
       <!-- Indicators -->
@@ -65,11 +65,11 @@
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <img data-src="{{$base_url}}/js/holder.js/1500x500/auto/#777:#7a7a7a/text:First slide" alt="">
+          <img data-src="{{$base_url}}/js/holder.js/1500x500/auto/#777:#7a7a7a/text:Second slide" alt="">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <h1>Welcome To The Online Store Version 2.0!</h1>
+              <p>It's a new dawn for the PHP world (and for me as well ;))! with the advent of <a href="http://laravel.com/">Laravel 4</a>, a popular PHP framework heavily inspired by the likes of Ruby on Rails, as well as other modern PHP frameworks like Symfony. As you can guess I'm integrating my site to this new environment. It has been a very pleasurable experience so far, mainly because I enjoy the workflow and the numerous features of Laravel 4, and I strongly suggest that PHP web developers have a go at it!</p>
               <p><a class="btn btn-large btn-primary" href="#">Sign up today</a></p>
             </div>
           </div>
@@ -99,69 +99,9 @@
       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div><!-- /.carousel -->
 
+  @yield('content')
 
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class="container marketing">
-
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="col-lg-4">
-          <img class="img-circle" data-src="{{$base_url}}/js/holder.js/140x140">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" data-src="{{$base_url}}/js/holder.js/140x140">
-          <h2>Heading</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" data-src="{{$base_url}}/js/holder.js/140x140">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
-
-
-      <!-- START THE FEATURETTES -->
-
-      <hr class="featurette-divider">
-
-      <div class="featurette">
-        <img class="featurette-image img-circle pull-right" data-src="holder.js/512x512">
-        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="featurette">
-        <img class="featurette-image img-circle pull-left" data-src="holder.js/512x512">
-        <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="featurette">
-        <img class="featurette-image img-circle pull-right" data-src="holder.js/512x512">
-        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <!-- /END THE FEATURETTES -->
-
-
-      <!-- FOOTER -->
+  <!-- FOOTER -->
       <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
         <p>&copy; 2013 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
@@ -171,11 +111,13 @@
 
 
 
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="{{$base_url}}/js/jquery.js"></script>
     <script src="{{$base_url}}/js/bootstrap.min.js"></script>
     <script src="{{$base_url}}/js/holder.js"></script>
+  
   </body>
 </html>

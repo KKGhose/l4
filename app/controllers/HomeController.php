@@ -17,7 +17,7 @@ class HomeController extends BaseController {
 
 	public function index()
 	{
-		return View::make('master', array('base_url' => 'http://'.$_SERVER['SERVER_NAME'].'/l4/public') );
+		return View::make('welcome', array('base_url' => 'http://'.$_SERVER['SERVER_NAME'].'/l4/public') );
 	}
 
 }
