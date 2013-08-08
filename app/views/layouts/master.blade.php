@@ -6,13 +6,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Carousel Template for Bootstrap</title>
+    <title>Laravel 4 project 2013</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{$base_url}}/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="{{$base_url}}/css/carousel.css" rel="stylesheet">
+
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
   </head>
 <!-- NAVBAR
 ================================================== -->
@@ -28,24 +31,24 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="#">Online Store</a>
             <div class="nav-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="active"><a href="#"><i class="icon-home icon-white"></i>&nbsp;Home</a></li>
+                <li><a href="#about"><i class="icon-eye-open icon-white"></i>&nbsp;Products</a></li>
+                <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;Contact</a></li>
+
+              
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>&nbsp;Your Account  <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li class="nav-header">Nav header</li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="#">One more separated link</a></li>
+                    <li><a href="#"><i class="icon-signin"></i>&nbsp;<strong>Login</strong></a></li>
+                    <li><a href="#"><i class="icon-cog"></i>&nbsp;<strong>Profile</strong></a></li>
+                    <li><a href="#"><i class="icon-shopping-cart"></i>&nbsp;<strong>Cart</strong></a></li>
                   </ul>
                 </li>
+               
+                
               </ul>
             </div>
           </div>
@@ -53,7 +56,7 @@
 
       </div>
     </div>
-    
+
 <!-- Carousel
     ================================================== -->
     <div id="myCarousel" class="carousel slide">
