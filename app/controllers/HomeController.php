@@ -17,7 +17,9 @@ class HomeController extends BaseController {
 
 	public function index()
 	{
-		return View::make('welcome', array('base_url' => 'http://'.$_SERVER['SERVER_NAME'].'/l4/public') );
+		$products = Product::where('product_type','=', 2)->take(3)->get();
+
+		return View::make('welcome', array('base_url' => 'http://'.$_SERVER['SERVER_NAME'].'/l4/public', 'products' => $products) );
 	}
 
 }

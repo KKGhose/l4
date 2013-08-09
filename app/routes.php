@@ -12,3 +12,8 @@
 */
 
 Route::get('/', 'HomeController@index');
+
+Route::get('/products', function() {
+
+	return Product::All();
+});

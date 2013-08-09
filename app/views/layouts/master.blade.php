@@ -14,7 +14,6 @@
     <!-- Custom styles for this template -->
     <link href="{{$base_url}}/css/carousel.css" rel="stylesheet">
 
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
   </head>
 <!-- NAVBAR
@@ -22,6 +21,7 @@
   <body>
   <div class="container">
     <div class="navbar-wrapper">
+
       
 
         <div class="navbar navbar-inverse navbar-static-top">
@@ -34,17 +34,17 @@
             <a class="navbar-brand" href="#">Online Store</a>
             <div class="nav-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#"><i class="icon-home icon-white"></i>&nbsp;Home</a></li>
-                <li><a href="#about"><i class="icon-eye-open icon-white"></i>&nbsp;Products</a></li>
-                <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;Contact</a></li>
+                <li class="active"><a href="#"><i class="icon-home icon-white"></i>&nbsp;&nbsp;Home</a></li>
+                <li><a href="#about"><i class="icon-eye-open icon-white"></i>&nbsp;&nbsp;Products</a></li>
+                <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;&nbsp;Contact</a></li>
 
               
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>&nbsp;Your Account  <b class="caret"></b></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>&nbsp;&nbsp;Your Account  <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#"><i class="icon-signin"></i>&nbsp;<strong>Login</strong></a></li>
-                    <li><a href="#"><i class="icon-cog"></i>&nbsp;<strong>Profile</strong></a></li>
-                    <li><a href="#"><i class="icon-shopping-cart"></i>&nbsp;<strong>Cart</strong></a></li>
+                    <li><a href="#"><i class="icon-signin"></i>&nbsp;&nbsp;<strong>Login</strong></a></li>
+                    <li><a href="#"><i class="icon-cog"></i>&nbsp;&nbsp;<strong>Profile</strong></a></li>
+                    <li><a href="#"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;<strong>Cart</strong></a></li>
                   </ul>
                 </li>
                
@@ -68,7 +68,8 @@
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <img data-src="{{$base_url}}/js/holder.js/1500x500/auto/#777:#7a7a7a/text:Second slide" alt="">
+          <img data-src="{{$base_url}}/js/holder.js/1500x500/auto/#777:#7a7a7a/text:Powered by Laravel 4" alt="">
+          <!--img data-src="{{$base_url}}/js/holder.js/1500x500/auto/#777:#F0F0F0/text:Powered by Laravel 4" alt=""-->
           <div class="container">
             <div class="carousel-caption">
               <h1>Welcome To The Online Store Version 2.0!</h1>
