@@ -8,15 +8,15 @@
 
     <title>Laravel 4 project 2013</title>
 
-    <!-- Bootstrap core CSS >
-    <link href="{{$base_url}}/css/bootstrap.min.css" rel="stylesheet">
-     {{ HTML::style('css/filename.css') }}
-    <!-- Custom styles for this template >
-    <link href="{{$base_url}}/css/carousel.css" rel="stylesheet" -->
-      {{ HTML::style('css/bootstrap.min.css') }}
-      {{ HTML::style('css/carousel.css') }}
+    <!-- Bootstrap core CSS -->
+    {{ HTML::style('css/bootstrap.min.css') }}
 
+    <!-- Custom styles for this template -->
+    {{ HTML::style('css/carousel.css') }}
+      
+    <!-- Font-Awesome CDN-->  
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+  
   </head>
 <!-- NAVBAR
 ================================================== -->
@@ -37,7 +37,8 @@
             <div class="nav-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="#"><i class="icon-home icon-white"></i>&nbsp;&nbsp;Home</a></li>
-                <li><a href="#about"><i class="icon-eye-open icon-white"></i>&nbsp;&nbsp;Products</a></li>
+                <li><a href="#about"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
+                <li><a href="#about"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
                 <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;&nbsp;Contact</a></li>
 
               
@@ -67,6 +68,8 @@
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
       </ol>
       <div class="carousel-inner">
         <div class="item active">
@@ -80,27 +83,46 @@
             </div>
           </div>
         </div>
+        
         <div class="item">
-          <img data-src="{{$base_url}}/js/holder.js/1500x500/auto/#777:#7a7a7a/text:Second slide" alt="">
+          <img src="{{$base_url}}/images/products_images/inception3_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
               <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
             </div>
           </div>
         </div>
+
         <div class="item">
-          <img data-src="{{$base_url}}/js/holder.js/1500x500/auto/#777:#7a7a7a/text:Third slide" alt="">
+          <img src="{{$base_url}}/images/products_images/breakingbad_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="item">
+          <img src="{{$base_url}}/images/products_images/inception4_wp.jpg" alt="" width="1100" height="500" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <img src="{{$base_url}}/images/products_images/inception2_wp.jpg" alt="" width="1100" height="500" alt="">
+          <div class="container">
+            <div class="carousel-caption">
               <p><a class="btn btn-large btn-primary" href="#">Browse gallery</a></p>
             </div>
           </div>
         </div>
+      
       </div>
+      
       <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div><!-- /.carousel -->
@@ -120,10 +142,7 @@
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster >
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="{{$base_url}}/js/bootstrap.min.js"></script>
-    <script src="{{$base_url}}/js/holder.js"></script-->
+    <!-- Placed at the end of the document so the pages load faster -->
      {{ HTML::script('js/jquery-1.10.2.min.js') }}
      {{ HTML::script('js/bootstrap.min.js') }}
      {{ HTML::script('js/holder.js') }}
