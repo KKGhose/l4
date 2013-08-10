@@ -12,11 +12,22 @@
 
       <!-- Three columns of text below the carousel -->
       <div class="row">
-        @foreach ($products as $product)
+        @foreach ($movies as $movie)
         <div class="col-lg-4">
-          <img class="img-thumbnail" data-src="{{$base_url}}/images/products_images/50_thumb.jpg" style="width:160;height:220;">
-          <h2>{{$product->product_name}}</h2>
-          <p>{{ implode(' ', array_slice( explode(' ', $product->product_description), 0, 40) ).'...' }}</p>
+          <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$movie->id.'_thumb.jpg'}}" style="width:160;height:220;">
+          <h2>{{$movie->product_name}}</h2>
+          <p>{{ implode(' ', array_slice( explode(' ', $movie->product_description), 0, 40) ).'...' }}</p>
+          <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        @endforeach
+      </div><!-- /.row -->
+
+      <div class="row">
+        @foreach ($ebooks as $ebook)
+        <div class="col-lg-4">
+          <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$ebook->id.'_thumb.jpg'}}" style="width:160;height:220;">
+          <h2>{{$ebook->product_name}}</h2>
+          <p>{{ implode(' ', array_slice( explode(' ', $ebook->product_description), 0, 40) ).'...' }}</p>
           <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         @endforeach

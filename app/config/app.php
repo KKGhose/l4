@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'key' => 'YourSecretKey!!!',
+	'key' => 'YmRF9lOb8wI8a3I8CtkLHk3JOKXqDYIB',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -114,6 +114,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
+		'Teepluss\Asset\AssetServiceProvider',
 	),
 
 	/*
@@ -178,6 +179,7 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
+		'Asset' 		  => 'Teepluss\Asset\Facades\Asset',
 
 	),
 

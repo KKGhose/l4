@@ -8,11 +8,13 @@
 
     <title>Laravel 4 project 2013</title>
 
-    <!-- Bootstrap core CSS -->
+    <!-- Bootstrap core CSS >
     <link href="{{$base_url}}/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{{$base_url}}/css/carousel.css" rel="stylesheet">
+     {{ HTML::style('css/filename.css') }}
+    <!-- Custom styles for this template >
+    <link href="{{$base_url}}/css/carousel.css" rel="stylesheet" -->
+      {{ HTML::style('css/bootstrap.min.css') }}
+      {{ HTML::style('css/carousel.css') }}
 
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
   </head>
@@ -118,10 +120,13 @@
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{{$base_url}}/js/jquery.js"></script>
+    <!-- Placed at the end of the document so the pages load faster >
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="{{$base_url}}/js/bootstrap.min.js"></script>
-    <script src="{{$base_url}}/js/holder.js"></script>
+    <script src="{{$base_url}}/js/holder.js"></script-->
+     {{ HTML::script('js/jquery-1.10.2.min.js') }}
+     {{ HTML::script('js/bootstrap.min.js') }}
+     {{ HTML::script('js/holder.js') }}
   
   </body>
 </html>

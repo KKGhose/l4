@@ -5,7 +5,8 @@
 	"require": {
 		"laravel/framework": "4.0.*",
 		"way/generators": "dev-master",
-		"laravelbook/ardent": "dev-master"
+		"laravelbook/ardent": "dev-master",
+		"teepluss/asset": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
