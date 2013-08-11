@@ -90,8 +90,7 @@
         @foreach ($movies as $movie)
         <div class="col-lg-4">
           <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$movie->id.'_thumb.jpg'}}" style="width:160;height:220;">
-          <h2>{{$movie->product_name}}</h2>
-          <p>{{ implode(' ', array_slice( explode(' ', $movie->product_description), 0, 40) ).'...' }}</p>
+          <p></p>
           <p><a class="btn btn-primary" href="#">Add to cart &raquo;</a>&nbsp;&nbsp;<a class="btn btn-default" href="#">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         @endforeach
@@ -102,11 +101,9 @@
 	      <div class="col-lg-4">
 		      <ul class="pagination">
 				  <li><a href="#">&laquo;</a></li>
-				  <li><a href="#">1</a></li>
-				  <li><a href="#">2</a></li>
-				  <li><a href="#">3</a></li>
-				  <li><a href="#">4</a></li>
-				  <li><a href="#">5</a></li>
+				   @for ($i = 1; $i < $num_pages; $i++)
+				  		<li><a href="#">{{ $i }}</a></li>
+				   @endfor
 				  <li><a href="#">&raquo;</a></li>
 			  </ul>
 		  </div>
