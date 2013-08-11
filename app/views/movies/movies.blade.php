@@ -44,6 +44,7 @@
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
       </ol>
       <div class="carousel-inner">
         <div class="item active">
@@ -54,12 +55,9 @@
           </div>
         </div>
         <div class="item">
-          <img data-src="holder.js/1500x500/auto/#777:#7a7a7a/text:Second slide" alt="">
+          <img src="{{$base_url}}/images/products_images/breakingbad_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
             </div>
           </div>
         </div>
@@ -68,9 +66,16 @@
           <div class="container">
             <div class="carousel-caption">
             </div>
+           </div>
+          </div>
+           <div class="item">
+          <img src="{{$base_url}}/images/products_images/inception2_wp.jpg" alt="" width="1100" height="500" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+            </div>
           </div>
         </div>
-      </div>
+       </div>
       <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div><!-- /.carousel -->
@@ -79,5 +84,36 @@
 
 
 @section('content')
-<h1>Hello World!</h1>
+
+<div class="row">
+        <h1><i class="icon-film"></i>&nbsp;DVD Movies:</h1><br />
+        @foreach ($movies as $movie)
+        <div class="col-lg-4">
+          <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$movie->id.'_thumb.jpg'}}" style="width:160;height:220;">
+          <h2>{{$movie->product_name}}</h2>
+          <p>{{ implode(' ', array_slice( explode(' ', $movie->product_description), 0, 40) ).'...' }}</p>
+          <p><a class="btn btn-primary" href="#">Add to cart &raquo;</a>&nbsp;&nbsp;<a class="btn btn-default" href="#">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        @endforeach
+      </div><!-- /.row -->
+
+      <div class="row">
+      <div class="col-lg-4"></div>
+	      <div class="col-lg-4">
+		      <ul class="pagination">
+				  <li><a href="#">&laquo;</a></li>
+				  <li><a href="#">1</a></li>
+				  <li><a href="#">2</a></li>
+				  <li><a href="#">3</a></li>
+				  <li><a href="#">4</a></li>
+				  <li><a href="#">5</a></li>
+				  <li><a href="#">&raquo;</a></li>
+			  </ul>
+		  </div>
+	  <div class="col-lg-4"></div>
+	  </div>
+	 
+
+	  <br /><br /><br /><br />
+	  
 @stop

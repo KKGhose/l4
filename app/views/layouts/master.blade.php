@@ -129,6 +129,7 @@
     @show
 
   
+  <div class="container marketing">
   
   @yield('content')
 

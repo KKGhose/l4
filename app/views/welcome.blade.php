@@ -9,11 +9,11 @@
     <!-- Marketing messaging and featurettes
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
-    <div class="container marketing">
+    
 
       <!-- Three columns of text below the carousel -->
       <div class="row">
-        <h1><i class="icon-film"></i>&nbsp;New From Movies:</h1><br />
+        <h1><i class="icon-film"></i>&nbsp;New From DVD Movies:</h1><br />
         @foreach ($movies as $movie)
         <div class="col-lg-4">
           <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$movie->id.'_thumb.jpg'}}" style="width:160;height:220;">
@@ -27,7 +27,7 @@
       <hr class="featurette-divider">
 
       <div class="row">
-       <h1><i class="icon-book"></i>&nbsp;New From Ebooks:</h1><br />
+       <h1><i class="icon-book"></i>&nbsp;New From IT-Ebooks:</h1><br />
         @foreach ($ebooks as $ebook)
         <div class="col-lg-4">
           <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$ebook->id.'_thumb.jpg'}}" style="width:160;height:220;">
