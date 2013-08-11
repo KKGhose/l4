@@ -21,10 +21,10 @@
 <!-- NAVBAR
 ================================================== -->
   <body>
-  <div class="container">
-    <div class="navbar-wrapper">
 
-      
+  @section('navbar')
+  <div class="navbar-wrapper">
+   <div class="container">
 
         <div class="navbar navbar-inverse navbar-static-top">
           <div class="container">
@@ -37,7 +37,7 @@
             <div class="nav-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="#"><i class="icon-home icon-white"></i>&nbsp;&nbsp;Home</a></li>
-                <li><a href="#about"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
+                <li><a href="{{$base_url.'/movies'}}"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
                 <li><a href="#about"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
                 <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;&nbsp;Contact</a></li>
 
@@ -49,9 +49,7 @@
                     <li><a href="#"><i class="icon-cog"></i>&nbsp;&nbsp;<strong>Profile</strong></a></li>
                     <li><a href="#"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;<strong>Cart</strong></a></li>
                   </ul>
-                </li>
-               
-                
+                </li> 
               </ul>
             </div>
           </div>
@@ -59,9 +57,11 @@
 
       </div>
     </div>
+    @show
 
 <!-- Carousel
-    ================================================== -->
+    ================================================== --> 
+    @section('carousel')
     <div id="myCarousel" class="carousel slide">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -120,13 +120,16 @@
             </div>
           </div>
         </div>
+      </div>      
       
-      </div>
       
       <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div><!-- /.carousel -->
+    @show
 
+  
+  
   @yield('content')
 
   <!-- FOOTER -->
@@ -135,7 +138,7 @@
         <p>&copy; 2013 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
       </footer>
 
-    </div><!-- /.container -->
+  </div><!-- /.container -->
 
 
 

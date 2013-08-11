@@ -17,3 +17,8 @@ Route::get('/products', function() {
 
 	return Product::All();
 });
+
+Route::get('/movies', function() {
+
+	return View::make('movies.movies', array('base_url' => 'http://'.$_SERVER['SERVER_NAME']));
+});
