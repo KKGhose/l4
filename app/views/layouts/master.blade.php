@@ -7,7 +7,7 @@
     <meta name="author" content="">
 
     <title>Laravel 4 project 2013</title>
-
+    @section('head')
     <!-- Bootstrap core CSS -->
     {{ HTML::style('css/bootstrap.css') }}
 
@@ -16,7 +16,7 @@
       
     <!-- Font-Awesome CDN-->  
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-  
+     @show 
   </head>
 <!-- NAVBAR
 ================================================== -->
