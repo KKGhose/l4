@@ -19,7 +19,7 @@ class MoviesController extends BaseController {
 	private function initialize()
 	{
 		$this->count = Product::where('product_type','=', 2)->count();
-		$this->num_pages = (int)($this->count / $this->items_per_page);
+		$this->num_pages = (int)($this->count / $this->items_per_page);	
 		if ($this->count % $this->items_per_page) $this->num_pages += 1;
 	}
 

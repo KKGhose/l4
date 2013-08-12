@@ -99,11 +99,11 @@
       <div class="row">
       <div class="col-lg-4"></div>
 	      <div class="col-lg-4">
-		      <ul class="pagination">
+		      <ul class="pagination pagination-lg">
 		        @if ($page == 1)
 				  <li class="disabled"><span>&laquo;</span></li>
 				@else
-				   <li><a href="#">&laquo;</a></li>
+				   <li><a href="{{$base_url}}/movies/{{$page - 1}}">&laquo;</a></li>
 				@endif     
 				   @for ($i = 1; $i <= $num_pages; $i++)
 				   	  @if ($page == $i)	
@@ -112,7 +112,11 @@
 				  	  	<li><a href="{{$base_url}}/movies/{{$i}}">{{ $i }}</a></li>
 				  	  @endif		
 				   @endfor
-				  <li><a href="#">&raquo;</a></li>
+				@if ($page == $num_pages)   
+				  <li class="disabled"><span>&raquo;</span></li>
+				@else
+				  <li><a href="{{$base_url}}/movies/{{$page + 1}}">&raquo;</a></li>
+				@endif  
 			  </ul>
 		  </div>
 	  <div class="col-lg-4"></div>

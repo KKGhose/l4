@@ -9,7 +9,7 @@
     <title>Laravel 4 project 2013</title>
 
     <!-- Bootstrap core CSS -->
-    {{ HTML::style('css/bootstrap.min.css') }}
+    {{ HTML::style('css/bootstrap.css') }}
 
     <!-- Custom styles for this template -->
     {{ HTML::style('css/carousel.css') }}
@@ -37,7 +37,7 @@
             <div class="nav-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="#"><i class="icon-home icon-white"></i>&nbsp;&nbsp;Home</a></li>
-                <li><a href="{{$base_url.'/movies'}}"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
+                <li><a href="{{$base_url}}/movies"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
                 <li><a href="#about"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
                 <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;&nbsp;Contact</a></li>
 
@@ -130,13 +130,13 @@
 
   
   <div class="container marketing">
-  
+
   @yield('content')
 
   <!-- FOOTER -->
       <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2013 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        <p>&copy; 2013 Online Store, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
       </footer>
 
   </div><!-- /.container -->
@@ -148,7 +148,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
      {{ HTML::script('js/jquery-1.10.2.min.js') }}
-     {{ HTML::script('js/bootstrap.min.js') }}
+     {{ HTML::script('js/bootstrap.js') }}
      {{ HTML::script('js/holder.js') }}
   
   </body>
