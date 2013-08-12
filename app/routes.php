@@ -19,3 +19,5 @@ Route::get('/products', function() {
 });
 
 Route::get('/movies/{offset?}', 'MoviesController@index');
+
+Route::get('/ebooks/{offset?}', 'EbooksController@index');

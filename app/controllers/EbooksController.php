@@ -1,12 +1,13 @@
 <?php
 
-class MoviesController extends BaseController {
+class EbooksController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
+
 	private $count = 0;
 	private $items_per_page = 6;
 	private $num_pages = 0;
@@ -18,7 +19,7 @@ class MoviesController extends BaseController {
 
 	private function initialize()
 	{
-		$this->count = Product::where('product_type','=', 2)->count();
+		$this->count = Product::where('product_type','=', 1)->count();
 		$this->num_pages = (int)($this->count / $this->items_per_page);	
 		if ($this->count % $this->items_per_page) $this->num_pages += 1;
 	}
@@ -27,13 +28,14 @@ class MoviesController extends BaseController {
 	{
 		$skip = ($page - 1) * $this->items_per_page;
 
-		$movies = Product::where('product_type','=', 2)->skip($skip)->orderBy('id', 'desc')->take($this->items_per_page)->get();
+		$ebooks = Product::where('product_type','=', 1)->skip($skip)->orderBy('id', 'desc')->take($this->items_per_page)->get();
 		
-		return View::make('products.movies', array('base_url' => 'http://'.$_SERVER['SERVER_NAME'], 
-			                                         'movies' => $movies, 
-			                                      'num_pages' => $this->num_pages,
-			                                           'page' => $page ));
+		return View::make('products.ebooks', array('base_url' => 'http://'.$_SERVER['SERVER_NAME'], 
+			                                       'ebooks' => $ebooks, 
+			                                    'num_pages' => $this->num_pages,
+			                                    'page' => $page ));
 	}
+
 
 	/**
 	 * Show the form for creating a new resource.

@@ -20,8 +20,8 @@
             <div class="nav-collapse collapse">
               <ul class="nav navbar-nav">
                 <li><a href="{{$base_url}}"><i class="icon-home icon-white"></i>&nbsp;&nbsp;Home</a></li>
-                <li class="active"><a href="#about"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
-                <li><a href="#about"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
+                <li><a href="{{$base_url}}/movies"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
+                <li class="active"><a href="{{$base_url}}/ebooks"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
                 <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;&nbsp;Contact</a></li>
 
               
@@ -49,37 +49,29 @@
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <img src="{{$base_url}}/images/products_images/inception4_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{$base_url}}/images/products_images/linux2_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
             </div>
           </div>
         </div>
         <div class="item">
-          <img src="{{$base_url}}/images/products_images/breakingbad_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{$base_url}}/images/products_images/php_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
             </div>
           </div>
         </div>
         <div class="item">
-          <img src="{{$base_url}}/images/products_images/inception3_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{$base_url}}/images/products_images/linux1_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
             </div>
            </div>
           </div>
-           <div class="item">
-          <img src="{{$base_url}}/images/products_images/inception2_wp.jpg" alt="" width="1100" height="500" alt="">
-          <div class="container">
-            <div class="carousel-caption">
-            </div>
-          </div>
-        </div>
        </div>
       <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -91,35 +83,35 @@
 @section('content')
 
 <div class="row">
-        <h1><i class="icon-film"></i>&nbsp;DVD Movies:</h1><br />
-        @foreach ($movies as $movie)
+        <h1><i class="icon-book"></i>&nbsp;IT-Ebooks:</h1><br />
+        @foreach ($ebooks as $ebook)
         <div class="col-lg-4">
-          <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$movie->id.'_thumb.jpg'}}">
+          <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$ebook->id.'_thumb.jpg'}}">
           <p></p>
           <p><a class="btn btn-primary" href="#">Add to cart &raquo;</a>&nbsp;&nbsp;
-          <a data-toggle="modal" href="#myModal_{{$movie->id}}" class="btn btn-default">View details &raquo;</a></p>
+          <a data-toggle="modal" href="#myModal_{{$ebook->id}}" class="btn btn-default">View details &raquo;</a></p>
 
           {{-- Start Modal --}}
           <!-- Modal -->
-		  <div class="modal fade" id="myModal_{{$movie->id}}">
+		  <div class="modal fade" id="myModal_{{$ebook->id}}">
 		    <div class="modal-dialog">
 		      <div class="modal-content">
 		        <div class="modal-header">
 		          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		          <h3 class="modal-title"><i class="icon-film"></i>&nbsp;{{$movie->product_name}}</h3>
+		          <h3 class="modal-title"><i class="icon-book"></i>&nbsp;{{$ebook->product_name}}</h3>
 		        </div>
 		        <div class="modal-body">
-		         <h4>DVD Description</h4><br />
+		         <h4>Ebook Description</h4><br />
 			    	<div class="twist_img">
-					<img src="{{$base_url}}/images/products_images/{{$movie->id}}_thumb.jpg">
-					<p align="left">{{$movie->product_description}}</p>
+					<img src="{{$base_url}}/images/products_images/{{$ebook->id}}_thumb.jpg">
+					<p align="left">{{$ebook->product_description}}</p>
 					
 					</div><br />
-					<h4>DVD Details</h4><br />
+					<h4>Ebook Details</h4><br />
 					
-					<strong>Language:</strong>&nbsp;{{$movie->product_language}}	
-			        <strong>ISBN-10:</strong>&nbsp;{{$movie->product_isbn10}}
-					<strong>Price:</strong>&nbsp;{{$movie->product_price}}&nbsp;&euro;
+					<strong>Language:</strong>&nbsp;{{$ebook->product_language}}	
+			        <strong>ISBN-10:</strong>&nbsp;{{$ebook->product_isbn10}}
+					<strong>Price:</strong>&nbsp;{{$ebook->product_price}}&nbsp;&euro;
 					
 		        </div>
 		        <div class="modal-footer">
@@ -140,19 +132,19 @@
 		        @if ($page == 1)
 				  <li class="disabled"><span>&laquo;</span></li>
 				@else
-				   <li><a href="{{$base_url}}/movies/{{$page - 1}}">&laquo;</a></li>
+				   <li><a href="{{$base_url}}/ebooks/{{$page - 1}}">&laquo;</a></li>
 				@endif     
 				   @for ($i = 1; $i <= $num_pages; $i++)
 				   	  @if ($page == $i)	
 				  		<li class="disabled"><span>{{ $i }}</span></li>
 				  	  @else
-				  	  	<li><a href="{{$base_url}}/movies/{{$i}}">{{ $i }}</a></li>
+				  	  	<li><a href="{{$base_url}}/ebooks/{{$i}}">{{ $i }}</a></li>
 				  	  @endif		
 				   @endfor
 				@if ($page == $num_pages)   
 				  <li class="disabled"><span>&raquo;</span></li>
 				@else
-				  <li><a href="{{$base_url}}/movies/{{$page + 1}}">&raquo;</a></li>
+				  <li><a href="{{$base_url}}/ebooks/{{$page + 1}}">&raquo;</a></li>
 				@endif  
 			  </ul>
 		  </div>
