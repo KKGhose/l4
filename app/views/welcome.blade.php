@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('head')
+@parent
+  {{ HTML::style('css/modal_img.css') }}
+@stop
 
 
 @section('content')
@@ -16,10 +20,42 @@
         <h1><i class="icon-film"></i>&nbsp;New From DVD Movies:</h1><br />
         @foreach ($movies as $movie)
         <div class="col-lg-4">
-          <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$movie->id.'_thumb.jpg'}}" style="width:160;height:220;">
+          <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$movie->id.'_thumb.jpg'}}">
           <h2>{{$movie->product_name}}</h2>
-          <p>{{ implode(' ', array_slice( explode(' ', $movie->product_description), 0, 40) ).'...' }}</p>
-          <p><a class="btn btn-primary" href="#">Add to cart &raquo;</a>&nbsp;&nbsp;<a class="btn btn-default" href="#">View details &raquo;</a></p>
+          <p>{{ implode(' ', array_slice( explode(' ', $movie->product_description), 0, 20) ).'...' }}</p>
+          <p><a class="btn btn-primary" href="#">Add to cart &raquo;</a>&nbsp;&nbsp;
+          <a data-toggle="modal" href="#myModal_{{$movie->id}}" class="btn btn-default">View details &raquo;</a></p>
+
+          {{-- Start Modal --}}
+          <!-- Modal -->
+          <div class="modal fade" id="myModal_{{$movie->id}}">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h3 class="modal-title"><i class="icon-film"></i>&nbsp;{{$movie->product_name}}</h3>
+                </div>
+                <div class="modal-body">
+                 <h4>DVD Description</h4><br />
+                <div class="twist_img">
+              <img src="{{$base_url}}/images/products_images/{{$movie->id}}_thumb.jpg">
+              <p align="left">{{$movie->product_description}}</p>
+              
+              </div><br />
+              <h4>DVD Details</h4><br />
+              
+              <strong>Language:</strong>&nbsp;{{$movie->product_language}}  
+                  <strong>ISBN-10:</strong>&nbsp;{{$movie->product_isbn10}}
+              <strong>Price:</strong>&nbsp;{{$movie->product_price}}&nbsp;&euro;
+              
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+          {{-- End Modal --}}
         </div><!-- /.col-lg-4 -->
         @endforeach
       </div><!-- /.row -->
@@ -30,10 +66,42 @@
        <h1><i class="icon-book"></i>&nbsp;New From IT-Ebooks:</h1><br />
         @foreach ($ebooks as $ebook)
         <div class="col-lg-4">
-          <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$ebook->id.'_thumb.jpg'}}" style="width:160;height:220;">
+          <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$ebook->id.'_thumb.jpg'}}">
           <h2>{{$ebook->product_name}}</h2>
-          <p>{{ implode(' ', array_slice( explode(' ', $ebook->product_description), 0, 40) ).'...' }}</p>
-          <p><a class="btn btn-primary" href="#">Add to cart &raquo;</a>&nbsp;&nbsp;<a class="btn btn-default" href="#">View details &raquo;</a></p>
+          <p>{{ implode(' ', array_slice( explode(' ', $ebook->product_description), 0, 20) ).'...' }}</p>
+          <p><a class="btn btn-primary" href="#">Add to cart &raquo;</a>&nbsp;&nbsp;
+          <a data-toggle="modal" href="#myModal_{{$ebook->id}}" class="btn btn-default">View details &raquo;</a></p>
+
+          {{-- Start Modal --}}
+          <!-- Modal -->
+          <div class="modal fade" id="myModal_{{$ebook->id}}">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h3 class="modal-title"><i class="icon-film"></i>&nbsp;{{$ebook->product_name}}</h3>
+                </div>
+                <div class="modal-body">
+                 <h4>Ebook Description</h4><br />
+                <div class="twist_img">
+              <img src="{{$base_url}}/images/products_images/{{$ebook->id}}_thumb.jpg">
+              <p align="left">{{$ebook->product_description}}</p>
+              
+              </div><br />
+              <h4>Ebook Details</h4><br />
+              
+              <strong>Language:</strong>&nbsp;{{$ebook->product_language}}  
+              <strong>ISBN-10:</strong>&nbsp;{{$ebook->product_isbn10}}
+              <strong>Price:</strong>&nbsp;{{$ebook->product_price}}&nbsp;&euro;
+              
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+          {{-- End Modal --}}
         </div><!-- /.col-lg-4 -->
         @endforeach
       </div><!-- /.row -->
