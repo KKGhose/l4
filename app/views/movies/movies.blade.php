@@ -100,15 +100,25 @@
       <div class="col-lg-4"></div>
 	      <div class="col-lg-4">
 		      <ul class="pagination">
-				  <li><a href="#">&laquo;</a></li>
-				   @for ($i = 1; $i < $num_pages; $i++)
-				  		<li><a href="#">{{ $i }}</a></li>
+		        @if ($page == 1)
+				  <li class="disabled"><span>&laquo;</span></li>
+				@else
+				   <li><a href="#">&laquo;</a></li>
+				@endif     
+				   @for ($i = 1; $i <= $num_pages; $i++)
+				   	  @if ($page == $i)	
+				  		<li class="disabled"><span>{{ $i }}</span></li>
+				  	  @else
+				  	  	<li><a href="{{$base_url}}/movies/{{$i}}">{{ $i }}</a></li>
+				  	  @endif		
 				   @endfor
 				  <li><a href="#">&raquo;</a></li>
 			  </ul>
 		  </div>
 	  <div class="col-lg-4"></div>
 	  </div>
+
+
 	 
 
 	  <br /><br /><br /><br />

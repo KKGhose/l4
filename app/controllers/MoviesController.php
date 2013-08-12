@@ -23,15 +23,16 @@ class MoviesController extends BaseController {
 		if ($this->count % $this->items_per_page) $this->num_pages += 1;
 	}
 
-	public function index($offset = 0)
+	public function index($page = 1)
 	{
-		//
-		$movies = Product::where('product_type','=', 2)->skip($offset)->orderBy('id', 'desc')->take($this->items_per_page)->get();
+		$skip = ($page - 1) * $this->items_per_page;
+
+		$movies = Product::where('product_type','=', 2)->skip($skip)->orderBy('id', 'desc')->take($this->items_per_page)->get();
 		
 		return View::make('movies.movies', array('base_url' => 'http://'.$_SERVER['SERVER_NAME'], 
 			                                       'movies' => $movies, 
 			                                    'num_pages' => $this->num_pages,
-			                                    'offest' => $offset ));
+			                                    'page' => $page ));
 	}
 
 	/**
