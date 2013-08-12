@@ -78,7 +78,7 @@
           <div class="container">
             <div class="carousel-caption">
               <h1>Welcome To The Online Store Version 2.0!</h1>
-              <p>It's a new dawn for the PHP world (and for me as well ;))! with the advent of <a href="http://laravel.com/">Laravel 4</a>, a popular PHP framework heavily inspired by the likes of Ruby on Rails, as well as other modern PHP frameworks like Symfony. As you can guess I'm integrating my site to this new environment. It has been a very pleasurable experience so far, mainly because I enjoy the workflow and the numerous features of Laravel 4, and I strongly suggest that PHP web developers have a go at it!</p>
+              <p>It's a new dawn for the PHP world (and for me as well ;))! with the advent of <a href="http://laravel.com/">Laravel 4</a>, a popular PHP framework heavily inspired by the likes of Ruby on Rails, as well as other modern PHP frameworks like Symfony. As you can guess I'm integrating my site to this new environment. It has been a very pleasurable experience so far, mainly because I enjoy the workflow and the numerous features of Laravel 4, and I strongly suggest that PHP web developers have a go at it! (Project started 05.08.2013)</p>
               <p><a class="btn btn-large btn-primary" href="#">Sign up today</a></p>
             </div>
           </div>
