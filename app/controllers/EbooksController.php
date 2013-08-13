@@ -26,6 +26,8 @@ class EbooksController extends BaseController {
 
 	public function index($page = 1)
 	{
+		$this->log_access('ebooks.index');
+
 		$skip = ($page - 1) * $this->items_per_page;
 
 		$ebooks = Product::where('product_type','=', 1)->skip($skip)->orderBy('id', 'desc')->take($this->items_per_page)->get();
@@ -34,6 +36,18 @@ class EbooksController extends BaseController {
 			                                       'ebooks' => $ebooks, 
 			                                    'num_pages' => $this->num_pages,
 			                                    'page' => $page ));
+	}
+
+
+	public function log_access($action = '')
+	{
+		$log = new AccessLog;
+		$log->page_url = 'L4->'.$action;
+		$log->ip = $_SERVER['REMOTE_ADDR'];
+		$log->host = gethostbyaddr( $_SERVER['REMOTE_ADDR'] );
+		$log->save();
+
+		return;
 	}
 
 

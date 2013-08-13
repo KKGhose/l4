@@ -17,9 +17,23 @@ class HomeController extends BaseController {
 
 	public function index()
 	{
+		$this->log_access('home.index');
+
 		$movies = Product::where('product_type','=', 2)->orderBy('id', 'desc')->take(3)->get();
 		$ebooks = Product::where('product_type','=', 1)->orderBy('id', 'desc')->take(3)->get();
+		
 		return View::make('welcome', array('base_url' => 'http://'.$_SERVER['SERVER_NAME'], 'movies' => $movies, 'ebooks' => $ebooks) );
+	}
+
+	public function log_access($action = '')
+	{
+		$log = new AccessLog;
+		$log->page_url = 'L4->'.$action;
+		$log->ip = $_SERVER['REMOTE_ADDR'];
+		$log->host = gethostbyaddr( $_SERVER['REMOTE_ADDR'] );
+		$log->save();
+
+		return;
 	}
 
 }

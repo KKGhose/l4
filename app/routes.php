@@ -11,18 +11,9 @@
 |
 */
 
-Route::get('/', function() {
 
-	$log = new AccessLog;
-	$log->page_url = 'l4->home->index';
-	$log->ip = $_SERVER['REMOTE_ADDR'];
-	$log->host = gethostbyaddr( $_SERVER['REMOTE_ADDR'] );
-	$log->save();
 
-	return Redirect::to('view_home');
-});
-
-Route::get('view_home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
 
 
 
