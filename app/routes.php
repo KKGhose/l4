@@ -11,12 +11,20 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', function() {
 
-Route::get('/products', function() {
+	$log = new AccessLog;
+	$log->page_url = 'l4->home->index';
+	$log->ip = $_SERVER['REMOTE_ADDR'];
+	$log->host = gethostbyaddr( $_SERVER['REMOTE_ADDR'] );
+	$log->save();
 
-	return Product::All();
+	return Redirect::to('view_home');
 });
+
+Route::get('view_home', 'HomeController@index');
+
+
 
 Route::get('/movies/{offset?}', 'MoviesController@index');
 
