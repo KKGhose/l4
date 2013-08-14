@@ -24,7 +24,7 @@ class HomeController extends BaseController {
 		
 		return View::make('welcome', array('base_url' => 'http://'.$_SERVER['SERVER_NAME'], 'movies' => $movies, 'ebooks' => $ebooks) );
 	}
-
+	
 	public function log_access($action = '')
 	{
 		$log = new AccessLog;

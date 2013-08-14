@@ -33,6 +33,7 @@
                     <li><a href="#"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;<strong>Cart</strong></a></li>
                   </ul>
                 </li> 
+                <li><a data-toggle="modal" href="#Cart_Modal"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;Your cart is empty</a></li>
               </ul>
             </div>
           </div>
@@ -40,6 +41,24 @@
 
       </div>
     </div>
+
+    <!-- Cart Modal -->
+                    <div class="modal fade" id="Cart_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;My Cart</h4>
+                          </div>
+                          <div class="modal-body">
+                            <h1>Hello World!</h1>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div><!-- /.modal-content -->
+                      </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
 @overwrite
 
 @section('carousel')
@@ -90,38 +109,38 @@
           <p></p>
           <p><a class="btn btn-primary" href="#">Add to cart &raquo;</a>&nbsp;&nbsp;
           <a data-toggle="modal" href="#myModal_{{$ebook->id}}" class="btn btn-default">View details &raquo;</a></p>
-
-          {{-- Start Modal --}}
-          <!-- Modal -->
-		  <div class="modal fade" id="myModal_{{$ebook->id}}">
-		    <div class="modal-dialog">
-		      <div class="modal-content">
-		        <div class="modal-header">
-		          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		          <h3 class="modal-title"><i class="icon-book"></i>&nbsp;{{$ebook->product_name}}</h3>
-		        </div>
-		        <div class="modal-body">
-		         <h4>Ebook Description</h4><br />
-			    	<div class="twist_img">
-					<img src="{{$base_url}}/images/products_images/{{$ebook->id}}_thumb.jpg">
-					<p align="left">{{$ebook->product_description}}</p>
-					
-					</div><br />
-					<h4>Ebook Details</h4><br />
-					
-					<strong>Language:</strong>&nbsp;{{$ebook->product_language}}	
-			        <strong>ISBN-10:</strong>&nbsp;{{$ebook->product_isbn10}}
-					<strong>Price:</strong>&nbsp;{{$ebook->product_price}}&nbsp;&euro;
-					
-		        </div>
-		        <div class="modal-footer">
-		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        </div>
-		      </div><!-- /.modal-content -->
-		    </div><!-- /.modal-dialog -->
-		  </div><!-- /.modal -->
-          {{-- End Modal --}}
         </div><!-- /.col-lg-4 -->
+
+        {{-- Start Modal --}}
+          <!-- Modal -->
+      <div class="modal fade" id="myModal_{{$ebook->id}}">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h3 class="modal-title"><i class="icon-book"></i>&nbsp;{{$ebook->product_name}}</h3>
+            </div>
+            <div class="modal-body">
+             <h4>Ebook Description</h4><br />
+            <div class="twist_img">
+          <img src="{{$base_url}}/images/products_images/{{$ebook->id}}_thumb.jpg">
+          <p>{{$ebook->product_description}}</p>
+          </div><br />
+          <h4>Ebook Details</h4><br />
+            <ul>
+              <li><strong>Language:</strong>&nbsp;{{$ebook->product_language}}</li>  
+              <li><strong>ISBN-10:</strong>&nbsp;{{$ebook->product_isbn10}}</li>
+              <li><strong>Price:</strong>&nbsp;{{$ebook->product_price}}&nbsp;&euro;</li>
+            </ul>
+          </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+          {{-- End Modal --}}
+
         @endforeach
       </div><!-- /.row -->
 

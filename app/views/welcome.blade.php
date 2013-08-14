@@ -24,9 +24,10 @@
           <h2>{{$movie->product_name}}</h2>
           <p>{{ implode(' ', array_slice( explode(' ', $movie->product_description), 0, 20) ).'...' }}</p>
           <p><a class="btn btn-primary" href="#">Add to cart &raquo;</a>&nbsp;&nbsp;
-          <a data-toggle="modal" href="#myModal_{{$movie->id}}" class="btn btn-default">View details &raquo;</a></p>
+          <a data-toggle="modal" href="#myModal_{{$movie->id}}" class="btn btn-default">View details &raquo;</a></p> 
+        </div><!-- /.col-lg-4 -->
 
-          {{-- Start Modal --}}
+        {{-- Start Modal --}}
           <!-- Modal -->
           <div class="modal fade" id="myModal_{{$movie->id}}">
             <div class="modal-dialog">
@@ -39,15 +40,15 @@
                  <h4>DVD Description</h4><br />
                 <div class="twist_img">
               <img src="{{$base_url}}/images/products_images/{{$movie->id}}_thumb.jpg">
-              <p align="left">{{$movie->product_description}}</p>
+              <p>{{$movie->product_description}}</p>
               
               </div><br />
               <h4>DVD Details</h4><br />
-              
-              <strong>Language:</strong>&nbsp;{{$movie->product_language}}  
-                  <strong>ISBN-10:</strong>&nbsp;{{$movie->product_isbn10}}
-              <strong>Price:</strong>&nbsp;{{$movie->product_price}}&nbsp;&euro;
-              
+              <ul>
+              <li><strong>Language:</strong>&nbsp;{{$movie->product_language}}</li>  
+              <li><strong>ISBN-10:</strong>&nbsp;{{$movie->product_isbn10}}</li>
+              <li><strong>Price:</strong>&nbsp;{{$movie->product_price}}&nbsp;&euro;</li>
+              </ul>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -56,7 +57,7 @@
             </div><!-- /.modal-dialog -->
           </div><!-- /.modal -->
           {{-- End Modal --}}
-        </div><!-- /.col-lg-4 -->
+
         @endforeach
       </div><!-- /.row -->
 
@@ -71,6 +72,8 @@
           <p>{{ implode(' ', array_slice( explode(' ', $ebook->product_description), 0, 20) ).'...' }}</p>
           <p><a class="btn btn-primary" href="#">Add to cart &raquo;</a>&nbsp;&nbsp;
           <a data-toggle="modal" href="#myModal_{{$ebook->id}}" class="btn btn-default">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+
 
           {{-- Start Modal --}}
           <!-- Modal -->
@@ -85,15 +88,15 @@
                  <h4>Ebook Description</h4><br />
                 <div class="twist_img">
               <img src="{{$base_url}}/images/products_images/{{$ebook->id}}_thumb.jpg">
-              <p align="left">{{$ebook->product_description}}</p>
+              <p>{{$ebook->product_description}}</p>
               
               </div><br />
               <h4>Ebook Details</h4><br />
-              
-              <strong>Language:</strong>&nbsp;{{$ebook->product_language}}  
-              <strong>ISBN-10:</strong>&nbsp;{{$ebook->product_isbn10}}
-              <strong>Price:</strong>&nbsp;{{$ebook->product_price}}&nbsp;&euro;
-              
+              <ul>
+              <li><strong>Language:</strong>&nbsp;{{$ebook->product_language}}</li>  
+              <li><strong>ISBN-10:</strong>&nbsp;{{$ebook->product_isbn10}}</li>
+              <li><strong>Price:</strong>&nbsp;{{$ebook->product_price}}&nbsp;&euro;</li>
+              </ul>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -102,7 +105,7 @@
             </div><!-- /.modal-dialog -->
           </div><!-- /.modal -->
           {{-- End Modal --}}
-        </div><!-- /.col-lg-4 -->
+
         @endforeach
       </div><!-- /.row -->
 

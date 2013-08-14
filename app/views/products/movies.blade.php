@@ -33,6 +33,7 @@
                     <li><a href="#"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;<strong>Cart</strong></a></li>
                   </ul>
                 </li> 
+                <li><a data-toggle="modal" href="#Cart_Modal"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;Your cart is empty</a></li>
               </ul>
             </div>
           </div>
@@ -40,6 +41,24 @@
 
       </div>
     </div>
+
+    <!-- Cart Modal -->
+                    <div class="modal fade" id="Cart_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;My Cart</h4>
+                          </div>
+                          <div class="modal-body">
+                            <h1>Hello World!</h1>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div><!-- /.modal-content -->
+                      </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
 @overwrite
 
 @section('carousel')
@@ -98,38 +117,39 @@
           <p></p>
           <p><a class="btn btn-primary" href="#">Add to cart &raquo;</a>&nbsp;&nbsp;
           <a data-toggle="modal" href="#myModal_{{$movie->id}}" class="btn btn-default">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        
 
           {{-- Start Modal --}}
           <!-- Modal -->
-		  <div class="modal fade" id="myModal_{{$movie->id}}">
-		    <div class="modal-dialog">
-		      <div class="modal-content">
-		        <div class="modal-header">
-		          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		          <h3 class="modal-title"><i class="icon-film"></i>&nbsp;{{$movie->product_name}}</h3>
-		        </div>
-		        <div class="modal-body">
-		         <h4>DVD Description</h4><br />
-			    	<div class="twist_img">
-					<img src="{{$base_url}}/images/products_images/{{$movie->id}}_thumb.jpg">
-					<p align="left">{{$movie->product_description}}</p>
-					
-					</div><br />
-					<h4>DVD Details</h4><br />
-					
-					<strong>Language:</strong>&nbsp;{{$movie->product_language}}	
-			        <strong>ISBN-10:</strong>&nbsp;{{$movie->product_isbn10}}
-					<strong>Price:</strong>&nbsp;{{$movie->product_price}}&nbsp;&euro;
-					
-		        </div>
-		        <div class="modal-footer">
-		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        </div>
-		      </div><!-- /.modal-content -->
-		    </div><!-- /.modal-dialog -->
-		  </div><!-- /.modal -->
+      <div class="modal fade" id="myModal_{{$movie->id}}">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h3 class="modal-title"><i class="icon-film"></i>&nbsp;{{$movie->product_name}}</h3>
+            </div>
+            <div class="modal-body">
+             <h4>DVD Description</h4><br />
+            <div class="twist_img">
+          <img src="{{$base_url}}/images/products_images/{{$movie->id}}_thumb.jpg">
+          <p>{{$movie->product_description}}</p>
+          
+          </div><br />
+          <h4>DVD Details</h4><br />
+           <ul>
+             <li><strong>Language:</strong>&nbsp;{{$movie->product_language}}</li>  
+             <li><strong>ISBN-10:</strong>&nbsp;{{$movie->product_isbn10}}</li>
+             <li><strong>Price:</strong>&nbsp;{{$movie->product_price}}&nbsp;&euro;</li>
+           </ul>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
           {{-- End Modal --}}
-        </div><!-- /.col-lg-4 -->
         @endforeach
       </div><!-- /.row -->
 
