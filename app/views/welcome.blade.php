@@ -23,7 +23,7 @@
           <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$movie->id.'_thumb.jpg'}}">
           <h2>{{$movie->product_name}}</h2>
           <p>{{ implode(' ', array_slice( explode(' ', $movie->product_description), 0, 20) ).'...' }}</p>
-          <p><a class="btn btn-primary" href="#">Add to cart &raquo;</a>&nbsp;&nbsp;
+          <p><a class="btn btn-primary" href="/add_to_cart/{{$movie->id}}">Add to cart &raquo;</a>&nbsp;&nbsp;
           <a data-toggle="modal" href="#myModal_{{$movie->id}}" class="btn btn-default">View details &raquo;</a></p> 
         </div><!-- /.col-lg-4 -->
 
@@ -70,7 +70,7 @@
           <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$ebook->id.'_thumb.jpg'}}">
           <h2>{{$ebook->product_name}}</h2>
           <p>{{ implode(' ', array_slice( explode(' ', $ebook->product_description), 0, 20) ).'...' }}</p>
-          <p><a class="btn btn-primary" href="#">Add to cart &raquo;</a>&nbsp;&nbsp;
+          <p><a class="btn btn-primary" href="/add_to_cart/{{$ebook->id}}">Add to cart &raquo;</a>&nbsp;&nbsp;
           <a data-toggle="modal" href="#myModal_{{$ebook->id}}" class="btn btn-default">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
 

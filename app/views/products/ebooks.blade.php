@@ -107,7 +107,7 @@
         <div class="col-lg-4">
           <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$ebook->id.'_thumb.jpg'}}">
           <p></p>
-          <p><a class="btn btn-primary" href="#">Add to cart &raquo;</a>&nbsp;&nbsp;
+          <p><a class="btn btn-primary" href="/add_to_cart/{{$ebook->id}}/ebooks">Add to cart &raquo;</a>&nbsp;&nbsp;
           <a data-toggle="modal" href="#myModal_{{$ebook->id}}" class="btn btn-default">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
 
