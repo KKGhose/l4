@@ -5,7 +5,11 @@
   {{ HTML::style('css/modal_img.css') }}
 @stop
 
-@section('navbar')
+
+@section('content')
+
+  <!-- NAVBAR
+================================================== -->
  <div class="navbar-wrapper">
    <div class="container">
 
@@ -33,7 +37,12 @@
                     <li><a href="#"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;<strong>Cart</strong></a></li>
                   </ul>
                 </li> 
-                <li><a data-toggle="modal" href="#Cart_Modal"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;Your cart is empty</a></li>
+                <li><a data-toggle="modal" href="#Cart_Modal"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;
+                @if ($cart_items_count == 0 || $cart_items_count > 1)
+                   Cart (you have {{$cart_items_count}} items)</a></li>
+                @else
+                   Cart (you have {{$cart_items_count}} item)</a></li>
+                @endif
               </ul>
             </div>
           </div>
@@ -59,9 +68,7 @@
                         </div><!-- /.modal-content -->
                       </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
-@overwrite
 
-@section('carousel')
 <div id="myCarousel" class="carousel slide">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -104,10 +111,10 @@
       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div><!-- /.carousel -->
 
-@overwrite
 
 
-@section('content')
+
+<div class="container marketing">
 
 <div class="row">
         <h1><i class="icon-film"></i>&nbsp;DVD Movies:</h1><br />
@@ -182,6 +189,7 @@
 
 	 
 
-	  <br /><br /><br /><br />
+	  <hr class="featurette-divider">
 	  
 @stop
+

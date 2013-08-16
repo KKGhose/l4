@@ -10,10 +10,12 @@ class MoviesController extends BaseController {
 	private $count = 0;
 	private $items_per_page = 6;
 	private $num_pages = 0;
+	private $_cart_id;
 
 	public function __construct()
 	{
 		$this->initialize();
+		$this->_cart_id = Session::get('cart_id');
 	}
 
 	private function initialize()
@@ -32,9 +34,14 @@ class MoviesController extends BaseController {
 
 		$movies = Product::where('product_type','=', 2)->skip($skip)->orderBy('id', 'desc')->take($this->items_per_page)->get();
 		
+		list( $cart_products, $cart_items_count, $total ) = $this->_get_cart_data();
+
 		return View::make('products.movies', array('base_url' => 'http://'.$_SERVER['SERVER_NAME'], 
 			                                         'movies' => $movies, 
 			                                      'num_pages' => $this->num_pages,
+			                               'cart_items_count' => $cart_items_count,
+			                                          'total' => $total,
+			                                  'cart_products' => $cart_products, 
 			                                           'page' => $page ));
 	}
 
@@ -49,6 +56,34 @@ class MoviesController extends BaseController {
 
 		return;
 	}
+
+	private function _get_cart_data()
+	{
+		$cart_products = array();
+		
+		$count = CartItem::whereRaw( 'cart_id LIKE ?', array( $this->_cart_id ) )->count();
+		$cart_items_count = 0;
+		$total = 0;
+
+		if ($count > 0)
+		{
+			$cart_items = CartItem::where( 'cart_id', 'LIKE', $this->_cart_id )->get();
+			
+
+			foreach($cart_items as $cart_item)
+			{
+				$cart_products[] = Product::find( $cart_item->product_id );
+				$cart_items_count += (int)$cart_item->quantity;
+			}
+			
+			foreach($cart_products as $cart_product)
+				$total += $cart_product->product_price;
+			
+		}
+
+		return array($cart_products, $cart_items_count, $total);
+
+	}//End get_cart_data()
 
 	/**
 	 * Show the form for creating a new resource.
