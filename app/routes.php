@@ -36,14 +36,20 @@ Route::get('/add_to_cart/{product_id}/{uri?}', function($product_id, $uri = null
 	}
 
 	$cart_item = new CartItem;
+	
+	//Check to see if item is already in table
+    $cnt = CartItem::whereRaw('cart_id LIKE ? and product_id = ?', array( $cart_id, $product_id ) )->count();
 
-	$cart_item->cart_id = $cart_id;
-	$cart_item->product_id = $product_id;
-	$cart_item->save();
-
-	//$cnt = CartItem::whereRaw('cart_id LIKE ? and product_id = ?', array( $cart_id, $item_id ) );
-
-
+    if( $cnt > 0 )
+    {
+    	DB::update('UPDATE cartItems SET quantity = quantity + 1 WHERE product_id = ? AND cart_id LIKE ?', array( $product_id, $cart_id ) );
+    }
+    else
+    {
+    	$cart_item->cart_id = $cart_id;
+		$cart_item->product_id = $product_id;
+		$cart_item->save();
+    }
 
 	if( $uri == 'movies' )
 		return Redirect::to('/movies/');
