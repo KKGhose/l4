@@ -58,7 +58,23 @@
                             <h4 class="modal-title"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;My Cart</h4>
                           </div>
                           <div class="modal-body">
-                            <h1>Hello World!</h1>
+                          <ul class="list-unstyled">
+                          @foreach ($cart_products as $cart_product)
+                          <li>
+                           @if ($cart_product->product_type == 2)
+                             {{'<i class="icon-film"></i>&nbsp;&nbsp<strong>'.$cart_product->product_name.'</strong>&nbsp;&nbsp;<small><em class="muted">x '.$cart_product->quantity.'</em></small>'}}
+                           @else
+                             {{'<i class="icon-book"></i>&nbsp;&nbsp<strong>'.$cart_product->product_name.'</strong>&nbsp;&nbsp;<small><em class="muted">x '.$cart_product->quantity.'</em></small>'}}
+                           @endif  
+                          </li>
+                          @endforeach
+                          <li>&nbsp;</li>
+                          <li><strong>Total:</strong> {{$total}}</li>
+                          <li>&nbsp;</li>
+                          <li><button type="button" class="btn btn-primary btn-xs">View Cart In Details</button>&nbsp;&nbsp;
+                          <a href="{{$base_url}}/empty_cart/ebooks" type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</a></li>
+                         </ul>
+                          
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

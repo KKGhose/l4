@@ -63,19 +63,20 @@
                           <ul class="list-unstyled">
                           @foreach ($cart_products as $cart_product)
                           <li>
-                           @if ($cart_product->product_type == 1)
-                             {{'<i class="icon-film"></i>&nbsp;&nbsp'.$cart_product->product_name}}
+                           @if ($cart_product->product_type == 2)
+                             {{'<i class="icon-film"></i>&nbsp;&nbsp<strong>'.$cart_product->product_name.'</strong>&nbsp;&nbsp;<small><em class="muted">x '.$cart_product->quantity.'</em></small>'}}
                            @else
-                             {{'<i class="icon-book"></i>&nbsp;&nbsp'.$cart_product->product_name}}
+                             {{'<i class="icon-book"></i>&nbsp;&nbsp<strong>'.$cart_product->product_name.'</strong>&nbsp;&nbsp;<small><em class="muted">x '.$cart_product->quantity.'</em></small>'}}
                            @endif  
                           </li>
                           @endforeach
                           <li>&nbsp;</li>
-                          <li>Total: {{$total}}</li>
+                          <li><strong>Total:</strong> {{$total}}</li>
                           <li>&nbsp;</li>
-                          <li><button type="button" class="btn btn-primary btn-xs">View Cart</button>&nbsp;&nbsp;<button type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</button></li>
+                          <li><button type="button" class="btn btn-primary btn-xs">View Cart In Details</button>&nbsp;&nbsp;
+                          <a href="{{$base_url}}/empty_cart" type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</a></li>
                          </ul>
-                          {{var_dump($stuff)}}
+                          
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
