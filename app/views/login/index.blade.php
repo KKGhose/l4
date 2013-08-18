@@ -178,7 +178,7 @@
        <div class="well">
       	 <strong><i class="icon-key"></i>&nbsp;New Registration</strong>
         <br /><br />
-        {{ Form::open( array( 'url' => '',
+        {{ Form::open( array( 'route' => 'register',
 					            'class' => 'form-signin') )}}
 		{{ Form::email('email_signin_1', '', array('class' => 'form-control',
 									    'placeholder' =>  'Enter your email'))}}

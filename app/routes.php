@@ -25,9 +25,16 @@ Route::get('login', function() {
 			                                  'cart_products' => $cart_products ));
 });
 
-Route::post('login', array('as' => 'login', function() {
+Route::post('handle-login', array('before' => 'csrf', 'as' => 'login', function() {
 	$email =  Input::get('email');
 	$passwd =  md5( Input::get('password') );
 
 	return 'email = '.$email.', password = '.$passwd;
+}));
+
+Route::post('handle-register', array('before' => 'csrf','as' => 'register', function() {
+	
+	$data = Input::all();
+
+	var_dump($data);
 }));
