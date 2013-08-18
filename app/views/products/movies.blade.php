@@ -20,12 +20,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand" href="{{$base_url}}">Online Store</a>
+            <a class="navbar-brand" href="{{url()}}">Online Store</a>
             <div class="nav-collapse collapse">
               <ul class="nav navbar-nav">
-                <li><a href="{{$base_url}}"><i class="icon-home icon-white"></i>&nbsp;&nbsp;Home</a></li>
-                <li class="active"><a href="{{$base_url}}/movies"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
-                <li><a href="{{$base_url}}/ebooks"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
+                <li><a href="{{url()}}"><i class="icon-home icon-white"></i>&nbsp;&nbsp;Home</a></li>
+                <li class="active"><a href="{{url('movies')}}"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
+                <li><a href="{{url('ebooks')}}"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
                 <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;&nbsp;Contact</a></li>
 
               
@@ -74,7 +74,7 @@
                           <li><strong>Total:</strong> {{$total}}</li>
                           <li>&nbsp;</li>
                           <li><button type="button" class="btn btn-primary btn-xs">View Cart In Details</button>&nbsp;&nbsp;
-                          <a href="{{$base_url}}/empty_cart/movies" type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</a></li>
+                          <a href="{{url('empty_cart')}}/movies" type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</a></li>
                          </ul>
                           
                           </div>
@@ -95,28 +95,28 @@
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <img src="{{$base_url}}/images/products_images/inception4_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/inception4_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
             </div>
           </div>
         </div>
         <div class="item">
-          <img src="{{$base_url}}/images/products_images/breakingbad_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/breakingbad_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
             </div>
           </div>
         </div>
         <div class="item">
-          <img src="{{$base_url}}/images/products_images/inception3_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/inception3_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
             </div>
            </div>
           </div>
            <div class="item">
-          <img src="{{$base_url}}/images/products_images/inception2_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/inception2_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
             </div>
@@ -136,9 +136,9 @@
         <h1><i class="icon-film"></i>&nbsp;DVD Movies:</h1><br />
         @foreach ($movies as $movie)
         <div class="col-lg-4">
-          <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$movie->id.'_thumb.jpg'}}">
+          <img class="img-rounded" src="{{url()}}/images/products_images/{{$movie->id.'_thumb.jpg'}}">
           <p></p>
-          <p><a class="btn btn-primary" href="/add_to_cart/{{$movie->id}}/movies">Add to cart &raquo;</a>&nbsp;&nbsp;
+          <p><a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$movie->id}}/movies">Add to cart &raquo;</a>&nbsp;&nbsp;
           <a data-toggle="modal" href="#myModal_{{$movie->id}}" class="btn btn-default">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         
@@ -155,7 +155,7 @@
             <div class="modal-body">
              <h4>DVD Description</h4><br />
             <div class="twist_img">
-          <img src="{{$base_url}}/images/products_images/{{$movie->id}}_thumb.jpg">
+          <img src="{{url()}}/images/products_images/{{$movie->id}}_thumb.jpg">
           <p>{{$movie->product_description}}</p>
           
           </div><br />
@@ -183,19 +183,19 @@
 		        @if ($page == 1)
 				  <li class="disabled"><span>&laquo;</span></li>
 				@else
-				   <li><a href="{{$base_url}}/movies/{{$page - 1}}">&laquo;</a></li>
+				   <li><a href="{{url('movies')}}/{{$page - 1}}">&laquo;</a></li>
 				@endif     
 				   @for ($i = 1; $i <= $num_pages; $i++)
 				   	  @if ($page == $i)	
 				  		<li class="disabled"><span>{{ $i }}</span></li>
 				  	  @else
-				  	  	<li><a href="{{$base_url}}/movies/{{$i}}">{{ $i }}</a></li>
+				  	  	<li><a href="{{url('movies')}}/{{$i}}">{{ $i }}</a></li>
 				  	  @endif		
 				   @endfor
 				@if ($page == $num_pages)   
 				  <li class="disabled"><span>&raquo;</span></li>
 				@else
-				  <li><a href="{{$base_url}}/movies/{{$page + 1}}">&raquo;</a></li>
+				  <li><a href="{{url('movies')}}/{{$page + 1}}">&raquo;</a></li>
 				@endif  
 			  </ul>
 		  </div>

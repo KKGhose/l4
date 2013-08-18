@@ -37,8 +37,7 @@ class EbooksController extends BaseController {
 		
 		list( $cart_products, $cart_items_count, $total ) = $this->_cart_data->get_cart_data();
 
-		return View::make('products.ebooks', array('base_url' => 'http://'.$_SERVER['SERVER_NAME'], 
-			                                         'ebooks' => $ebooks, 
+		return View::make('products.ebooks', array('ebooks' => $ebooks, 
 			                                      'num_pages' => $this->num_pages,
 			                               'cart_items_count' => $cart_items_count,
 			                                          'total' => $total,

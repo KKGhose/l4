@@ -24,8 +24,7 @@ class HomeController extends BaseController {
 
  	    
 
-		return View::make('welcome', array('base_url' => 'http://'.$_SERVER['SERVER_NAME'], 
-			                               'movies' => $movies, 
+		return View::make('welcome', array('movies' => $movies, 
 			                               'ebooks' => $ebooks,
 			                               'cart_items_count' => $cart_items_count,
 			                               'total' => $total,

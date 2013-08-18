@@ -19,12 +19,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand" href="#">Online Store</a>
+            <a class="navbar-brand" href="{{url()}}">Online Store</a>
             <div class="nav-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="{{$base_url}}"><i class="icon-home icon-white"></i>&nbsp;&nbsp;Home</a></li>
-                <li><a href="{{$base_url}}/movies"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
-                <li><a href="{{$base_url}}/ebooks"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
+                <li class="active"><a href="{{url()}}"><i class="icon-home icon-white"></i>&nbsp;&nbsp;Home</a></li>
+                <li><a href="{{url('movies')}}"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
+                <li><a href="{{url('ebooks')}}"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
                 <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;&nbsp;Contact</a></li>
 
               
@@ -74,7 +74,7 @@
                           <li><strong>Total:</strong> {{$total}}</li>
                           <li>&nbsp;</li>
                           <li><button type="button" class="btn btn-primary btn-xs">View Cart In Details</button>&nbsp;&nbsp;
-                          <a href="{{$base_url}}/empty_cart" type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</a></li>
+                          <a href="{{url('empty_cart')}}" type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</a></li>
                          </ul>
                           
                           </div>
@@ -99,8 +99,8 @@
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <img data-src="{{$base_url}}/js/holder.js/1500x500/auto/#777:#7a7a7a/text:Powered by Laravel 4" alt="">
-          <!--img data-src="{{$base_url}}/js/holder.js/1500x500/auto/#777:#F0F0F0/text:Powered by Laravel 4" alt=""-->
+          <img data-src="js/holder.js/1500x500/auto/#777:#7a7a7a/text:Powered by Laravel 4" alt="">
+         
           <div class="container">
             <div class="carousel-caption">
               <h1>Welcome To The Online Store Version 2.0!</h1>
@@ -111,7 +111,7 @@
         </div>
         
         <div class="item">
-          <img src="{{$base_url}}/images/products_images/inception3_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/inception3_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
               <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
@@ -120,7 +120,7 @@
         </div>
 
         <div class="item">
-          <img src="{{$base_url}}/images/products_images/breakingbad_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/breakingbad_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
               <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
@@ -130,7 +130,7 @@
 
 
         <div class="item">
-          <img src="{{$base_url}}/images/products_images/inception4_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/inception4_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
               <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
@@ -139,7 +139,7 @@
         </div>
 
         <div class="item">
-          <img src="{{$base_url}}/images/products_images/inception2_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/inception2_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
               <p><a class="btn btn-large btn-primary" href="#">Browse gallery</a></p>
@@ -165,10 +165,10 @@
         <h1><i class="icon-film"></i>&nbsp;New From DVD Movies:</h1><br />
         @foreach ($movies as $movie)
         <div class="col-lg-4">
-          <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$movie->id.'_thumb.jpg'}}">
+          <img class="img-rounded" src="{{url()}}/images/products_images/{{$movie->id.'_thumb.jpg'}}">
           <h2>{{$movie->product_name}}</h2>
           <p>{{ implode(' ', array_slice( explode(' ', $movie->product_description), 0, 20) ).'...' }}</p>
-          <p><a class="btn btn-primary" href="/add_to_cart/{{$movie->id}}">Add to cart &raquo;</a>&nbsp;&nbsp;
+          <p><a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$movie->id}}">Add to cart &raquo;</a>&nbsp;&nbsp;
           <a data-toggle="modal" href="#myModal_{{$movie->id}}" class="btn btn-default">View details &raquo;</a></p> 
         </div><!-- /.col-lg-4 -->
 
@@ -184,7 +184,7 @@
                 <div class="modal-body">
                  <h4>DVD Description</h4><br />
                 <div class="twist_img">
-              <img src="{{$base_url}}/images/products_images/{{$movie->id}}_thumb.jpg">
+              <img src="{{url()}}/images/products_images/{{$movie->id}}_thumb.jpg">
               <p>{{$movie->product_description}}</p>
               
               </div><br />
@@ -212,10 +212,10 @@
        <h1><i class="icon-book"></i>&nbsp;New From IT-Ebooks:</h1><br />
         @foreach ($ebooks as $ebook)
         <div class="col-lg-4">
-          <img class="img-rounded" src="{{$base_url}}/images/products_images/{{$ebook->id.'_thumb.jpg'}}">
+          <img class="img-rounded" src="{{url()}}/images/products_images/{{$ebook->id.'_thumb.jpg'}}">
           <h2>{{$ebook->product_name}}</h2>
           <p>{{ implode(' ', array_slice( explode(' ', $ebook->product_description), 0, 20) ).'...' }}</p>
-          <p><a class="btn btn-primary" href="/add_to_cart/{{$ebook->id}}">Add to cart &raquo;</a>&nbsp;&nbsp;
+          <p><a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$ebook->id}}">Add to cart &raquo;</a>&nbsp;&nbsp;
           <a data-toggle="modal" href="#myModal_{{$ebook->id}}" class="btn btn-default">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
 
@@ -232,7 +232,7 @@
                 <div class="modal-body">
                  <h4>Ebook Description</h4><br />
                 <div class="twist_img">
-              <img src="{{$base_url}}/images/products_images/{{$ebook->id}}_thumb.jpg">
+              <img src="{{url()}}/images/products_images/{{$ebook->id}}_thumb.jpg">
               <p>{{$ebook->product_description}}</p>
               
               </div><br />
@@ -260,7 +260,7 @@
       <hr class="featurette-divider">
 
       <div class="featurette">
-        <img class="featurette-image img-circle pull-right" data-src="{{$base_url}}/holder.js/512x512">
+        <img class="featurette-image img-circle pull-right" data-src="js/holder.js/512x512">
         <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
         <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
       </div>
@@ -268,7 +268,7 @@
       <hr class="featurette-divider">
 
       <div class="featurette">
-        <img class="featurette-image img-circle pull-left" data-src="{{$base_url}}/holder.js/512x512">
+        <img class="featurette-image img-circle pull-left" data-src="js/holder.js/512x512">
         <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
         <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
       </div>
@@ -276,7 +276,7 @@
       <hr class="featurette-divider">
 
       <div class="featurette">
-        <img class="featurette-image img-circle pull-right" data-src="{{$base_url}}/holder.js/512x512">
+        <img class="featurette-image img-circle pull-right" data-src="js/holder.js/512x512">
         <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
         <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
       </div>

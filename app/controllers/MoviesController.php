@@ -37,8 +37,7 @@ class MoviesController extends BaseController {
 		
 		list( $cart_products, $cart_items_count, $total ) = $this->_cart_data->get_cart_data();
 
-		return View::make('products.movies', array('base_url' => 'http://'.$_SERVER['SERVER_NAME'], 
-			                                         'movies' => $movies, 
+		return View::make('products.movies', array('movies' => $movies, 
 			                                      'num_pages' => $this->num_pages,
 			                               'cart_items_count' => $cart_items_count,
 			                                          'total' => $total,
