@@ -2,7 +2,6 @@
 
 @section('head')
 @parent
-  {{ HTML::style('css/modal_img.css') }}
 @stop
 
 @section('content')
@@ -23,7 +22,7 @@
               <ul class="nav navbar-nav">
                 <li><a href="{{url()}}"><i class="icon-home icon-white"></i>&nbsp;&nbsp;Home</a></li>
                 <li><a href="{{url('movies')}}"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
-                <li class="active"><a href="{{url('ebooks')}}"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
+                <li><a href="{{url('ebooks')}}"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
                 <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;&nbsp;Contact</a></li>
 
               
@@ -82,7 +81,8 @@
                         </div><!-- /.modal-content -->
                       </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
-<!-- CAROUSEL
+
+  <!-- CAROUSEL
 ================================================== -->
 <div id="myCarousel" class="carousel slide">
       <!-- Indicators -->
@@ -90,107 +90,128 @@
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <img src="{{url()}}/images/products_images/linux2_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/inception4_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
             </div>
           </div>
         </div>
         <div class="item">
-          <img src="{{url()}}/images/products_images/php_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/breakingbad_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
             </div>
           </div>
         </div>
         <div class="item">
-          <img src="{{url()}}/images/products_images/linux1_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/inception3_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
             </div>
            </div>
           </div>
+           <div class="item">
+          <img src="{{url()}}/images/products_images/inception2_wp.jpg" alt="" width="1100" height="500" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+            </div>
+          </div>
+        </div>
        </div>
       <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div><!-- /.carousel -->
 
+    <!-- CONTAINER
+================================================== -->
 <div class="container marketing">
+
+
 <div class="row">
-        <h1><i class="icon-book"></i>&nbsp;IT-Ebooks:</h1><br />
-        @foreach ($ebooks as $ebook)
-        <div class="col-lg-4">
-          <img class="img-rounded" src="{{url()}}/images/products_images/{{$ebook->id.'_thumb.jpg'}}">
-          <p></p>
-          <p><a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$ebook->id}}/ebooks">Add to cart &raquo;</a>&nbsp;&nbsp;
-          <a data-toggle="modal" href="#myModal_{{$ebook->id}}" class="btn btn-default">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-
-        {{-- Start Modal --}}
-          <!-- Modal -->
-      <div class="modal fade" id="myModal_{{$ebook->id}}">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h3 class="modal-title"><i class="icon-book"></i>&nbsp;{{$ebook->product_name}}</h3>
-            </div>
-            <div class="modal-body">
-             <h4>Ebook Description</h4><br />
-            <div class="twist_img">
-          <img src="{{url()}}/images/products_images/{{$ebook->id}}_thumb.jpg">
-          <p>{{$ebook->product_description}}</p>
-          </div><br />
-          <h4>Ebook Details</h4><br />
-            <ul>
-              <li><strong>Language:</strong>&nbsp;{{$ebook->product_language}}</li>  
-              <li><strong>ISBN-10:</strong>&nbsp;{{$ebook->product_isbn10}}</li>
-              <li><strong>Price:</strong>&nbsp;{{$ebook->product_price}}&nbsp;&euro;</li>
-            </ul>
-          </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
-          {{-- End Modal --}}
-
-        @endforeach
-      </div><!-- /.row -->
-
-     <div class="row">
+	<h1><i class="icon-signin"></i>&nbsp;Login</h1><br />
       <div class="col-lg-4"></div>
 	      <div class="col-lg-4">
-		      <ul class="pagination pagination-lg">
-		        @if ($page == 1)
-				  <li class="disabled"><span>&laquo;</span></li>
-				@else
-				   <li><a href="{{url('ebooks')}}/{{$page - 1}}">&laquo;</a></li>
-				@endif     
-				   @for ($i = 1; $i <= $num_pages; $i++)
-				   	  @if ($page == $i)	
-				  		<li class="disabled"><span>{{ $i }}</span></li>
-				  	  @else
-				  	  	<li><a href="{{url('ebooks')}}/{{$i}}">{{ $i }}</a></li>
-				  	  @endif		
-				   @endfor
-				@if ($page == $num_pages)   
-				  <li class="disabled"><span>&raquo;</span></li>
-				@else
-				  <li><a href="{{url('ebooks')}}/{{$page + 1}}">&raquo;</a></li>
-				@endif  
-			  </ul>
-		  </div>
-	   <div class="col-lg-4"></div>
-	  </div>
+            <div class="well">
 
+			{{ Form::open( array( 'route' => 'login',
+					              'class' => 'form-signin') )}}
 
-	 
+			<h2 class="form-signin-heading">Please sign in</h2>
+			<br />
+			{{ Form::email('email', '', array('class' => 'form-control',
+									    'placeholder' =>  'Email address', 
+			                              'autofocus' => 'autofocus' ))}}		
+			<br />
 
-	  <hr class="featurette-divider">
-	  
+			{{ Form::password('password', array( 'class' => 'form-control',
+										   'placeholder' =>  'Password' ))}}      
+			<br />
+										   	
+			{{ Form::submit('Sign in', array('class' => 'btn btn-large btn-primary btn-block'))}}      
+			
+			{{ Form::close() }}
+           
+           </div>
+         </div>
+    <div class="col-lg-4"></div>
+</div> <!-- Row -->
+
+	<div class="row">
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4">
+   	<div class="panel">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#registration">
+                <strong><i class="icon-exclamation-sign"></i>&nbsp;New customer?</strong>&nbsp;Start Here
+           </button>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+       <div class="well">
+      	 <strong><i class="icon-key"></i>&nbsp;New Registration</strong>
+        <br /><br />
+        {{ Form::open( array( 'url' => '',
+					            'class' => 'form-signin') )}}
+		{{ Form::email('email_signin_1', '', array('class' => 'form-control',
+									    'placeholder' =>  'Enter your email'))}}
+		<br />	                              
+		{{ Form::email('email_signin_2', '', array('class' => 'form-control',
+									    'placeholder' =>  'Re-enter your email'))}}					            
+		<br />
+		{{ Form::text('firstname', '', array('class' => 'form-control',
+									    'placeholder' =>  'Enter your firstname'))}}
+		<br />
+		{{ Form::text('lastname', '', array('class' => 'form-control',
+									    'placeholder' =>  'Enter your lastname'))}}									    	
+		<br /><br />
+		<strong><i class="icon-lock"></i>&nbsp;Protect Your Information With A Password</strong>
+		<br /><br />	
+		{{ Form::password('password_signin_1', array( 'class' => 'form-control',
+										        'placeholder' =>  'Enter a new password' ))}}
+	    <br />
+	    {{ Form::password('password_signin_2', array( 'class' => 'form-control',
+										        'placeholder' =>  'Re-enter your password' ))}} 						    
+		<br />							    
+		{{ Form::submit('Register', array('class' => 'btn btn-large btn-primary btn-block'))}} 
+		{{ Form::close() }}
+
+        </div>
+      </div>
+    </div>
+  </div> 
+   
+    </div>
+    <div class="col-lg-4"></div>
+	</div><!-- row -->
+
+<hr class="featurette-divider">
+
 @stop

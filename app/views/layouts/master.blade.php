@@ -13,6 +13,7 @@
 
     <!-- Custom styles for this template -->
     {{ HTML::style('css/carousel.css') }}
+
       
     <!-- Font-Awesome CDN-->  
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
