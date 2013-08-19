@@ -130,47 +130,63 @@
 ================================================== -->
 <div class="container marketing">
 
-
 <div class="row">
-	<h1><i class="icon-signin"></i>&nbsp;Login</h1><br />
-      <div class="col-lg-4"></div>
-	      <div class="col-lg-4">
-            <div class="well">
+  <h1><i class="icon-key"></i>&nbsp;Register</h1><br />
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
 
-			{{ Form::open( array( 'route' => 'login',
-					              'class' => 'form-signin') )}}
+       <div class="well">
+      	 
 
-			<h2 class="form-signin-heading">Please sign in</h2>
-			<br />
-			{{ Form::email('email', '', array('class' => 'form-control',
-									    'placeholder' =>  'Email address', 
-			                              'autofocus' => 'autofocus' ))}}		
-			<br />
+        
+				@foreach($errors->all() as $message)
+					<div class="alert alert-danger">
+              <strong>Warning!</strong> {{$message}}
+          </div>
+				@endforeach
+        
 
-			{{ Form::password('password', array( 'class' => 'form-control',
-										   'placeholder' =>  'Password' ))}}      
-			<br />
-										   	
-			{{ Form::submit('Sign in', array('class' => 'btn btn-large btn-primary btn-block'))}}      
-			
-			{{ Form::close() }}
-           
-           </div>
-         </div>
-    <div class="col-lg-4"></div>
-</div> <!-- Row -->
+    {{ Form::open( array( 'route' => 'register',
+					                'class' => 'form-signin'
+                          ))}}
 
-	<div class="row">
-		<div class="col-lg-4"></div>
-		<div class="col-lg-4">
-         <div class="well">   
-          <a href="{{url('registration')}}" class="btn btn-link">
-          <strong><i class="icon-exclamation-sign icon-2x"></i>&nbsp;New customer?</strong>&nbsp;Start Here
-          </a>
+       <h2 class="form-signin-heading">New Registration</h2>
+        <br /><br />        
+
+		{{ Form::email('email', Input::old('email'), array('class' => 'form-control',
+									    'placeholder' =>  'Enter your email',
+                      'autofocus' => 'autofocus'
+                      ))}}
+		<br />	                              
+		{{ Form::email('email_confirmation', Input::old('email_confirmation'), array('class' => 'form-control',
+									    'placeholder' =>  'Re-enter your email'
+                      ))}}					            
+		<br />
+		{{ Form::text('firstname', Input::old('firstname'), array('class' => 'form-control',
+									    'placeholder' =>  'Enter your firstname'
+                      ))}}
+		<br />
+		{{ Form::text('lastname', Input::old('lastname'), array('class' => 'form-control',
+									    'placeholder' =>  'Enter your lastname'
+                      ))}}									    	
+		<br /><br />
+		<h3 class="form-signin-heading"><i class="icon-lock"></i>&nbsp;Protect your information with a password</h3>
+		<br /><br />	
+		{{ Form::password('password', array( 'class' => 'form-control',
+										     'placeholder' =>  'Enter a new password' 
+                         ))}}
+	    <br />
+	    {{ Form::password('password_confirmation', array( 'class' => 'form-control',
+										        'placeholder' =>  'Re-enter your password' 
+                            ))}} 						    
+		<br />							    
+		{{ Form::submit('Register', array('class' => 'btn btn-large btn-primary btn-block'))}} 
+		{{ Form::close() }}
+
         </div>
-   
-        </div>
-    <div class="col-lg-4"></div>
+      </div>
+  
+    <div class="col-lg-3"></div>
 	</div><!-- row -->
 
 <hr class="featurette-divider">
