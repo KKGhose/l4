@@ -196,6 +196,7 @@
               </ul>
                 </div>
                 <div class="modal-footer">
+                  <a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$movie->id}}">Add to cart &raquo;</a>&nbsp;&nbsp;
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </div><!-- /.modal-content -->
@@ -244,6 +245,7 @@
               </ul>
                 </div>
                 <div class="modal-footer">
+                  <a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$ebook->id}}">Add to cart &raquo;</a>&nbsp;&nbsp;
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </div><!-- /.modal-content -->

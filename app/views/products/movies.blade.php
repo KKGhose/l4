@@ -169,6 +169,7 @@
            </ul>
             </div>
             <div class="modal-footer">
+              <a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$movie->id}}/movies">Add to cart &raquo;</a>&nbsp;&nbsp;
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div><!-- /.modal-content -->
@@ -183,9 +184,9 @@
 	      <div class="col-lg-4">
 		      <ul class="pagination pagination-lg">
 		        @if ($page == 1)
-				  <li class="disabled"><span>&laquo;</span></li>
+				  <li class="disabled"><span>Prev</span></li>
 				@else
-				   <li><a href="{{url('movies')}}/{{$page - 1}}">&laquo;</a></li>
+				   <li><a href="{{url('movies')}}/{{$page - 1}}">Prev</a></li>
 				@endif     
 				   @for ($i = 1; $i <= $num_pages; $i++)
 				   	  @if ($page == $i)	
@@ -195,9 +196,9 @@
 				  	  @endif		
 				   @endfor
 				@if ($page == $num_pages)   
-				  <li class="disabled"><span>&raquo;</span></li>
+				  <li class="disabled"><span>Next</span></li>
 				@else
-				  <li><a href="{{url('movies')}}/{{$page + 1}}">&raquo;</a></li>
+				  <li><a href="{{url('movies')}}/{{$page + 1}}">Next</a></li>
 				@endif  
 			  </ul>
 		  </div>
