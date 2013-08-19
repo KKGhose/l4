@@ -143,8 +143,8 @@
 			<h2 class="form-signin-heading">Please sign in</h2>
 			<br />
 			{{ Form::email('email', '', array('class' => 'form-control',
-									    'placeholder' =>  'Email address', 
-			                              'autofocus' => 'autofocus' ))}}		
+									    'placeholder' =>  'Email address' 
+									    ))}}		
 			<br />
 
 			{{ Form::password('password', array( 'class' => 'form-control',

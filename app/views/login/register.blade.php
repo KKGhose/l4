@@ -154,8 +154,7 @@
         <br /><br />        
 
 		{{ Form::email('email', Input::old('email'), array('class' => 'form-control',
-									    'placeholder' =>  'Enter your email',
-                      'autofocus' => 'autofocus'
+									    'placeholder' =>  'Enter your email'
                       ))}}
 		<br />	                              
 		{{ Form::email('email_confirmation', Input::old('email_confirmation'), array('class' => 'form-control',
