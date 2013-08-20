@@ -36,7 +36,7 @@ Route::post('handle-registration', array('before' => 'csrf','as' => 'register', 
 	
 	$data = Input::all();
 
-	$rules = array( 'email' => 'required|confirmed|email',
+	$rules = array( 'email' => 'required|unique:signups,email|confirmed|email',
 		            'firstname' => 'required|alpha|min:3',
 				    'lastname' => 'required|alpha|min:3',
 				    'password' => 'required|confirmed|alpha_num|min:6'
@@ -48,7 +48,18 @@ Route::post('handle-registration', array('before' => 'csrf','as' => 'register', 
 	
 	if ( $validator->passes() )
 	{
-		return 'Data was saved!';
+		//We save post data to signups table and send email to new member for confirmation.
+		$signup = new Signup;
+		$signup->email = $data['email'];
+		$signup->password = md5($data['password']);
+		$signup->firstname = $data['firstname'];
+		$signup->lastname = $data['lastname'];
+        // Seed random number generator
+		srand((double)microtime() * 1000000);
+		$signup->confirm_code = md5( $data['email'] . time() . rand(1, 1000000));
+		$signup->save();
+
+		return Redirect::to('generic-view')->with('message', 'You signed up successfully! Check your email for confirmation.');
 	}
 
 	return Redirect::to('registration')->withErrors($validator)->withInput(Input::except('password'));
@@ -63,5 +74,17 @@ Route::get('registration', function() {
 	return View::make('login.register', array('cart_items_count' => $cart_items_count,
 			                                          'total' => $total,
 			                                  'cart_products' => $cart_products
-			                                   ));
+			                                  ));
+});
+
+Route::get('generic-view', function ($message = '') {
+	$cart_data = new CartItem;
+	
+	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
+
+	return View::make('generic', array('cart_items_count' => $cart_items_count,
+			                                          'total' => $total,
+			                                  'cart_products' => $cart_products,
+			                                  'message' => $message
+			                           ));
 });

@@ -88,39 +88,18 @@
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <img src="{{url()}}/images/products_images/inception4_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/smiley_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
+              <h1><i class="icon-thumbs-up icon-4x"></i>&nbsp;SUCCESS!</h1>
+              <p>You signed up successfully! Check your email for confirmation.</p>
             </div>
           </div>
         </div>
-        <div class="item">
-          <img src="{{url()}}/images/products_images/breakingbad_wp.jpg" alt="" width="1100" height="500" alt="">
-          <div class="container">
-            <div class="carousel-caption">
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="{{url()}}/images/products_images/inception3_wp.jpg" alt="" width="1100" height="500" alt="">
-          <div class="container">
-            <div class="carousel-caption">
-            </div>
-           </div>
-          </div>
-           <div class="item">
-          <img src="{{url()}}/images/products_images/inception2_wp.jpg" alt="" width="1100" height="500" alt="">
-          <div class="container">
-            <div class="carousel-caption">
-            </div>
-          </div>
-        </div>
+        
        </div>
       <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -130,63 +109,25 @@
 ================================================== -->
 <div class="container marketing">
 
+
 <div class="row">
-  <h1><i class="icon-key"></i>&nbsp;Register</h1><br />
-    <div class="col-lg-3"></div>
-    <div class="col-lg-6">
+	<h1><i class="icon-thumbs-up-alt icon-2x"></i>&nbsp;Success!</h1><br />
+      <div class="col-lg-4"></div>
+	      <div class="col-lg-4">
+            <div class="well">
 
-       <div class="well">
-      	 
-
-        
-				@foreach($errors->all() as $message)
-					<div class="alert alert-danger">
-              <strong>Warning!</strong> {{$message}}
+          <div class="alert alert-success">
+              <strong>Well done!</strong> {{$message}}
           </div>
-				@endforeach
         
-        
-        
-    {{ Form::open( array( 'route' => 'register',
-					                'class' => 'form-signin'
-                          ))}}
+           
+           </div>
+         </div>
+    <div class="col-lg-4"></div>
+</div> <!-- Row -->
 
-       <h2 class="form-signin-heading">New Registration</h2>
-        <br /><br />        
-
-		{{ Form::email('email', Input::old('email'), array('class' => 'form-control',
-									    'placeholder' =>  'Enter your email'
-                      ))}}
-		<br />	                              
-		{{ Form::email('email_confirmation', Input::old('email_confirmation'), array('class' => 'form-control',
-									    'placeholder' =>  'Re-enter your email'
-                      ))}}					            
-		<br />
-		{{ Form::text('firstname', Input::old('firstname'), array('class' => 'form-control',
-									    'placeholder' =>  'Enter your firstname'
-                      ))}}
-		<br />
-		{{ Form::text('lastname', Input::old('lastname'), array('class' => 'form-control',
-									    'placeholder' =>  'Enter your lastname'
-                      ))}}									    	
-		<br /><br />
-		<h3 class="form-signin-heading"><i class="icon-lock"></i>&nbsp;Protect your information with a password</h3>
-		<br /><br />	
-		{{ Form::password('password', array( 'class' => 'form-control',
-										     'placeholder' =>  'Enter a new password' 
-                         ))}}
-	    <br />
-	    {{ Form::password('password_confirmation', array( 'class' => 'form-control',
-										        'placeholder' =>  'Re-enter your password' 
-                            ))}} 						    
-		<br />							    
-		{{ Form::submit('Register', array('class' => 'btn btn-large btn-primary btn-block'))}} 
-		{{ Form::close() }}
-
-        </div>
-      </div>
-  
-    <div class="col-lg-3"></div>
+	
+    <div class="col-lg-4"></div>
 	</div><!-- row -->
 
 <hr class="featurette-divider">
