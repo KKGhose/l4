@@ -56,10 +56,22 @@ Route::post('handle-registration', array('before' => 'csrf','as' => 'register', 
 		$signup->lastname = $data['lastname'];
         // Seed random number generator
 		srand((double)microtime() * 1000000);
-		$signup->confirm_code = md5( $data['email'] . time() . rand(1, 1000000));
+		$conf_code =  md5( $data['email'] . time() . rand(1, 1000000));
+		$signup->confirm_code = $conf_code;
 		$signup->save();
 
-		return Redirect::to('generic-view')->with('message', 'You signed up successfully! Check your email for confirmation.');
+		//$data[] = array('conf_code' => $conf_code);
+
+		
+
+		//mail(Input::get('email'), 'stuff', 'hello world', 'From: me');
+        
+		Mail::queue('emails.confirmation', array( 'conf_code' => $conf_code ), function($message)
+		{
+		    $message->to( Input::get('email'), Input::get('lastname'))->subject('Confirmation');
+		});
+		
+		return Redirect::to('generic-view');
 	}
 
 	return Redirect::to('registration')->withErrors($validator)->withInput(Input::except('password'));
@@ -77,14 +89,24 @@ Route::get('registration', function() {
 			                                  ));
 });
 
-Route::get('generic-view', function ($message = '') {
+Route::get('generic-view', function () {
 	$cart_data = new CartItem;
 	
 	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
 
 	return View::make('generic', array('cart_items_count' => $cart_items_count,
 			                                          'total' => $total,
-			                                  'cart_products' => $cart_products,
-			                                  'message' => $message
-			                           ));
+			                                  'cart_products' => $cart_products
+			                                  ));
+});
+
+App::missing(function($exception)
+{
+	$cart_data = new CartItem;
+	
+	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
+
+    return Response::view('errors.missing', array('cart_items_count' => $cart_items_count,
+			                                          'total' => $total,
+			                                  'cart_products' => $cart_products), 404);
 });

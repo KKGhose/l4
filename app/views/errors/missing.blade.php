@@ -94,7 +94,7 @@
           <img src="{{url()}}/images/products_images/smiley_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
-              <h1><i class="icon-thumbs-up icon-4x"></i>&nbsp;SUCCESS!</h1>
+              <h1><i class="icon-warning-sign icon-4x"></i></h1>
               <p></p>
             </div>
           </div>
@@ -111,7 +111,7 @@
 
 
 <div class="row">
-	<h1><i class="icon-thumbs-up-alt icon-2x"></i>&nbsp;You signed up successfully! Check your email for confirmation.</h1><br />
+	<h1 class="center"><i class="icon-warning-sign icon-2x"></i>&nbsp;404! This is not the page you are looking for.</h1><br />
       <div class="col-lg-4"></div>
 	      <div class="col-lg-4">
             
