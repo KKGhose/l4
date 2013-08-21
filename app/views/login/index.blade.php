@@ -122,20 +122,33 @@
 	      <div class="col-lg-4">
             <div class="well">
 
-            @foreach($errors->all() as $message)
-			 <div class="alert alert-danger">
+       @foreach($errors->all() as $message)
+			   <div class="alert alert-danger">
               <strong>Warning!</strong> {{$message}}
-             </div>
+         </div>
 		    @endforeach
 
 			{{ Form::open( array( 'route' => 'login',
 					              'class' => 'form-signin') )}}
+      
+      @if ( Session::has('success_message') )
+        <div class="alert alert-success">
+            <strong>Well done!</strong> {{Session::get('success_message')}}
+        </div>
+      @endif
 
 			<h2 class="form-signin-heading">Please sign in</h2>
 			<br />
-			{{ Form::email('email', '', array('class' => 'form-control',
+      
+      @if ( Session::has('email') )
+			{{ Form::email('email', Session::get('email'), array('class' => 'form-control',
 									    'placeholder' =>  'Email address' 
 									    ))}}		
+       @else
+       {{ Form::email('email', '', array('class' => 'form-control',
+                      'placeholder' =>  'Email address' 
+                      ))}}    
+       @endif               
 			<br />
 
 			{{ Form::password('password', array( 'class' => 'form-control',

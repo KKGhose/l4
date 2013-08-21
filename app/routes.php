@@ -14,7 +14,7 @@ Route::get('add_to_cart/{product_id}/{uri?}', 'CartController@add_item');
 
 Route::get('empty_cart/{uri?}', 'CartController@empty_cart');
 
-Route::get('login', function() {
+Route::get('login/{email?}', function($email = null) {
 	
 	$cart_data = new CartItem;
 	
@@ -22,7 +22,9 @@ Route::get('login', function() {
 
 	return View::make('login.index', array('cart_items_count' => $cart_items_count,
 			                                          'total' => $total,
-			                                  'cart_products' => $cart_products ));
+			                                  'cart_products' => $cart_products,
+			                                  'email' => $email 
+			                                  ));
 });
 
 Route::post('handle-login', array('before' => 'csrf', 'as' => 'login', function() {
@@ -76,7 +78,7 @@ Route::post('handle-registration', array('before' => 'csrf','as' => 'register', 
 
 		
         //We send confirmation email to new member. 
-		Mail::queue('emails.confirmation', array( 'conf_code' => $conf_code ), function($message)
+		Mail::queue('emails.confirmation', array( 'conf_code' => $conf_code ) , function($message)
 		{
 		    $message->to( Input::get('email'), Input::get('lastname'))->subject('Confirmation');
 		});
@@ -122,6 +124,7 @@ Route::get('confirm/{code?}', function($code = null) {
 	{
 		$user = new User;
 		$user->email = $signup->email;
+		$email = $signup->email;
 		$user->password = $signup->password;
 		$user->firstname = $signup->firstname;
 		$user->lastname = $signup->lastname;
@@ -130,7 +133,8 @@ Route::get('confirm/{code?}', function($code = null) {
 
     DB::delete('DELETE FROM signups WHERE confirm_code LIKE ?', array($code));
 
-	return 'data saved';
+	return Redirect::to('login')->with('success_message', 'Your account has been confirmed!')
+								->with('email', $email);
 });
 
 App::missing(function($exception)
@@ -154,4 +158,22 @@ Route::get('not_found', function() {
 			                                          'total' => $total,
 			                                  'cart_products' => $cart_products
 			                               ));	
+});
+
+Route::get('confirmation_success', function() {
+
+	$cart_data = new CartItem;
+	
+	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
+
+	return View::make('login.index', array('cart_items_count' => $cart_items_count,
+			                                          'total' => $total,
+			                                  'cart_products' => $cart_products,
+			                                  'success_message' => 'Your account has been confirmed!'
+			                                  ));
+});
+
+Route::get('testing', function() {
+
+	return Redirect::to('login')->with('email', 'sguessou@gmail.com');
 });
