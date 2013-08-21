@@ -45,6 +45,7 @@ Route::post('handle-login', array('before' => 'csrf', 'as' => 'login', function(
 
 }));
 
+//we validate registration data. If ok, data is saved in signups table and email is sent to new member.
 Route::post('handle-registration', array('before' => 'csrf','as' => 'register', function() {
 	
 	$data = Input::all();
@@ -82,7 +83,7 @@ Route::post('handle-registration', array('before' => 'csrf','as' => 'register', 
 		
 		return Redirect::to('generic-view');
 	}
-
+    //else we redirect to registration form
 	return Redirect::to('registration')->withErrors($validator)->withInput(Input::except('password'));
 }));
 
@@ -109,6 +110,29 @@ Route::get('generic-view', function () {
 			                                  ));
 });
 
+//This route is accessed through confirmation email sent to new member.
+//Upon firing the the new member data is transfered form signups table to users table.
+Route::get('confirm/{code?}', function($code = null) {
+
+	$signups = DB::select('SELECT email, password, firstname, lastname FROM signups WHERE confirm_code LIKE ?', array($code));
+	 
+	if(!$signups) return Redirect::to('not_found'); 
+
+	foreach($signups as $signup)
+	{
+		$user = new User;
+		$user->email = $signup->email;
+		$user->password = $signup->password;
+		$user->firstname = $signup->firstname;
+		$user->lastname = $signup->lastname;
+		$user->save();
+    }
+
+    DB::delete('DELETE FROM signups WHERE confirm_code LIKE ?', array($code));
+
+	return 'data saved';
+});
+
 App::missing(function($exception)
 {
 	$cart_data = new CartItem;
@@ -118,4 +142,16 @@ App::missing(function($exception)
     return Response::view('errors.missing', array('cart_items_count' => $cart_items_count,
 			                                          'total' => $total,
 			                                  'cart_products' => $cart_products), 404);
+});
+
+Route::get('not_found', function() {
+
+	$cart_data = new CartItem;
+	
+	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
+
+    return Response::view('errors.missing', array('cart_items_count' => $cart_items_count,
+			                                          'total' => $total,
+			                                  'cart_products' => $cart_products
+			                               ));	
 });
