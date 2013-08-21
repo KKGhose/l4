@@ -60,12 +60,8 @@ Route::post('handle-registration', array('before' => 'csrf','as' => 'register', 
 		$signup->confirm_code = $conf_code;
 		$signup->save();
 
-		//$data[] = array('conf_code' => $conf_code);
-
 		
-
-		//mail(Input::get('email'), 'stuff', 'hello world', 'From: me');
-        
+        //We send confirmation email to new member. 
 		Mail::queue('emails.confirmation', array( 'conf_code' => $conf_code ), function($message)
 		{
 		    $message->to( Input::get('email'), Input::get('lastname'))->subject('Confirmation');

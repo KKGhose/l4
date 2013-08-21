@@ -91,7 +91,7 @@
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <img src="{{url()}}/images/products_images/smiley_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/smiley2_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
               <h1><i class="icon-warning-sign icon-4x"></i></h1>

@@ -95,7 +95,6 @@
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
         <li data-target="#myCarousel" data-slide-to="3"></li>
-        <li data-target="#myCarousel" data-slide-to="4"></li>
       </ol>
       <div class="carousel-inner">
         <div class="item active">
@@ -130,7 +129,7 @@
 
 
         <div class="item">
-          <img src="{{url()}}/images/products_images/inception4_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/inception_ex_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
               <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
@@ -138,14 +137,7 @@
           </div>
         </div>
 
-        <div class="item">
-          <img src="{{url()}}/images/products_images/inception2_wp.jpg" alt="" width="1100" height="500" alt="">
-          <div class="container">
-            <div class="carousel-caption">
-              <p><a class="btn btn-large btn-primary" href="#">Browse gallery</a></p>
-            </div>
-          </div>
-        </div>
+        
       </div>      
       
       
