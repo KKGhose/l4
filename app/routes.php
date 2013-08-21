@@ -26,10 +26,23 @@ Route::get('login', function() {
 });
 
 Route::post('handle-login', array('before' => 'csrf', 'as' => 'login', function() {
-	$email =  Input::get('email');
-	$passwd =  md5( Input::get('password') );
+	
+	$data = Input::all();
 
-	return 'email = '.$email.', password = '.$passwd;
+	$rules = array( 'email' => 'required|email',
+					'password' => 'required'
+					);
+
+	$validator = Validator::make($data, $rules);
+
+	if ( $validator->passes() )
+	{
+
+	}
+
+	return Redirect::to('login')->withErrors($validator)->withInput(Input::except('password'));
+
+
 }));
 
 Route::post('handle-registration', array('before' => 'csrf','as' => 'register', function() {

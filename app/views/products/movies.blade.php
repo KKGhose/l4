@@ -13,7 +13,7 @@
  <div class="navbar-wrapper">
    <div class="container">
 
-        <div class="navbar navbar-inverse navbar-static-top">
+        <div class="navbar navbar-inverse navbar-fixed-top">
           <div class="container">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
@@ -28,7 +28,13 @@
                 <li><a href="{{url('ebooks')}}"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
                 <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;&nbsp;Contact</a></li>
 
-              
+                <li><a data-toggle="modal" href="#Cart_Modal"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;
+                @if ($cart_items_count == 0 || $cart_items_count > 1)
+                   Cart (you have {{$cart_items_count}} items)</a></li>
+                @else
+                   Cart (you have {{$cart_items_count}} item)</a></li>
+                @endif
+
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>&nbsp;&nbsp;Your Account  <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -37,12 +43,6 @@
                     <li><a href="#"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;<strong>Cart</strong></a></li>
                   </ul>
                 </li> 
-                <li><a data-toggle="modal" href="#Cart_Modal"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;
-                @if ($cart_items_count == 0 || $cart_items_count > 1)
-                   Cart (you have {{$cart_items_count}} items)</a></li>
-                @else
-                   Cart (you have {{$cart_items_count}} item)</a></li>
-                @endif
               </ul>
             </div>
           </div>
