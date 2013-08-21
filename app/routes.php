@@ -37,7 +37,7 @@ Route::post('handle-login', array('before' => 'csrf', 'as' => 'login', function(
 
 	if ( $validator->passes() )
 	{
-
+		return '<h1>Work in progress!</h1>';
 	}
 
 	return Redirect::to('login')->withErrors($validator)->withInput(Input::except('password'));
@@ -49,7 +49,7 @@ Route::post('handle-registration', array('before' => 'csrf','as' => 'register', 
 	
 	$data = Input::all();
 
-	$rules = array( 'email' => 'required|unique:signups,email|confirmed|email',
+	$rules = array( 'email' => 'required|unique:users,email|confirmed|email',
 		            'firstname' => 'required|alpha|min:3',
 				    'lastname' => 'required|alpha|min:3',
 				    'password' => 'required|confirmed|alpha_num|min:6'

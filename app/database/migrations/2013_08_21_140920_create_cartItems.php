@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreateCartItemsTable extends Migration {
+class CreateCartItems extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,12 @@ class CreateCartItemsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('cartItems', function(Blueprint $table) {
+		Schema::create('cartItems', function(Blueprint $table)
+		{
 			$table->increments('id');
 			$table->string('cart_id');
 			$table->integer('product_id');
-			$table->text('attributes');
-			$table->integer('quantity');
+			$table->integer('quantity')->notNullable()->default(1);
 			$table->boolean('buy_now');
 			$table->timestamps();
 		});

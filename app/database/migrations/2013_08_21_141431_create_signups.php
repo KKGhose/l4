@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreateSignupsTable extends Migration {
+class CreateSignups extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,10 @@ class CreateSignupsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('signups', function(Blueprint $table) {
+		Schema::create('signups', function(Blueprint $table)
+		{
 			$table->increments('id');
-			$table->string('email')->unique();
+			$table->string('email');
 			$table->string('password');
 			$table->string('firstname');
 			$table->string('lastname');

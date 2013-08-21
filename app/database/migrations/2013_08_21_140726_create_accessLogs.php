@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreateAccessLogsTable extends Migration {
+class CreateAccessLogs extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,8 @@ class CreateAccessLogsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('accessLogs', function(Blueprint $table) {
+		Schema::create('accessLogs', function(Blueprint $table)
+		{
 			$table->increments('id');
 			$table->string('page_url');
 			$table->string('ip');
