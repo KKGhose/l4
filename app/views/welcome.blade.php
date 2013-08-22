@@ -121,7 +121,7 @@
         </div>
 
         <div class="item">
-          <img src="{{url()}}/images/products_images/breakingbad_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/laravel_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
               <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>

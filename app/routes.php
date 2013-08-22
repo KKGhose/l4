@@ -14,7 +14,7 @@ Route::get('add_to_cart/{product_id}/{uri?}', 'CartController@add_item');
 
 Route::get('empty_cart/{uri?}', 'CartController@empty_cart');
 
-Route::get('login/{email?}', function($email = null) {
+Route::get('login', function() {
 	
 	$cart_data = new CartItem;
 	
@@ -22,8 +22,7 @@ Route::get('login/{email?}', function($email = null) {
 
 	return View::make('login.index', array('cart_items_count' => $cart_items_count,
 			                                          'total' => $total,
-			                                  'cart_products' => $cart_products,
-			                                  'email' => $email 
+			                                  'cart_products' => $cart_products
 			                                  ));
 });
 
@@ -160,18 +159,12 @@ Route::get('not_found', function() {
 			                               ));	
 });
 
-Route::get('confirmation_success', function() {
 
-	$cart_data = new CartItem;
-	
-	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
+Route::get('projects', function() {
 
-	return View::make('login.index', array('cart_items_count' => $cart_items_count,
-			                                          'total' => $total,
-			                                  'cart_products' => $cart_products,
-			                                  'success_message' => 'Your account has been confirmed!'
-			                                  ));
+	return View::make('projects.projects');
 });
+
 
 Route::get('testing', function() {
 
