@@ -66,7 +66,7 @@ Route::post('handle-registration', array('before' => 'csrf','as' => 'register', 
 		//We save post data to signups table and send email to new member for confirmation.
 		$signup = new Signup;
 		$signup->email = $data['email'];
-		$signup->password = md5($data['password']);
+		$signup->password = Hash::make( $data['password'] );
 		$signup->firstname = $data['firstname'];
 		$signup->lastname = $data['lastname'];
         // Seed random number generator
@@ -163,6 +163,20 @@ Route::get('not_found', function() {
 Route::get('projects', function() {
 
 	return View::make('projects.projects');
+});
+
+Route::post('validate-login', function() {
+
+	$email = Input::get('email');
+	$password = Input::get('password');
+
+	if (Auth::attempt( array('email' => $email, 'password' => $password ) ) )
+	{
+		
+		return 'Hello World!';
+	}
+
+	return 'Failed!';
 });
 
 

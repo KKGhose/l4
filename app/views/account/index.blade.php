@@ -10,7 +10,7 @@
  <div class="navbar-wrapper">
    <div class="container">
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-inverse navbar-static-top">
           <div class="container">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
@@ -25,13 +25,7 @@
                 <li><a href="{{url('ebooks')}}"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
                 <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;&nbsp;Contact</a></li>
 
-                <li><a data-toggle="modal" href="#Cart_Modal"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;
-                @if ($cart_items_count == 0 || $cart_items_count > 1)
-                   Cart (you have {{$cart_items_count}} items)</a></li>
-                @else
-                   Cart (you have {{$cart_items_count}} item)</a></li>
-                @endif
-
+              
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>&nbsp;&nbsp;Your Account  <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -40,6 +34,12 @@
                     <li><a href="#"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;<strong>Cart</strong></a></li>
                   </ul>
                 </li> 
+                <li><a data-toggle="modal" href="#Cart_Modal"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;
+                @if ($cart_items_count == 0 || $cart_items_count > 1)
+                   Cart (you have {{$cart_items_count}} items)</a></li>
+                @else
+                   Cart (you have {{$cart_items_count}} item)</a></li>
+                @endif
               </ul>
             </div>
           </div>
@@ -88,20 +88,14 @@
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <img src="{{url()}}/images/products_images/linux3_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/laravel_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="{{url()}}/images/products_images/inception3_wp.jpg" alt="" width="1100" height="500" alt="">
-          <div class="container">
-            <div class="carousel-caption">
+              
+              <p></p>
             </div>
           </div>
         </div>
@@ -117,63 +111,15 @@
 
 
 <div class="row">
-	<h1><i class="icon-signin"></i>&nbsp;Login</h1><br />
+	<h1 class="center"><i class="icon-warning-sign icon-2x"></i>&nbsp;Welcome to your account</h1><br />
       <div class="col-lg-4"></div>
 	      <div class="col-lg-4">
-            <div class="well">
-
-       @foreach($errors->all() as $message)
-			   <div class="alert alert-danger">
-              <strong>Warning!</strong> {{$message}}
-         </div>
-		    @endforeach
-
-			{{ Form::open( array( 'url' => 'validate-login',
-					              'class' => 'form-signin') )}}
-      
-      @if ( Session::has('success_message') )
-        <div class="alert alert-success">
-            <strong>Well done!</strong> {{Session::get('success_message')}}
-        </div>
-      @endif
-
-			<h2 class="form-signin-heading">Please sign in</h2>
-			<br />
-      
-      @if ( Session::has('email') )
-			{{ Form::email('email', Session::get('email'), array('class' => 'form-control',
-									    'placeholder' =>  'Email address' 
-									    ))}}		
-       @else
-       {{ Form::email('email', '', array('class' => 'form-control',
-                      'placeholder' =>  'Email address' 
-                      ))}}    
-       @endif               
-			<br />
-
-			{{ Form::password('password', array( 'class' => 'form-control',
-										   'placeholder' =>  'Password' ))}}      
-			<br />
-										   	
-			{{ Form::submit('Sign in', array('class' => 'btn btn-large btn-primary btn-block'))}}      
-			
-			{{ Form::close() }}
-           
-           </div>
+            
          </div>
     <div class="col-lg-4"></div>
 </div> <!-- Row -->
 
-	<div class="row">
-		<div class="col-lg-4"></div>
-		<div class="col-lg-4">
-         <div class="well">   
-          <a href="{{url('registration')}}" class="btn btn-link">
-          <strong><i class="icon-exclamation-sign icon-2x"></i>&nbsp;New customer?</strong>&nbsp;Start Here
-          </a>
-        </div>
-   
-        </div>
+	
     <div class="col-lg-4"></div>
 	</div><!-- row -->
 
