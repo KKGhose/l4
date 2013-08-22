@@ -34,17 +34,31 @@
                    Cart (you have {{$cart_items_count}} item)</a></li>
                 @endif
 
-                <ul class="nav navbar-nav navbar-right"> 
+                <ul class="nav navbar-nav"> 
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>&nbsp;&nbsp;Your Account  <b class="caret"></b></a>
                   <ul class="dropdown-menu">
+                   @if ( !Auth::check() )
                     <li><a href="{{url('login')}}"><i class="icon-signin"></i>&nbsp;&nbsp;<strong>Login</strong></a></li>
+                   @else
+                    <li><a href="{{url('logout')}}"><i class="icon-off"></i>&nbsp;&nbsp;<strong>Logout</strong></a></li>
+                   @endif 
                     <li><a href="#"><i class="icon-cog"></i>&nbsp;&nbsp;<strong>Profile</strong></a></li>
                     <li><a href="#"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;<strong>Cart</strong></a></li>
                   </ul>
                 </li> 
+                    @if (Auth::check())
+                      <p class="navbar-text pull-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="{{url('logout')}}"><i class="icon-off"></i>&nbsp;Logout</a>&nbsp;&nbsp;
+                      ( Signed in as {{Auth::user()->firstname}} ) 
+                     </p>
+                    @else
+                      <p class="navbar-text pull-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="{{url('login')}}"><i class="icon-signin"></i>&nbsp;Login</a>&nbsp;&nbsp;
+                      
+                    @endif       
                 </ul>
-                              
+                
               </ul>  
               
             </div>

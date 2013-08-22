@@ -128,7 +128,7 @@
          </div>
 		    @endforeach
 
-			{{ Form::open( array( 'url' => 'validate-login',
+			{{ Form::open( array( 'route' => 'login',
 					              'class' => 'form-signin') )}}
       
       @if ( Session::has('success_message') )

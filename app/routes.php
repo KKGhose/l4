@@ -14,7 +14,17 @@ Route::get('add_to_cart/{product_id}/{uri?}', 'CartController@add_item');
 
 Route::get('empty_cart/{uri?}', 'CartController@empty_cart');
 
+
+
+/*
+*
+*	Login and registration routes
+*
+*/
+
 Route::get('login', function() {
+
+	if(Auth::check()) return Redirect::to('/');
 	
 	$cart_data = new CartItem;
 	
@@ -38,7 +48,14 @@ Route::post('handle-login', array('before' => 'csrf', 'as' => 'login', function(
 
 	if ( $validator->passes() )
 	{
-		return '<h1>Work in progress!</h1>';
+		$email = Input::get('email');
+		$password = Input::get('password');
+
+		if (Auth::attempt( array('email' => $email, 'password' => $password ) ) )
+		{
+			return Redirect::to('/');
+		}
+
 	}
 
 	return Redirect::to('login')->withErrors($validator)->withInput(Input::except('password'));
@@ -100,17 +117,6 @@ Route::get('registration', function() {
 			                                  ));
 });
 
-Route::get('generic-view', function () {
-	$cart_data = new CartItem;
-	
-	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
-
-	return View::make('generic', array('cart_items_count' => $cart_items_count,
-			                                          'total' => $total,
-			                                  'cart_products' => $cart_products
-			                                  ));
-});
-
 //This route is accessed through confirmation email sent to new member.
 //Upon firing the the new member data is transfered form signups table to users table.
 Route::get('confirm/{code?}', function($code = null) {
@@ -135,6 +141,29 @@ Route::get('confirm/{code?}', function($code = null) {
 	return Redirect::to('login')->with('success_message', 'Your account has been confirmed!')
 								->with('email', $email);
 });
+
+
+//------------------ End login and registration routes ----------------------------------
+
+Route::get('logout', function()
+{
+    Auth::logout();
+    return Redirect::to('login');
+});
+
+
+Route::get('generic-view', function () {
+	$cart_data = new CartItem;
+	
+	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
+
+	return View::make('generic', array('cart_items_count' => $cart_items_count,
+			                                          'total' => $total,
+			                                  'cart_products' => $cart_products
+			                                  ));
+});
+
+
 
 App::missing(function($exception)
 {
@@ -165,22 +194,10 @@ Route::get('projects', function() {
 	return View::make('projects.projects');
 });
 
-Route::post('validate-login', function() {
-
-	$email = Input::get('email');
-	$password = Input::get('password');
-
-	if (Auth::attempt( array('email' => $email, 'password' => $password ) ) )
-	{
-		
-		return 'Hello World!';
-	}
-
-	return 'Failed!';
-});
 
 
-Route::get('testing', function() {
 
-	return Redirect::to('login')->with('email', 'sguessou@gmail.com');
-});
+Route::get('testing', array('before' => 'auth', function() {
+
+	return View::make('projects.projects');
+}));
