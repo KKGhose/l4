@@ -24,7 +24,7 @@ Route::get('empty_cart/{uri?}', 'CartController@empty_cart');
 
 Route::get('login', function() {
 
-	if(Auth::check()) return Redirect::to('/');
+	if(Auth::check()) return Redirect::to('account');
 	
 	$cart_data = new CartItem;
 	
@@ -53,7 +53,7 @@ Route::post('handle-login', array('before' => 'csrf', 'as' => 'login', function(
 
 		if (Auth::attempt( array('email' => $email, 'password' => $password ) ) )
 		{
-			return Redirect::to('/');
+			return Redirect::to('account');
 		}
 
 	}
@@ -107,6 +107,8 @@ Route::post('handle-registration', array('before' => 'csrf','as' => 'register', 
 
 Route::get('registration', function() {
 	
+	if(Auth::check()) return Redirect::to('account');
+	
 	$cart_data = new CartItem;
 	
 	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
@@ -142,13 +144,28 @@ Route::get('confirm/{code?}', function($code = null) {
 								->with('email', $email);
 });
 
-
-//------------------ End login and registration routes ----------------------------------
-
 Route::get('logout', function()
 {
     Auth::logout();
     return Redirect::to('login');
+});
+
+//------------------ End login and registration routes ----------------------------------
+
+
+
+Route::get('account', function() {
+
+	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
+
+	$cart_data = new CartItem;
+	
+	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
+
+	return View::make('account.index', array('cart_items_count' => $cart_items_count,
+			                                          'total' => $total,
+			                                  'cart_products' => $cart_products
+			                                  ));
 });
 
 
@@ -197,7 +214,14 @@ Route::get('projects', function() {
 
 
 
-Route::get('testing', array('before' => 'auth', function() {
+Route::get('testing', function() {
 
-	return View::make('projects.projects');
-}));
+	$cart_data = new CartItem;
+	
+	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
+
+	return View::make('account.index', array('cart_items_count' => $cart_items_count,
+			                                          'total' => $total,
+			                                  'cart_products' => $cart_products
+			                               ));
+});

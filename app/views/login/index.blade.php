@@ -36,7 +36,7 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>&nbsp;&nbsp;Your Account  <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li><a href="{{url('login')}}"><i class="icon-signin"></i>&nbsp;&nbsp;<strong>Login</strong></a></li>
-                    <li><a href="#"><i class="icon-cog"></i>&nbsp;&nbsp;<strong>Profile</strong></a></li>
+                    <li><a href="{{url('account')}}"><i class="icon-cog"></i>&nbsp;&nbsp;<strong>Profile</strong></a></li>
                     <li><a href="#"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;<strong>Cart</strong></a></li>
                   </ul>
                 </li> 
@@ -135,6 +135,12 @@
         <div class="alert alert-success">
             <strong>Well done!</strong> {{Session::get('success_message')}}
         </div>
+      @endif
+
+      @if (Session::has('not_logged'))
+      <div class="alert alert-warning">
+          <strong>Warning!</strong> {{Session::get('not_logged')}}
+      </div>
       @endif
 
 			<h2 class="form-signin-heading">Please sign in</h2>

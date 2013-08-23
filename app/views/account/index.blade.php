@@ -10,7 +10,7 @@
  <div class="navbar-wrapper">
    <div class="container">
 
-        <div class="navbar navbar-inverse navbar-static-top">
+        <div class="navbar navbar-inverse navbar-fixed-top">
           <div class="container">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
@@ -25,21 +25,37 @@
                 <li><a href="{{url('ebooks')}}"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
                 <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;&nbsp;Contact</a></li>
 
-              
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>&nbsp;&nbsp;Your Account  <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="{{url('login')}}"><i class="icon-signin"></i>&nbsp;&nbsp;<strong>Login</strong></a></li>
-                    <li><a href="#"><i class="icon-cog"></i>&nbsp;&nbsp;<strong>Profile</strong></a></li>
-                    <li><a href="#"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;<strong>Cart</strong></a></li>
-                  </ul>
-                </li> 
                 <li><a data-toggle="modal" href="#Cart_Modal"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;
                 @if ($cart_items_count == 0 || $cart_items_count > 1)
                    Cart (you have {{$cart_items_count}} items)</a></li>
                 @else
                    Cart (you have {{$cart_items_count}} item)</a></li>
-                @endif
+                @endif  
+              
+                <ul class="nav navbar-nav"> 
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>&nbsp;&nbsp;Your Account  <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                   @if ( !Auth::check() )
+                    <li><a href="{{url('login')}}"><i class="icon-signin"></i>&nbsp;&nbsp;<strong>Login</strong></a></li>
+                   @else
+                    <li><a href="{{url('logout')}}"><i class="icon-off"></i>&nbsp;&nbsp;<strong>Logout</strong></a></li>
+                   @endif 
+                    <li><a href="{{url('account')}}"><i class="icon-cog"></i>&nbsp;&nbsp;<strong>Profile</strong></a></li>
+                    <li><a href="#"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;<strong>Cart</strong></a></li>
+                  </ul>
+                </li> 
+                    @if (Auth::check())
+                      <p class="navbar-text pull-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="{{url('logout')}}"><i class="icon-off"></i>&nbsp;Logout</a>&nbsp;&nbsp;
+                      ( Signed in as {{Auth::user()->firstname}} ) 
+                     </p>
+                    @else
+                      <p class="navbar-text pull-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="{{url('login')}}"><i class="icon-signin"></i>&nbsp;Login</a>&nbsp;&nbsp; 
+                    @endif              
+                </ul>
+                
               </ul>
             </div>
           </div>
@@ -111,17 +127,24 @@
 
 
 <div class="row">
-	<h1 class="center"><i class="icon-warning-sign icon-2x"></i>&nbsp;Welcome to your account</h1><br />
-      <div class="col-lg-4"></div>
-	      <div class="col-lg-4">
+	
+      <div class="col-lg-3">
+        
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a href="#"><h5><i class="icon-user icon-2x"></i>&nbsp;&nbsp;My Account
+          &nbsp;{{'('.Auth::user()->firstname.' '.Auth::user()->lastname.')'}}</h5></a></li>
+          <li><a href="#">View open orders</a></li>
+          <li><a href="#">Change account settings</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div>
+	      
+        <div class="col-lg-9">
             
          </div>
-    <div class="col-lg-4"></div>
+   
 </div> <!-- Row -->
 
-	
-    <div class="col-lg-4"></div>
-	</div><!-- row -->
 
 <hr class="featurette-divider">
 
