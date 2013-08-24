@@ -40,7 +40,7 @@ Route::post('handle-login', array('before' => 'csrf', 'as' => 'login', function(
 	
 	$data = Input::all();
 
-	$rules = array( 'email' => 'required|email',
+	$rules = array( 'email' => 'required|email|exists:users,email',
 					'password' => 'required'
 					);
 
@@ -108,7 +108,7 @@ Route::post('handle-registration', array('before' => 'csrf','as' => 'register', 
 Route::get('registration', function() {
 	
 	if(Auth::check()) return Redirect::to('account');
-	
+
 	$cart_data = new CartItem;
 	
 	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
