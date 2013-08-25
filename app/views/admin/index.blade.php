@@ -2,13 +2,10 @@
 
 @section('head')
 @parent
-  {{ HTML::style('css/modal_img.css') }}
 @stop
 
-
 @section('content')
-
-  <!-- NAVBAR
+<!-- NAVBAR
 ================================================== -->
  <div class="navbar-wrapper">
    <div class="container">
@@ -24,7 +21,7 @@
             <div class="nav-collapse collapse">
               <ul class="nav navbar-nav">
                 <li><a href="{{url()}}"><i class="icon-home icon-white"></i>&nbsp;&nbsp;Home</a></li>
-                <li class="active"><a href="{{url('movies')}}"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
+                <li><a href="{{url('movies')}}"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
                 <li><a href="{{url('ebooks')}}"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
                 <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;&nbsp;Contact</a></li>
 
@@ -33,8 +30,8 @@
                    Cart (you have {{$cart_items_count}} items)</a></li>
                 @else
                    Cart (you have {{$cart_items_count}} item)</a></li>
-                @endif
-
+                @endif  
+              
                 <ul class="nav navbar-nav"> 
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>&nbsp;&nbsp;Your Account  <b class="caret"></b></a>
@@ -58,6 +55,7 @@
                       <a href="{{url('login')}}"><i class="icon-signin"></i>&nbsp;Login</a>&nbsp;&nbsp; 
                     @endif              
                 </ul>
+                
               </ul>
             </div>
           </div>
@@ -86,10 +84,10 @@
                           </li>
                           @endforeach
                           <li>&nbsp;</li>
-                          <li><strong>Total:</strong> {{$total}}&nbsp;<i class="icon-euro"></i></li>
+                          <li><strong>Total:</strong> {{$total}}</li>
                           <li>&nbsp;</li>
                           <li><button type="button" class="btn btn-primary btn-xs">View Cart In Details</button>&nbsp;&nbsp;
-                          <a href="{{url('empty_cart')}}/movies" type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</a></li>
+                          <a href="{{url('empty_cart')}}/ebooks" type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</a></li>
                          </ul>
                           
                           </div>
@@ -100,123 +98,58 @@
                       </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
 
-<!-- CAROUSEL
+  <!-- CAROUSEL
 ================================================== -->
 <div id="myCarousel" class="carousel slide">
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <img src="{{url()}}/images/products_images/inception2_ex_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/laravel_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
+              
+              <p></p>
             </div>
           </div>
         </div>
-        <div class="item">
-          <img src="{{url()}}/images/products_images/breakingbad_wp.jpg" alt="" width="1100" height="500" alt="">
-          <div class="container">
-            <div class="carousel-caption">
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="{{url()}}/images/products_images/inception3_wp.jpg" alt="" width="1100" height="500" alt="">
-          <div class="container">
-            <div class="carousel-caption">
-            </div>
-           </div>
-          </div>
-           
+        
        </div>
       <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div><!-- /.carousel -->
 
-
-
-
+    <!-- CONTAINER
+================================================== -->
 <div class="container marketing">
 
+
 <div class="row">
-        <h1><i class="icon-film"></i>&nbsp;DVD Movies:</h1><br />
-        @foreach ($movies as $movie)
-        <div class="col-lg-4">
-          <img class="img-rounded" src="{{url()}}/images/products_images/{{$movie->id.'_thumb.jpg'}}">
-          <p></p>
-          <p><a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$movie->id}}/movies">Add to cart &raquo;</a>&nbsp;&nbsp;
-          <a data-toggle="modal" href="#myModal_{{$movie->id}}" class="btn btn-default">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
+	
+      <div class="col-lg-3">
         
-
-          {{-- Start Modal --}}
-          <!-- Modal -->
-      <div class="modal fade" id="myModal_{{$movie->id}}">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h3 class="modal-title"><i class="icon-film"></i>&nbsp;{{$movie->product_name}}</h3>
-            </div>
-            <div class="modal-body">
-             <h4>DVD Description</h4><br />
-            <div class="twist_img">
-          <img src="{{url()}}/images/products_images/{{$movie->id}}_thumb.jpg">
-          <p>{{$movie->product_description}}</p>
-          
-          </div><br />
-          <h4>DVD Details</h4><br />
-           <ul>
-             <li><strong>Language:</strong>&nbsp;{{$movie->product_language}}</li>  
-             <li><strong>ISBN-10:</strong>&nbsp;{{$movie->product_isbn10}}</li>
-             <li><strong>Price:</strong>&nbsp;{{$movie->product_price}}&nbsp;&euro;</li>
-           </ul>
-            </div>
-            <div class="modal-footer">
-              <a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$movie->id}}/movies">Add to cart &raquo;</a>&nbsp;&nbsp;
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
-          {{-- End Modal --}}
-        @endforeach
-      </div><!-- /.row -->
-
-     <div class="row">
-      <div class="col-lg-4"></div>
-	      <div class="col-lg-4">
-		      <ul class="pagination pagination-lg">
-		        @if ($page == 1)
-				  <li class="disabled"><span>Prev</span></li>
-				@else
-				   <li><a href="{{url('movies')}}/{{$page - 1}}">Prev</a></li>
-				@endif     
-				   @for ($i = 1; $i <= $num_pages; $i++)
-				   	  @if ($page == $i)	
-				  		<li class="disabled"><span>{{ $i }}</span></li>
-				  	  @else
-				  	  	<li><a href="{{url('movies')}}/{{$i}}">{{ $i }}</a></li>
-				  	  @endif		
-				   @endfor
-				@if ($page == $num_pages)   
-				  <li class="disabled"><span>Next</span></li>
-				@else
-				  <li><a href="{{url('movies')}}/{{$page + 1}}">Next</a></li>
-				@endif  
-			  </ul>
-		  </div>
-	   <div class="col-lg-4"></div>
-	  </div>
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a href="#"><h5><i class="icon-wrench icon-2x"></i>&nbsp;&nbsp;Admin Menu
+          &nbsp;{{'('.Auth::user()->firstname.' '.Auth::user()->lastname.')'}}</h5></a></li>
+          <li><a href="#">Manage Users</a></li>
+          <li><a href="#">Manage Product Types</a></li>
+          <li><a href="#">Add Product</a></li>
+          <li><a href="#">Update or Remove Product</a></li>
+          <li><a href="#">Manage Orders</a></li>
+          <li><a href="#">View Access Log</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div>
+	      
+        <div class="col-lg-9">
+            
+         </div>
+   
+</div> <!-- Row -->
 
 
-	 
+<hr class="featurette-divider">
 
-	  <hr class="featurette-divider">
-	  
 @stop
-

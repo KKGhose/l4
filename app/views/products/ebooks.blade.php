@@ -84,7 +84,7 @@
                           </li>
                           @endforeach
                           <li>&nbsp;</li>
-                          <li><strong>Total:</strong> {{$total}}</li>
+                          <li><strong>Total:</strong> {{$total}}&nbsp;<i class="icon-euro"></i></li>
                           <li>&nbsp;</li>
                           <li><button type="button" class="btn btn-primary btn-xs">View Cart In Details</button>&nbsp;&nbsp;
                           <a href="{{url('empty_cart')}}/ebooks" type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</a></li>

@@ -168,6 +168,21 @@ Route::get('account', function() {
 			                                  ));
 });
 
+Route::get('admin', function() {
+
+	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
+
+	$cart_data = new CartItem;
+	
+	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
+
+	return View::make('admin.index', array('cart_items_count' => $cart_items_count,
+			                                          'total' => $total,
+			                                  'cart_products' => $cart_products
+			                                  ));
+});
+
+
 
 Route::get('generic-view', function () {
 	$cart_data = new CartItem;
