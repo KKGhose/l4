@@ -7,14 +7,17 @@ class HomeController extends BaseController {
 
 	private $_cart_data;
 
+	private $_log;
+
 	public function __construct()
 	{
 		$this->_cart_data = new CartItem;
+		$this->_log = new AccessLog;
 	}
 
 	public function index()
 	{
-		$this->log_access('home.index');
+		$this->_log->save_log($this->_log, 'home.index');
 
 		$movies = Product::where('product_type','=', 2)->orderBy('id', 'desc')->take(3)->get();
 		$ebooks = Product::where('product_type','=', 1)->orderBy('id', 'desc')->take(3)->get();
@@ -29,17 +32,6 @@ class HomeController extends BaseController {
 			                               'cart_items_count' => $cart_items_count,
 			                               'total' => $total,
 			                               'cart_products' => $cart_products ));
-	}
-
-	public function log_access($action = '')
-	{
-		$log = new AccessLog;
-		$log->page_url = 'L4->'.$action;
-		$log->ip = $_SERVER['REMOTE_ADDR'];
-		$log->host = gethostbyaddr( $_SERVER['REMOTE_ADDR'] );
-		$log->save();
-
-		return;
 	}
 
 	

@@ -13,11 +13,14 @@ class EbooksController extends BaseController {
 	private $num_pages = 0;
 
 	private $_cart_data;
+    private $_log;
+
 
 	public function __construct()
 	{
 		$this->initialize();
 		$this->_cart_data = new CartItem;
+		$this->_log = new AccessLog;
 	}
 
 	private function initialize()
@@ -29,7 +32,7 @@ class EbooksController extends BaseController {
 
 	public function index($page = 1)
 	{
-		$this->log_access('ebooks.index');
+		$this->_log->save_log($this->_log, 'ebooks.index');
 
 		$skip = ($page - 1) * $this->items_per_page;
 
@@ -44,19 +47,6 @@ class EbooksController extends BaseController {
 			                                  'cart_products' => $cart_products, 
 			                                           'page' => $page ));
 	}
-
-
-	public function log_access($action = '')
-	{
-		$log = new AccessLog;
-		$log->page_url = 'L4->'.$action;
-		$log->ip = $_SERVER['REMOTE_ADDR'];
-		$log->host = gethostbyaddr( $_SERVER['REMOTE_ADDR'] );
-		$log->save();
-
-		return;
-	}
-
 	
 
 }//End EbooksController
