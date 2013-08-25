@@ -40,6 +40,9 @@ Route::post('handle-login', array('before' => 'csrf', 'as' => 'login', function(
 	
 	$data = Input::all();
 
+	$user = new User;
+	
+
 	$rules = array( 'email' => 'required|email|exists:users,email',
 					'password' => 'required'
 					);
@@ -48,14 +51,14 @@ Route::post('handle-login', array('before' => 'csrf', 'as' => 'login', function(
 
 	if ( $validator->passes() )
 	{
-		$email = Input::get('email');
-		$password = Input::get('password');
-
-		if (Auth::attempt( array('email' => $email, 'password' => $password ) ) )
+		$email = $data['email'];
+		$password = $data['password'];
+	
+		if ( Auth::attempt(array('email' => $email, 'password' =>  $password))) 
 		{
-			return Redirect::to('account');
+			Redirect::to('account');
 		}
-
+		
 	}
 
 	return Redirect::to('login')->withErrors($validator)->withInput(Input::except('password'));
@@ -123,20 +126,17 @@ Route::get('registration', function() {
 //Upon firing the the new member data is transfered form signups table to users table.
 Route::get('confirm/{code?}', function($code = null) {
 
-	$signups = DB::select('SELECT email, password, firstname, lastname FROM signups WHERE confirm_code LIKE ?', array($code));
+	$signup = DB::select('SELECT email, password, firstname, lastname FROM signups WHERE confirm_code LIKE ?', array($code));
 	 
-	if(!$signups) return Redirect::to('not_found'); 
+	if(!$signup) return Redirect::to('not_found');
 
-	foreach($signups as $signup)
-	{
-		$user = new User;
-		$user->email = $signup->email;
-		$email = $signup->email;
-		$user->password = $signup->password;
-		$user->firstname = $signup->firstname;
-		$user->lastname = $signup->lastname;
-		$user->save();
-    }
+	$email =  $signup[0]->email;
+
+	DB::insert('INSERT INTO users (email, password, firstname, lastname) VALUES (?, ?, ? , ?)', array($signup[0]->email,
+																									 $signup[0]->password,
+																									 $signup[0]->firstname,
+																									 $signup[0]->lastname
+																									 ));
 
     DB::delete('DELETE FROM signups WHERE confirm_code LIKE ?', array($code));
 
@@ -157,15 +157,29 @@ Route::get('logout', function()
 Route::get('account', function() {
 
 	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
+    
+    $email = Auth::user()->email;
+    $user = new User;
 
 	$cart_data = new CartItem;
 	
 	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
 
-	return View::make('account.index', array('cart_items_count' => $cart_items_count,
+	if( !$user->is_admin( $email ) )
+	{
+		return View::make('account.index', array('cart_items_count' => $cart_items_count,
 			                                          'total' => $total,
 			                                  'cart_products' => $cart_products
 			                                  ));
+	}
+
+	if( $user->is_admin( $email ) )
+	{
+		return View::make('admin.index', array('cart_items_count' => $cart_items_count,
+			                                          'total' => $total,
+			                                  'cart_products' => $cart_products
+			                                  ));
+	}	
 });
 
 Route::get('admin', function() {
@@ -231,12 +245,7 @@ Route::get('projects', function() {
 
 Route::get('testing', function() {
 
-	$cart_data = new CartItem;
+	$var = DB::select('SELECT * FROM signups');
 	
-	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
-
-	return View::make('account.index', array('cart_items_count' => $cart_items_count,
-			                                          'total' => $total,
-			                                  'cart_products' => $cart_products
-			                               ));
+	return $var[0]->email;
 });

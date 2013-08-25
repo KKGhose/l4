@@ -118,6 +118,7 @@
 
 <div class="row">
 	<h1><i class="icon-signin"></i>&nbsp;Login</h1><br />
+  
       <div class="col-lg-4"></div>
 	      <div class="col-lg-4">
             <div class="well">
