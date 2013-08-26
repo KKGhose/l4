@@ -11,10 +11,12 @@ class AccessLog extends Eloquent {
 
 	public function save_log(AccessLog $log,  $action = '')
 	{
+		$var = get_browser(null); 
+
 		$log->page_url = 'L4->'.$action;
 		$log->ip = $_SERVER['REMOTE_ADDR'];
 		$log->host = gethostbyaddr( $_SERVER['REMOTE_ADDR'] );
-		$log->user_agent = $_SERVER['HTTP_USER_AGENT'];
+		$log->user_agent = 'Browser: '.$var->parent.', OS: '.$var->platform;
 		$log->save();
 
 		return;

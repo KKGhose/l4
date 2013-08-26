@@ -128,21 +128,35 @@
           &nbsp;<small>{{'('.Auth::user()->firstname.' '.Auth::user()->lastname.')'}}</small></h3>
 
 <div class="row">
-	
       <div class="col-lg-9">
-       
-        
+
+       <table class="table table-striped">
+       <tr>
+          <th>Page url</th>
+          <th>Host</th>
+          <th>User Agent</th>
+          <th>Created at</th>
+       </tr>
+       @foreach ($logs as $log)
+        <tr>
+          <td>{{$log->page_url}}</td>
+          <td>{{$log->host}}</td>
+          <td>{{$log->user_agent}}</td>
+          <td>{{$log->created_at}}</td> 
+        </tr>
+       @endforeach 
+       </table>
     </div>
 	      
     <div class="col-lg-3">    
         <ul class="nav nav-pills nav-stacked">
-          <li class="active"><a href="{{url('account')}}">Home</a></li>
+          <li><a href="{{url('account')}}">Home</a></li>
           <li><a href="#">Manage Users</a></li>
           <li><a href="#">Manage Product Types</a></li>
           <li><a href="#">Add Product</a></li>
           <li><a href="#">Update or Remove Product</a></li>
           <li><a href="#">Manage Orders</a></li>
-          <li><a href="{{url('admin-view_log')}}">View Access Log</a></li>
+          <li class="active"><a href="{{url('admin-view_log')}}">View Access Log</a></li>
           <li><a href="#">Logout</a></li>
         </ul>
     </div>

@@ -182,18 +182,21 @@ Route::get('account', function() {
 	}	
 });
 
-Route::get('admin', function() {
+Route::get('admin-view_log', function() {
 
 	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
 
 	$cart_data = new CartItem;
+
+	$logs = DB::select('SELECT page_url, host, user_agent, created_at FROM accessLogs ORDER BY id DESC');
 	
 	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
 
-	return View::make('admin.index', array('cart_items_count' => $cart_items_count,
-			                                          'total' => $total,
-			                                  'cart_products' => $cart_products
-			                                  ));
+	return View::make('admin.view_access_log', array('cart_items_count' => $cart_items_count,
+			                                                'total' => $total,
+			                                            'cart_products' => $cart_products,
+			                                            'logs' => $logs
+			                                       ));
 });
 
 
@@ -245,7 +248,7 @@ Route::get('projects', function() {
 
 Route::get('testing', function() {
 
-	$var = DB::select('SELECT * FROM signups');
-	
-	return $var[0]->email;
+	//$var = DB::select('SELECT * FROM signups');
+	$var = get_browser(null);
+	return $var->parent.' '.$var->platform;
 });
