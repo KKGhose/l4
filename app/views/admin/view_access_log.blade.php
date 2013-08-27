@@ -146,6 +146,34 @@
         </tr>
        @endforeach 
        </table>
+
+    {{--Pagination for logs--}}
+    <div class="row">
+      <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+          <ul class="pagination pagination-lg">
+            @if ($page == 1)
+          <li class="disabled"><span>Prev</span></li>
+        @else
+           <li><a href="{{url('admin-view_log')}}/{{$page - 1}}">Prev</a></li>
+        @endif     
+           @for ($i = 1; $i <= $num_pages; $i++)
+              @if ($page == $i) 
+              <li class="disabled"><span>{{ $i }}</span></li>
+              @else
+                <li><a href="{{url('admin-view_log')}}/{{$i}}">{{ $i }}</a></li>
+              @endif    
+           @endfor
+        @if ($page == $num_pages)   
+          <li class="disabled"><span>Next</span></li>
+        @else
+          <li><a href="{{url('admin-view_log')}}/{{$page + 1}}">Next</a></li>
+        @endif  
+        </ul>
+      </div>
+     <div class="col-lg-4"></div>
+    </div>
+
     </div>
 	      
     <div class="col-lg-3">    

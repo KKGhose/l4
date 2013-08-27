@@ -14,6 +14,7 @@ Route::get('add_to_cart/{product_id}/{uri?}', 'CartController@add_item');
 
 Route::get('empty_cart/{uri?}', 'CartController@empty_cart');
 
+Route::get('admin-view_log/{offset?}', 'AccessLogsController@index');
 
 
 /*
@@ -180,23 +181,6 @@ Route::get('account', function() {
 			                                  'cart_products' => $cart_products
 			                                  ));
 	}	
-});
-
-Route::get('admin-view_log', function() {
-
-	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
-
-	$cart_data = new CartItem;
-
-	$logs = DB::select('SELECT page_url, host, user_agent, created_at FROM accessLogs ORDER BY id DESC');
-	
-	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
-
-	return View::make('admin.view_access_log', array('cart_items_count' => $cart_items_count,
-			                                                'total' => $total,
-			                                            'cart_products' => $cart_products,
-			                                            'logs' => $logs
-			                                       ));
 });
 
 
