@@ -14,7 +14,6 @@ Route::get('add_to_cart/{product_id}/{uri?}', 'CartController@add_item');
 
 Route::get('empty_cart/{uri?}', 'CartController@empty_cart');
 
-Route::get('admin-view_log/{offset?}', 'AccessLogsController@index');
 
 
 /*
@@ -154,19 +153,16 @@ Route::get('logout', function()
 //------------------ End login and registration routes ----------------------------------
 
 
-
+//-------------------Admin routes------------------------------------------------------
 Route::get('account', function() {
 
 	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
-    
-    $email = Auth::user()->email;
-    $user = new User;
-
+	
 	$cart_data = new CartItem;
 	
 	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
 
-	if( !$user->is_admin( $email ) )
+	if( !Auth::user()->admin )
 	{
 		return View::make('account.index', array('cart_items_count' => $cart_items_count,
 			                                          'total' => $total,
@@ -174,16 +170,45 @@ Route::get('account', function() {
 			                                  ));
 	}
 
-	if( $user->is_admin( $email ) )
-	{
-		return View::make('admin.index', array('cart_items_count' => $cart_items_count,
+	return View::make('admin.index', array('cart_items_count' => $cart_items_count,
 			                                          'total' => $total,
 			                                  'cart_products' => $cart_products
 			                                  ));
-	}	
+		
 });
 
+Route::get('admin-view_log/{offset?}', function($page = 1) {
 
+	//We make sure that user is logged in.
+	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
+	
+	//If user is not admin we redirect away.
+	if(!Auth::user()->admin) return Redirect::to('/');
+
+	return Redirect::action('AccessLogsController@index', array($page));
+});
+
+Route::get('admin-viewLogs/{offset?}', 'AccessLogsController@index');
+
+Route::get('admin-ptypes', function() {
+
+	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
+
+	
+    $cart_data = new CartItem;
+	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
+
+	//If user is not admin we redirect away.
+	if(!Auth::user()->admin) return Redirect::to('/');
+
+	return View::make('admin.manage_ptypes', array('cart_items_count' => $cart_items_count,
+			                                          'total' => $total,
+			                                  'cart_products' => $cart_products
+			                                  ));
+
+});
+
+//----------------------- END Admin routes --------------------------------------------------
 
 Route::get('generic-view', function () {
 	$cart_data = new CartItem;

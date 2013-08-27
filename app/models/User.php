@@ -19,13 +19,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password');
 
-	public function is_admin($email = '')
-	{
-		$var = DB::select('SELECT admin FROM users WHERE email LIKE ?', array( $email ));
-		
-		return $var[0]->admin;
-	}
-
 	/**
 	 * Get the unique identifier for the user.
 	 *

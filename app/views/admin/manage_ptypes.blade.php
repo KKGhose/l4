@@ -124,66 +124,24 @@
     <!-- CONTAINER
 ================================================== -->
 <div class="container marketing">
-<h3><i class="icon-wrench icon-2x"></i>&nbsp;&nbsp;Admin Menu / View Access Logs</h3><br />
+<h3><i class="icon-wrench icon-2x"></i>&nbsp;&nbsp;Admin Menu / Manage Product Types</h3>
 
 <div class="row">
+	
       <div class="col-lg-9">
-
-       <table class="table table-striped">
-       <tr>
-          <th>Page url</th>
-          <th>Host</th>
-          <th>User Agent</th>
-          <th>Created at</th>
-       </tr>
-       @foreach ($logs as $log)
-        <tr>
-          <td>{{$log->page_url}}</td>
-          <td>{{$log->host}}</td>
-          <td>{{$log->user_agent}}</td>
-          <td>{{$log->created_at}}</td> 
-        </tr>
-       @endforeach 
-       </table>
-
-    {{--Pagination for logs--}}
-    <div class="row">
-      <div class="col-lg-4"></div>
-        <div class="col-lg-4">
-          <ul class="pagination pagination-lg">
-            @if ($page == 1)
-          <li class="disabled"><span>Prev</span></li>
-        @else
-           <li><a href="{{url('admin-view_log')}}/{{$page - 1}}">Prev</a></li>
-        @endif     
-           @for ($i = 1; $i <= $num_pages; $i++)
-              @if ($page == $i) 
-              <li class="disabled"><span>{{ $i }}</span></li>
-              @else
-                <li><a href="{{url('admin-view_log')}}/{{$i}}">{{ $i }}</a></li>
-              @endif    
-           @endfor
-        @if ($page == $num_pages)   
-          <li class="disabled"><span>Next</span></li>
-        @else
-          <li><a href="{{url('admin-view_log')}}/{{$page + 1}}">Next</a></li>
-        @endif  
-        </ul>
-      </div>
-     <div class="col-lg-4"></div>
-    </div>
-
+       
+        
     </div>
 	      
     <div class="col-lg-3">    
         <ul class="nav nav-pills nav-stacked">
           <li><a href="{{url('account')}}">Home</a></li>
           <li><a href="#">Manage Users</a></li>
-          <li><a href="{{url('admin-ptypes')}}">Manage Product Types</a></li>
+          <li class="active"><a href="{{url('admin-ptypes')}}">Manage Product Types</a></li>
           <li><a href="#">Add Product</a></li>
           <li><a href="#">Update or Remove Product</a></li>
           <li><a href="#">Manage Orders</a></li>
-          <li class="active"><a href="{{url('admin-view_log')}}">View Access Log</a></li>
+          <li><a href="{{url('admin-view_log')}}">View Access Log</a></li>
           <li><a href="{{url('logout')}}">Logout</a></li>
         </ul>
     </div>

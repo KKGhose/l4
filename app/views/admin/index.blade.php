@@ -124,8 +124,7 @@
     <!-- CONTAINER
 ================================================== -->
 <div class="container marketing">
-<h3><i class="icon-wrench icon-2x"></i>&nbsp;&nbsp;Admin Menu
-          &nbsp;<small>{{'('.Auth::user()->firstname.' '.Auth::user()->lastname.')'}}</small></h3>
+<h3><i class="icon-wrench icon-2x"></i>&nbsp;&nbsp;Admin Menu / Home</h3>
 
 <div class="row">
 	
@@ -138,12 +137,12 @@
         <ul class="nav nav-pills nav-stacked">
           <li class="active"><a href="{{url('account')}}">Home</a></li>
           <li><a href="#">Manage Users</a></li>
-          <li><a href="#">Manage Product Types</a></li>
+          <li><a href="{{url('admin-ptypes')}}">Manage Product Types</a></li>
           <li><a href="#">Add Product</a></li>
           <li><a href="#">Update or Remove Product</a></li>
           <li><a href="#">Manage Orders</a></li>
           <li><a href="{{url('admin-view_log')}}">View Access Log</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a href="{{url('logout')}}">Logout</a></li>
         </ul>
     </div>
    
