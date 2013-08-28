@@ -30,12 +30,13 @@ class AccessLogsController extends BaseController {
 		
 		list( $cart_products, $cart_items_count, $total ) = $this->_cart_data->get_cart_data();
 
-		return View::make('admin.view_access_log', array('logs' => $logs, 
+        return View::make('admin.view_access_log', array('logs' => $logs, 
 			                                        'num_pages' => $this->num_pages,
 			                                 'cart_items_count' => $cart_items_count,
 			                                            'total' => $total,
 			                                    'cart_products' => $cart_products, 
-			                                             'page' => $page ));
+			                                             'page' => $page
+			                                             ));
 	}
 
 

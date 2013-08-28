@@ -124,15 +124,45 @@
     <!-- CONTAINER
 ================================================== -->
 <div class="container marketing">
-<h3><i class="icon-wrench icon-2x"></i>&nbsp;&nbsp;Admin Menu / Manage Product Types</h3>
+<h3><i class="icon-wrench icon-2x"></i>&nbsp;&nbsp;Admin Menu / Manage Product Types</h3><br />
 
 <div class="row">
 	
-      <div class="col-lg-9">
+  
+  <div class="col-lg-9">
+
+     {{Form::open(array('route' => 'ptypes', 'class' => 'form-horizontal', 'role' => 'form'))}}
+     
+     <div class="form-group">
+       <label for="parent_id" class="col-lg-3 control-label">Parent product type</label>         
+       <div class="col-lg-4">
+          <select name="parent_id" class="form-control">
+            <option value="0">none</option>
+            @foreach ($p_types as $p_type)
+              <option value="{{$p_type->id}}">{{$p_type->type_name}}</option>
+            @endforeach
+          </select>
+      </div>
+     </div>               
        
-        
-    </div>
-	      
+     <div class="form-group">
+       <label for="type_name" class="col-lg-3 control-label">New product type</label> 
+      <div class="col-lg-4">    
+        <input type="text" class="form-control" name="type_name" id="type_name" placeholder="Enter new type name">                              
+       </div>
+     </div>
+
+      <div class="form-group"> 
+      <div class="col-lg-offset-3 col-lg-9">  
+        <button type="submit" class="btn btn-default">Add new product type</button>              
+      </div>
+     </div>
+
+    {{Form::close()}}
+      
+
+   </div>
+       
     <div class="col-lg-3">    
         <ul class="nav nav-pills nav-stacked">
           <li><a href="{{url('account')}}">Home</a></li>
@@ -147,6 +177,7 @@
     </div>
    
 </div> <!-- Row -->
+
 
 
 <hr class="featurette-divider">
