@@ -131,8 +131,10 @@
   
   <div class="col-lg-9">
 
-     {{Form::open(array('route' => 'ptypes', 'class' => 'form-horizontal', 'role' => 'form'))}}
-     
+     <form action="{{route('ptypes')}}" method="post" class="form-horizontal" role="form"> 
+       
+       {{ Form::token() }}
+
      <div class="form-group">
        <label for="parent_id" class="col-lg-3 control-label">Parent product type</label>         
        <div class="col-lg-4">
@@ -157,8 +159,7 @@
         <button type="submit" class="btn btn-default">Add new product type</button>              
       </div>
      </div>
-
-    {{Form::close()}}
+     </form>
       
 
    </div>

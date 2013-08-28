@@ -117,9 +117,31 @@ Route::get('admin-view_log/{offset?}', function($page = 1) {
 
 Route::get('admin-viewLogs/{offset?}', 'AccessLogsController@index');
 
+Route::get('admin-ptypes', function() {
+
+		//return Session::flush();
+
+		if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
+
+	    //If user is not admin we redirect away.
+		if(!Auth::user()->admin) return Redirect::to('/');
+
+		$cart_data = new CartItem;
+		list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
+
+		$p_types = DB::select('SELECT id, type_name FROM productTypes WHERE parent_id = ? ORDER BY id DESC', array(0));
+	    
+	    return View::make('admin.manage_ptypes', array('cart_items_count' => $cart_items_count,
+				                                          'total' => $total,
+				                                  'cart_products' => $cart_products,
+				                                  	  'p_types'  => $p_types
+				                                  ));
+});
 
 
 //----------------------- END Admin routes --------------------------------------------------
+
+//----------------------- Routes With CSRF Filter -------------------------------------------
 
 Route::group(array('before' => 'csrf'), function()
 {
@@ -195,28 +217,7 @@ Route::group(array('before' => 'csrf'), function()
 		return Redirect::to('registration')->withErrors($validator)->withInput(Input::except('password'));
 	}));
 
-	Route::get('admin-ptypes', function() {
-
-		//return Session::flush();
-
-		if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
-
-	    //If user is not admin we redirect away.
-		if(!Auth::user()->admin) return Redirect::to('/');
-
-		$cart_data = new CartItem;
-		list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
-
-		$p_types = DB::select('SELECT id, type_name FROM productTypes WHERE parent_id = ? ORDER BY id DESC', array(0));
-	    
-	    return View::make('admin.manage_ptypes', array('cart_items_count' => $cart_items_count,
-				                                          'total' => $total,
-				                                  'cart_products' => $cart_products,
-				                                  	  'p_types'  => $p_types
-				                                  ));
-
-	});
-
+	
 	Route::post('handle-admin-ptypes', array('as' => 'ptypes', function() {
 
 		if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
@@ -237,6 +238,8 @@ Route::group(array('before' => 'csrf'), function()
 	}));
 
 });
+
+//---------------------- END Routes With CSRF Filter--------------------------------------------------
 
 
 Route::get('generic-view', function () {
