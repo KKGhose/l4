@@ -173,7 +173,7 @@
         <h1><i class="icon-film"></i>&nbsp;New From DVD Movies:</h1><br />
         @foreach ($movies as $movie)
         <div class="col-lg-4">
-          <img class="img-rounded" src="{{url()}}/images/products_images/{{$movie->id.'_thumb.jpg'}}">
+          <img class="img-rounded" src="{{url()}}/images/products_images/{{$movie->id.'.jpg'}}" height="300" width="200">
           <h2>{{$movie->product_name}}</h2>
           <p>{{ implode(' ', array_slice( explode(' ', $movie->product_description), 0, 20) ).'...' }}</p>
           <p><a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$movie->id}}">Add to cart &raquo;</a>&nbsp;&nbsp;
@@ -192,7 +192,7 @@
                 <div class="modal-body">
                  <h4>DVD Description</h4><br />
                 <div class="twist_img">
-              <img src="{{url()}}/images/products_images/{{$movie->id}}_thumb.jpg">
+              <img src="{{url()}}/images/products_images/{{$movie->id}}.jpg">
               <p>{{$movie->product_description}}</p>
               
               </div><br />
@@ -221,7 +221,7 @@
        <h1><i class="icon-book"></i>&nbsp;New From IT-Ebooks:</h1><br />
         @foreach ($ebooks as $ebook)
         <div class="col-lg-4">
-          <img class="img-rounded" src="{{url()}}/images/products_images/{{$ebook->id.'_thumb.jpg'}}">
+          <img class="img-rounded" src="{{url()}}/images/products_images/{{$ebook->id.'.jpg'}}" height="300" width="200">
           <h2>{{$ebook->product_name}}</h2>
           <p>{{ implode(' ', array_slice( explode(' ', $ebook->product_description), 0, 20) ).'...' }}</p>
           <p><a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$ebook->id}}">Add to cart &raquo;</a>&nbsp;&nbsp;
@@ -241,7 +241,7 @@
                 <div class="modal-body">
                  <h4>Ebook Description</h4><br />
                 <div class="twist_img">
-              <img src="{{url()}}/images/products_images/{{$ebook->id}}_thumb.jpg">
+              <img src="{{url()}}/images/products_images/{{$ebook->id}}.jpg">
               <p>{{$ebook->product_description}}</p>
               
               </div><br />

@@ -19,8 +19,8 @@ class HomeController extends BaseController {
 	{
 		$this->_log->save_log($this->_log, 'home.index');
 
-		$movies = Product::where('product_type','=', 2)->orderBy('id', 'desc')->take(3)->get();
-		$ebooks = Product::where('product_type','=', 1)->orderBy('id', 'desc')->take(3)->get();
+		$movies = Product::where('product_type','=', 11)->orderBy('id', 'desc')->take(3)->get();
+		$ebooks = Product::where('product_type','=', 10)->orderBy('id', 'desc')->take(3)->get();
 
 		
  		list( $cart_products, $cart_items_count, $total ) = $this->_cart_data->get_cart_data();

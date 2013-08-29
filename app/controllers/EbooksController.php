@@ -25,7 +25,7 @@ class EbooksController extends BaseController {
 
 	private function initialize()
 	{
-		$this->count = Product::where('product_type','=', 1)->count();
+		$this->count = Product::where('product_type','=', 10)->count();
 		$this->num_pages = (int)($this->count / $this->items_per_page);	
 		if ($this->count % $this->items_per_page) $this->num_pages += 1;
 	}
@@ -36,8 +36,7 @@ class EbooksController extends BaseController {
 
 		$skip = ($page - 1) * $this->items_per_page;
 
-		$ebooks = Product::where('product_type','=', 1)->skip($skip)->orderBy('id', 'desc')->take($this->items_per_page)->get();
-		
+		$ebooks = Product::where('product_type','=', 10)->skip($skip)->orderBy('id', 'desc')->take($this->items_per_page)->get();
 		list( $cart_products, $cart_items_count, $total ) = $this->_cart_data->get_cart_data();
 
 		return View::make('products.ebooks', array('ebooks' => $ebooks, 

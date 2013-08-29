@@ -2,7 +2,6 @@
 
 @section('head')
 @parent
-  {{ HTML::style('css/modal_img.css') }}
 @stop
 
 @section('content')
@@ -23,7 +22,7 @@
               <ul class="nav navbar-nav">
                 <li><a href="{{url()}}"><i class="icon-home icon-white"></i>&nbsp;&nbsp;Home</a></li>
                 <li><a href="{{url('movies')}}"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
-                <li class="active"><a href="{{url('ebooks')}}"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
+                <li><a href="{{url('ebooks')}}"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
                 <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;&nbsp;Contact</a></li>
 
                 <li><a data-toggle="modal" href="#Cart_Modal"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;
@@ -31,8 +30,8 @@
                    Cart (you have {{$cart_items_count}} items)</a></li>
                 @else
                    Cart (you have {{$cart_items_count}} item)</a></li>
-                @endif
-
+                @endif  
+              
                 <ul class="nav navbar-nav"> 
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>&nbsp;&nbsp;Your Account  <b class="caret"></b></a>
@@ -54,8 +53,9 @@
                     @else
                       <p class="navbar-text pull-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <a href="{{url('login')}}"><i class="icon-signin"></i>&nbsp;Login</a>&nbsp;&nbsp; 
-                    @endif 
+                    @endif              
                 </ul>
+                
               </ul>
             </div>
           </div>
@@ -84,7 +84,7 @@
                           </li>
                           @endforeach
                           <li>&nbsp;</li>
-                          <li><strong>Total:</strong> {{$total}}&nbsp;<i class="icon-euro"></i></li>
+                          <li><strong>Total:</strong> {{$total}}</li>
                           <li>&nbsp;</li>
                           <li><button type="button" class="btn btn-primary btn-xs">View Cart In Details</button>&nbsp;&nbsp;
                           <a href="{{url('empty_cart')}}/ebooks" type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</a></li>
@@ -97,26 +97,21 @@
                         </div><!-- /.modal-content -->
                       </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
-<!-- CAROUSEL
+
+  <!-- CAROUSEL
 ================================================== -->
 <div id="myCarousel" class="carousel slide">
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <img src="{{url()}}/images/products_images/linux3_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/laravel_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="{{url()}}/images/products_images/php2_wp.jpg" alt="" width="1100" height="500" alt="">
-          <div class="container">
-            <div class="carousel-caption">
+              
+              <p></p>
             </div>
           </div>
         </div>
@@ -126,80 +121,114 @@
       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div><!-- /.carousel -->
 
+    <!-- CONTAINER
+================================================== -->
 <div class="container marketing">
+<h3><i class="icon-wrench icon-2x"></i>&nbsp;&nbsp;Admin Menu / Add Product</h3><br />
+
 <div class="row">
-        <h1><i class="icon-book"></i>&nbsp;IT-Ebooks:</h1><br />
-        @foreach ($ebooks as $ebook)
-        <div class="col-lg-4">
-          <img class="img-rounded" src="{{url()}}/images/products_images/{{$ebook->id.'.jpg'}}" height="300" width="200">
-          <p></p>
-          <p><a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$ebook->id}}/ebooks">Add to cart &raquo;</a>&nbsp;&nbsp;
-          <a data-toggle="modal" href="#myModal_{{$ebook->id}}" class="btn btn-default">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
+	
+  
+  <div class="col-lg-9">
 
-        {{-- Start Modal --}}
-          <!-- Modal -->
-      <div class="modal fade" id="myModal_{{$ebook->id}}">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h3 class="modal-title"><i class="icon-book"></i>&nbsp;{{$ebook->product_name}}</h3>
-            </div>
-            <div class="modal-body">
-             <h4>Ebook Description</h4><br />
-            <div class="twist_img">
-          <img src="{{url()}}/images/products_images/{{$ebook->id}}.jpg">
-          <p>{{$ebook->product_description}}</p>
-          </div><br />
-          <h4>Ebook Details</h4><br />
-            <ul>
-              <li><strong>Language:</strong>&nbsp;{{$ebook->product_language}}</li>  
-              <li><strong>ISBN-10:</strong>&nbsp;{{$ebook->product_isbn10}}</li>
-              <li><strong>Price:</strong>&nbsp;{{$ebook->product_price}}&nbsp;&euro;</li>
-            </ul>
-          </div>
-            <div class="modal-footer">
-              <a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$ebook->id}}/ebooks">Add to cart &raquo;</a>&nbsp;&nbsp;
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
-          {{-- End Modal --}}
+<form action="{{route('insert_prod')}}" method="post" class="form-horizontal" role="form" enctype="multipart/form-data"> 
 
-        @endforeach
-      </div><!-- /.row -->
+      @if ( Session::has('add_success') )
+        <div class="alert alert-success">
+            <strong>Well done!</strong> {{Session::get('add_success')}}
+        </div>
+      @endif
+       
+       {{ Form::token() }}
 
-     <div class="row">
-      <div class="col-lg-4"></div>
-	      <div class="col-lg-4">
-		      <ul class="pagination pagination-lg">
-		        @if ($page == 1)
-				  <li class="disabled"><span>Prev</span></li>
-				@else
-				   <li><a href="{{url('ebooks')}}/{{$page - 1}}">Prev</a></li>
-				@endif     
-				   @for ($i = 1; $i <= $num_pages; $i++)
-				   	  @if ($page == $i)	
-				  		<li class="disabled"><span>{{ $i }}</span></li>
-				  	  @else
-				  	  	<li><a href="{{url('ebooks')}}/{{$i}}">{{ $i }}</a></li>
-				  	  @endif		
-				   @endfor
-				@if ($page == $num_pages)   
-				  <li class="disabled"><span>Next</span></li>
-				@else
-				  <li><a href="{{url('ebooks')}}/{{$page + 1}}">Next</a></li>
-				@endif  
-			  </ul>
-		  </div>
-	   <div class="col-lg-4"></div>
-	  </div>
+     <div class="form-group">
+       <label for="product_name" class="col-lg-3 control-label">Title</label> 
+      <div class="col-lg-4">    
+        <input type="text" class="form-control" name="product_name" placeholder="Enter product name">           
+        </div>
+     </div>  
+
+      <div class="form-group">
+       <label for="price" class="col-lg-3 control-label">Price</label> 
+      <div class="col-lg-4">    
+        <input type="text" class="form-control" name="price" placeholder="Enter price, e.g. 13.90">           
+        </div>
+     </div>  
+
+     <div class="form-group">
+       <label for="language" class="col-lg-3 control-label">Language</label> 
+      <div class="col-lg-4">    
+        <input type="text" class="form-control" name="language" placeholder="Enter language">           
+        </div>
+     </div>  
+
+     <div class="form-group">
+       <label for="product_type" class="col-lg-3 control-label">Product type</label>         
+       <div class="col-lg-4">
+          <select name="product_type" class="form-control">
+            @foreach ($p_types as $p_type)
+              <option value="{{$p_type->id}}">{{$p_type->type_name}}</option>
+            @endforeach
+          </select>
+      </div>
+     </div>    
+
+     <div class="form-group">
+       <label for="description" class="col-lg-3 control-label">Description</label> 
+      <div class="col-lg-4">  
+        <textarea class="form-control" name="description" rows="8" placeholder="Enter description"></textarea>  
+        </div>
+     </div> 
+
+     <div class="form-group">
+       <label for="cover" class="col-lg-3 control-label">Cover</label> 
+      <div class="col-lg-4">    
+        <input type="file" class="form-control" name="cover" placeholder="Enter cover">           
+        </div>
+     </div>              
+       
+    <div class="form-group">
+       <label for="author" class="col-lg-3 control-label">Author</label> 
+      <div class="col-lg-4">    
+        <input type="text" class="form-control" name="author" placeholder="Enter author's name">           
+        </div>
+     </div>  
+
+     <div class="form-group">
+       <label for="isbn" class="col-lg-3 control-label">ISBN-10</label> 
+      <div class="col-lg-4">    
+        <input type="text" class="form-control" name="isbn" placeholder="Enter ISBN-10">           
+        </div>
+     </div>
+
+      <div class="form-group"> 
+      <label for="submit" class="col-lg-3 control-label"></label> 
+      <div class="col-lg-3">  
+        <button type="submit" class="btn btn-default">Add new product</button>              
+      </div>
+     </div>
+     </form>
+      
+
+   </div>
+       
+    <div class="col-lg-3">    
+        <ul class="nav nav-pills nav-stacked">
+          <li><a href="{{url('account')}}">Home</a></li>
+          <li><a href="#">Manage Users</a></li>
+          <li><a href="{{url('admin-ptypes')}}">Manage Product Types</a></li>
+          <li class="active"><a href="{{url('add-product')}}">Add Product</a></li>
+          <li><a href="#">Update or Remove Product</a></li>
+          <li><a href="#">Manage Orders</a></li>
+          <li><a href="{{url('admin-view_log')}}">View Access Log</a></li>
+          <li><a href="{{url('logout')}}">Logout</a></li>
+        </ul>
+    </div>
+   
+</div> <!-- Row -->
 
 
-	 
 
-	  <hr class="featurette-divider">
-	  
+<hr class="featurette-divider">
+
 @stop

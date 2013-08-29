@@ -155,7 +155,8 @@
      </div>
 
       <div class="form-group"> 
-      <div class="col-lg-offset-3 col-lg-9">  
+      <label for="submit" class="col-lg-3 control-label"></label> 
+      <div class="col-lg-3"> 
         <button type="submit" class="btn btn-default">Add new product type</button>              
       </div>
      </div>
@@ -169,7 +170,7 @@
           <li><a href="{{url('account')}}">Home</a></li>
           <li><a href="#">Manage Users</a></li>
           <li class="active"><a href="{{url('admin-ptypes')}}">Manage Product Types</a></li>
-          <li><a href="#">Add Product</a></li>
+          <li><a href="{{url('add-product')}}">Add Product</a></li>
           <li><a href="#">Update or Remove Product</a></li>
           <li><a href="#">Manage Orders</a></li>
           <li><a href="{{url('admin-view_log')}}">View Access Log</a></li>

@@ -180,7 +180,7 @@
           <li><a href="{{url('account')}}">Home</a></li>
           <li><a href="#">Manage Users</a></li>
           <li><a href="{{url('admin-ptypes')}}">Manage Product Types</a></li>
-          <li><a href="#">Add Product</a></li>
+          <li><a href="{{url('add-product')}}">Add Product</a></li>
           <li><a href="#">Update or Remove Product</a></li>
           <li><a href="#">Manage Orders</a></li>
           <li class="active"><a href="{{url('admin-view_log')}}">View Access Log</a></li>

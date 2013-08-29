@@ -23,7 +23,7 @@ class MoviesController extends BaseController {
 
 	private function initialize()
 	{
-		$this->count = Product::where('product_type','=', 2)->count();
+		$this->count = Product::where('product_type','=', 11)->count();
 		$this->num_pages = (int)($this->count / $this->items_per_page);	
 		if ($this->count % $this->items_per_page) $this->num_pages += 1;
 	}
@@ -35,7 +35,7 @@ class MoviesController extends BaseController {
 
 		$skip = ($page - 1) * $this->items_per_page;
 
-		$movies = Product::where('product_type','=', 2)->skip($skip)->orderBy('id', 'desc')->take($this->items_per_page)->get();
+		$movies = Product::where('product_type','=', 11)->skip($skip)->orderBy('id', 'desc')->take($this->items_per_page)->get();
 		
 		list( $cart_products, $cart_items_count, $total ) = $this->_cart_data->get_cart_data();
 

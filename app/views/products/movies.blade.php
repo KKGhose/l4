@@ -146,7 +146,7 @@
         <h1><i class="icon-film"></i>&nbsp;DVD Movies:</h1><br />
         @foreach ($movies as $movie)
         <div class="col-lg-4">
-          <img class="img-rounded" src="{{url()}}/images/products_images/{{$movie->id.'_thumb.jpg'}}">
+          <img class="img-rounded" src="{{url()}}/images/products_images/{{$movie->id.'.jpg'}}" height="300" width="200">
           <p></p>
           <p><a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$movie->id}}/movies">Add to cart &raquo;</a>&nbsp;&nbsp;
           <a data-toggle="modal" href="#myModal_{{$movie->id}}" class="btn btn-default">View details &raquo;</a></p>
@@ -165,7 +165,7 @@
             <div class="modal-body">
              <h4>DVD Description</h4><br />
             <div class="twist_img">
-          <img src="{{url()}}/images/products_images/{{$movie->id}}_thumb.jpg">
+          <img src="{{url()}}/images/products_images/{{$movie->id}}.jpg">
           <p>{{$movie->product_description}}</p>
           
           </div><br />
