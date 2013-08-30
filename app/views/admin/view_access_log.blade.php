@@ -148,8 +148,8 @@
 
     {{--Pagination for logs--}}
     <div class="row">
-      <div class="col-lg-4"></div>
-        <div class="col-lg-4">
+      <div class="col-lg-3"></div>
+        <div class="col-lg-6">
           <ul class="pagination pagination-lg">
             @if ($page == 1)
           <li class="disabled"><span>Prev</span></li>
@@ -170,7 +170,7 @@
         @endif  
         </ul>
       </div>
-     <div class="col-lg-4"></div>
+     <div class="col-lg-3"></div>
     </div>
 
     </div>
