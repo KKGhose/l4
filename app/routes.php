@@ -74,7 +74,11 @@ Route::get('confirm/{code?}', function($code = null) {
 
 Route::get('logout', function()
 {
+	//We set logged flag to 0 on logout
+	DB::update('UPDATE users SET logged = 0 , updated_at = CURRENT_TIMESTAMP WHERE email LIKE ?', array(Auth::user()->email));
+ 
     Auth::logout();
+
     return Redirect::to('login');
 });
 
@@ -166,7 +170,7 @@ Route::group(array('before' => 'csrf'), function()
 	
 	$data = Input::all();
 
-	$user = new User;
+	//$user = new User;
 	
 
 	$rules = array( 'email' => 'required|email|exists:users,email',
@@ -182,6 +186,13 @@ Route::group(array('before' => 'csrf'), function()
 	
 		if ( Auth::attempt(array('email' => $email, 'password' =>  $password))) 
 		{
+			//Logged flag is set to 1
+			//$user = User();
+
+			DB::update('UPDATE users SET logged = 1 , updated_at = CURRENT_TIMESTAMP WHERE email LIKE ?', array( Auth::user()->email ));
+
+			//$user->touch();
+
 			Redirect::to('account');
 		}
 		
