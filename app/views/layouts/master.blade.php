@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="Online Store powered by Laravel 4 and Bootstrap" content="">
+    <meta name="Guessous Saad" content="">
 
     <title>Laravel 4 project 2013</title>
     @section('head')
@@ -13,6 +13,8 @@
 
     <!-- Custom styles for this template -->
     {{ HTML::style('css/carousel.css') }}
+
+    {{ HTML::style('css/navbar-fixed-top.css') }}
 
       
     <!-- Font-Awesome CDN-->  

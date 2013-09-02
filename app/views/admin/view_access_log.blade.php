@@ -7,8 +7,8 @@
 @section('content')
 <!-- NAVBAR
 ================================================== -->
- <div class="navbar-wrapper">
-   <div class="container">
+ {{--<div class="navbar-wrapper">--}}
+   {{--<div class="container">--}}
 
         <div class="navbar navbar-inverse navbar-fixed-top">
           <div class="container">
@@ -31,8 +31,9 @@
                 @else
                    Cart (you have {{$cart_items_count}} item)</a></li>
                 @endif  
-              
-                <ul class="nav navbar-nav"> 
+              </ul>
+
+                <ul class="nav navbar-nav pull-right"> 
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>&nbsp;&nbsp;Your Account  <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -46,13 +47,13 @@
                   </ul>
                 </li> 
                     @if (Auth::check())
-                      <p class="navbar-text pull-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <a href="{{url('logout')}}"><i class="icon-off"></i>&nbsp;Logout</a>&nbsp;&nbsp;
+                      <p class="navbar-text pull-right">
+                      <a href="{{url('logout')}}"><i class="icon-off"></i>&nbsp;Logout</a>
                       ( Signed in as {{Auth::user()->firstname}} ) 
                      </p>
                     @else
-                      <p class="navbar-text pull-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <a href="{{url('login')}}"><i class="icon-signin"></i>&nbsp;Login</a>&nbsp;&nbsp; 
+                      <p class="navbar-text pull-right">
+                      <a href="{{url('login')}}"><i class="icon-signin"></i>&nbsp;Login</a>
                     @endif              
                 </ul>
                 
@@ -61,8 +62,7 @@
           </div>
         </div>
 
-      </div>
-    </div>
+      {{--</div></div>--}}
 
     <!-- Cart Modal -->
                     <div class="modal fade" id="Cart_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -187,8 +187,29 @@
           <li><a href="{{url('logout')}}">Logout</a></li>
         </ul>
     </div>
-   
+
+     
 </div> <!-- Row -->
+
+<div class="row">
+
+  <div class="col-lg-6">
+      
+      <form class="form-inline" role="form">
+      
+      <div class="form-group">
+        <label class="sr-only" for="log_del">log del</label>
+        <input type="text" class="form-control" name="log_del" placeholder="Enter date as: YYYY-MM-DD">
+      </div>
+      <button type="submit" class="btn btn-default">Delete downward</button> 
+
+     </form>
+
+     <form><button type="submit" class="btn btn-danger">Truncate Logs Table</button> </form>
+
+  </div>
+
+</div>
 
 
 <hr class="featurette-divider">

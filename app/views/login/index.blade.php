@@ -7,9 +7,7 @@
 @section('content')
 <!-- NAVBAR
 ================================================== -->
- <div class="navbar-wrapper">
-   <div class="container">
-
+ 
         <div class="navbar navbar-inverse navbar-fixed-top">
           <div class="container">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
@@ -31,7 +29,9 @@
                 @else
                    Cart (you have {{$cart_items_count}} item)</a></li>
                 @endif
-
+                </ul>
+                
+                <ul class="nav navbar-nav pull-right"> 
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>&nbsp;&nbsp;Your Account  <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -45,8 +45,7 @@
           </div>
         </div>
 
-      </div>
-    </div>
+     
 
     <!-- Cart Modal -->
                     <div class="modal fade" id="Cart_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
