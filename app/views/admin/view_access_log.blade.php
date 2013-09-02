@@ -127,6 +127,29 @@
 <h3><i class="icon-wrench icon-2x"></i>&nbsp;&nbsp;Admin Menu / View Access Logs</h3><br />
 
 <div class="row">
+
+<nav class="col-lg-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Admin Menu</li>
+              <li><a href="{{url('account')}}">home</a></li>
+              <li class="nav-header">Users</li>
+              <li><a href="#">manage users</a></li>
+              <li class="nav-header">Product Types</li>
+              <li><a href="{{url('admin-ptypes')}}">manage product types</a></li>
+              <li class="nav-header">Products</li>
+              <li><a href="{{url('add-product')}}">add product</a></li>
+              <li><a href="#">update or remove product</a></li>
+              <li class="nav-header">Orders</li>
+              <li><a href="#">manage orders</a></li>
+              <li class="nav-header"><strong>Access Logs</strong></li>
+              <li><a href="{{url('admin-view_log')}}"><strong>view access logs</strong></a></li>
+              <li><a href="#">remove access logs</a></li>
+              <li class="nav-header">Logout</li>
+              <li><a href="{{url('logout')}}">logout</a></li>
+            </ul>
+          </div><!--/.well -->
+        </nav><!--/span-->
       <div class="col-lg-9">
 
        <table class="table table-striped">
@@ -174,20 +197,6 @@
     </div>
 
     </div>
-	      
-    <div class="col-lg-3">    
-        <ul class="nav nav-pills nav-stacked">
-          <li><a href="{{url('account')}}">Home</a></li>
-          <li><a href="#">Manage Users</a></li>
-          <li><a href="{{url('admin-ptypes')}}">Manage Product Types</a></li>
-          <li><a href="{{url('add-product')}}">Add Product</a></li>
-          <li><a href="#">Update or Remove Product</a></li>
-          <li><a href="#">Manage Orders</a></li>
-          <li class="active"><a href="{{url('admin-view_log')}}">View Access Log</a></li>
-          <li><a href="{{url('logout')}}">Logout</a></li>
-        </ul>
-    </div>
-
      
 </div> <!-- Row -->
 

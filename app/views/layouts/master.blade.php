@@ -14,7 +14,7 @@
     <!-- Custom styles for this template -->
     {{ HTML::style('css/carousel.css') }}
 
-    {{ HTML::style('css/navbar-fixed-top.css') }}
+    
 
       
     <!-- Font-Awesome CDN-->  
@@ -50,6 +50,7 @@
      {{ HTML::script('js/jquery-1.10.2.min.js') }}
      {{ HTML::script('js/bootstrap.js') }}
      {{ HTML::script('js/holder.js') }}
+     
   
   </body>
 </html>

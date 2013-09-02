@@ -4,7 +4,7 @@
 class AccessLogsController extends BaseController {
 
 	private $count = 0;
-	private $items_per_page = 20;
+	private $items_per_page = 15;
 	private $num_pages = 0;
 
 	private $_cart_data;
