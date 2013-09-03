@@ -349,3 +349,25 @@ Route::get('testing', function() {
 	$var = get_browser(null);
 	return $var->parent.' '.$var->platform;
 });
+
+Route::get('redis', function() {
+
+	$products = DB::select('SELECT * FROM products');
+
+	$redis = Redis::connection();
+
+	
+	
+
+	foreach ( $products as $product )
+	{			
+		$redis->hmset($product->id, 'name', $product->product_name, 'description', $product->product_description);
+		//$redis->command('hmset products:'.$product->id.' name '.$product->product_name.'  description '.$product->product_description);
+	}	
+
+		
+
+	//$redis->hmset($prod[0]->id, 'name', $prod[0]->product_name, 'description', $prod[0]->product_description);
+
+	return $redis->hgetall('products');
+});
