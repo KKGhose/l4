@@ -124,18 +124,13 @@
     <!-- CONTAINER
 ================================================== -->
 <div class="container marketing">
-<h3><i class="icon-user icon-2x"></i>&nbsp;&nbsp;My Account
-          &nbsp;<small>{{'('.Auth::user()->firstname.' '.Auth::user()->lastname.')'}}</small></h3>
 
 <div class="row">
 
-	    <div class="col-lg-9">
-            
-      </div>
-      
-      <div class="col-lg-3"> 
+    <div class="col-lg-3"> 
        <div class="well">  
         <ul class="nav nav-pills nav-stacked">
+          <li><h3><i class="icon-user"></i>&nbsp;My Account</h3></li>
           <li class="active"><a href="#">Home</a></li>
           <li><a href="#">View open orders</a></li>
           <li><a href="#">Change account settings</a></li>
@@ -143,6 +138,12 @@
         </ul>
         </div>
       </div>
+
+	    <div class="col-lg-9">
+            
+      </div>
+      
+      
 	      
         
    
