@@ -121,38 +121,27 @@
     <!-- CONTAINER
 ================================================== -->
 <div class="container marketing">
-<h3><i class="icon-wrench icon-2x"></i>&nbsp;&nbsp;Admin Menu / Home</h3>
 
 <div class="row">
-	
-      
 
-    <nav class="col-lg-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header"><strong>Admin Menu</strong></li>
-              <li><a href="{{url('account')}}"><strong>home</strong></a></li>
-              <li class="nav-header">Users</li>
-              <li><a href="#">manage users</a></li>
-              <li class="nav-header">Product Types</li>
+<div class="col-lg-3"> 
+      <div class="well">
+        <ul class="nav nav-pills nav-stacked">
+              <li><h3><i class="icon-wrench"></i>&nbsp;Admin Menu</h3></li>
+              <li class="active"><a href="{{url('account')}}">Home</a></li>
               <li><a href="{{url('admin-ptypes')}}">manage product types</a></li>
-              <li class="nav-header">Products</li>
               <li><a href="{{url('add-product')}}">add product</a></li>
               <li><a href="#">update or remove product</a></li>
-              <li class="nav-header">Orders</li>
-              <li><a href="#">manage orders</a></li>
-              <li class="nav-header">Access Logs</li>
+               <li><a href="#">manage orders</a></li>
               <li><a href="{{url('admin-view_log')}}">view access logs</a></li>
               <li><a href="#">remove access logs</a></li>
-              <li class="nav-header">Logout</li>
               <li><a href="{{url('logout')}}">logout</a></li>
-            </ul>
-          </div><!--/.well -->
-        </nav><!--/span-->
-	
+        </ul>
+      </div>     
+  </div>     
 
-  <div class="col-lg-8">     
-  </div>      
+ <div class="col-lg-9">
+ </div>
     
    
 </div> <!-- Row -->

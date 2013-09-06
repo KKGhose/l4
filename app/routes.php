@@ -352,22 +352,35 @@ Route::get('testing', function() {
 
 Route::get('redis', function() {
 
-	$products = DB::select('SELECT * FROM products');
-
+	$movies = DB::select('SELECT * FROM products WHERE product_type = ?', array(11));
+	$ebooks = DB::select('SELECT * FROM products WHERE product_type = ?', array(10));
+	
 	$redis = Redis::connection();
 
 	
-	
+    //$redis->flushdb(0);
 
-	foreach ( $products as $product )
-	{			
-		$redis->hmset($product->id, 'name', $product->product_name, 'description', $product->product_description);
-		//$redis->command('hmset products:'.$product->id.' name '.$product->product_name.'  description '.$product->product_description);
+	foreach ( $movies as $movie )
+	{	
+		$redis->lpush('movies_id', $movie->id );  		
+		$redis->hmset('movies:'.$movie->id, 'id', $movie->id, 'type', $movie->product_type, 'name', $movie->product_name, 'description', $movie->product_description);
 	}	
 
-		
+	foreach ( $ebooks as $ebook )
+	{	
+		$redis->lpush('ebooks_id', $ebook->id ); 		
+		$redis->hmset('ebooks:'.$ebook->id, 'id', $ebook->id, 'type', $ebook->product_type, 'name', $ebook->product_name, 'description', $ebook->product_description);
+	}	
 
-	//$redis->hmset($prod[0]->id, 'name', $prod[0]->product_name, 'description', $prod[0]->product_description);
 
-	return $redis->hgetall('products');
+	//$ebook_data = array();
+	/*	
+	for ($i = 0; $i < sizeof($ebooks_id); $i++)
+	{
+		$data[] = Redis::hgetall("ebooks:$ebooks_id[$i]");
+	}
+	*/
+	return $redis->llen('movies_id').', '.$redis->llen('ebooks_id');
+	return 'Redis: hashes ready!';
+
 });

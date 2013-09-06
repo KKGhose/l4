@@ -133,13 +133,15 @@
             
       </div>
       
-      <div class="col-lg-3">  
+      <div class="col-lg-3"> 
+       <div class="well">  
         <ul class="nav nav-pills nav-stacked">
           <li class="active"><a href="#">Home</a></li>
           <li><a href="#">View open orders</a></li>
           <li><a href="#">Change account settings</a></li>
           <li><a href="#">Logout</a></li>
         </ul>
+        </div>
       </div>
 	      
         
