@@ -36,7 +36,13 @@ class EbooksController extends BaseController {
 
 		$skip = ($page - 1) * $this->items_per_page;
 
-		$ebooks = Product::where('product_type','=', 10)->skip($skip)->orderBy('id', 'desc')->take($this->items_per_page)->get();
+		//$ebooks = Product::where('product_type','=', 10)->skip($skip)->orderBy('id', 'desc')->take($this->items_per_page)->get();
+		$ebooks = DB::select('SELECT products.*, productTypes.type_name
+							  FROM products INNER JOIN productTypes
+							  WHERE products.product_type = productTypes.id
+							  AND productTypes.type_name LIKE ?  
+							  ORDER BY products.id DESC LIMIT ?, ?', array('Book', $skip, $this->items_per_page));
+
 		list( $cart_products, $cart_items_count, $total ) = $this->_cart_data->get_cart_data();
 
 		return View::make('products.ebooks', array('ebooks' => $ebooks, 

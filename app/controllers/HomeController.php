@@ -19,9 +19,6 @@ class HomeController extends BaseController {
 	{
 		$this->_log->save_log($this->_log, 'home.index');
 
-		//$movies = Product::where('product_type','=', 11)->orderBy('id', 'desc')->take(3)->get();
-		//$ebooks = Product::where('product_type','=', 10)->orderBy('id', 'desc')->take(3)->get();
-
 		$movies = DB::select('SELECT products.*, productTypes.type_name
 							  FROM products INNER JOIN productTypes
 							  WHERE products.product_type = productTypes.id

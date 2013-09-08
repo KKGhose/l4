@@ -35,7 +35,13 @@ class MoviesController extends BaseController {
 
 		$skip = ($page - 1) * $this->items_per_page;
 
-		$movies = Product::where('product_type','=', 11)->skip($skip)->orderBy('id', 'desc')->take($this->items_per_page)->get();
+		//$movies = Product::where('product_type','=', 11)->skip($skip)->orderBy('id', 'desc')->take($this->items_per_page)->get();
+
+		$movies = DB::select('SELECT products.*, productTypes.type_name
+							  FROM products INNER JOIN productTypes
+							  WHERE products.product_type = productTypes.id
+							  AND productTypes.type_name LIKE ?  
+							  ORDER BY products.id DESC LIMIT ?, ?', array('Dvd', $skip, $this->items_per_page));
 		
 		list( $cart_products, $cart_items_count, $total ) = $this->_cart_data->get_cart_data();
 
