@@ -24,13 +24,17 @@
                 <li><a href="{{url('movies')}}"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
                 <li><a href="{{url('ebooks')}}"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
                 <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;&nbsp;Contact</a></li>
-
-                <li><a data-toggle="modal" href="#Cart_Modal"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;
-                @if ($cart_items_count == 0 || $cart_items_count > 1)
-                   Cart (you have {{$cart_items_count}} items)</a></li>
-                @else
-                   Cart (you have {{$cart_items_count}} item)</a></li>
-                @endif
+                {{--If cart is empty we don't activate the link--}}
+                @if (!$cart_products)
+                   <li><a href="#"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;Cart (you have 0 items)</a></li>
+                @else   
+                    <li><a data-toggle="modal" href="#Cart_Modal"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;
+                    @if ($cart_items_count == 1)
+                       Cart (you have {{$cart_items_count}} item)</a></li>
+                    @else
+                       Cart (you have {{$cart_items_count}} items)</a></li>
+                    @endif
+                @endif    
                 </ul>
 
                 <ul class="nav navbar-nav pull-right"> 
