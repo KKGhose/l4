@@ -81,7 +81,7 @@
                           <ul class="list-unstyled">
                           @foreach ($cart_products as $cart_product)
                           <li>
-                           @if ($cart_product->product_type == 2)
+                           @if ($cart_product->type_name == 'Dvd')
                              {{'<i class="icon-film"></i>&nbsp;&nbsp<strong>'.$cart_product->product_name.'</strong>&nbsp;&nbsp;<small><em class="muted">x '.$cart_product->quantity.'</em></small>'}}
                            @else
                              {{'<i class="icon-book"></i>&nbsp;&nbsp<strong>'.$cart_product->product_name.'</strong>&nbsp;&nbsp;<small><em class="muted">x '.$cart_product->quantity.'</em></small>'}}
@@ -238,7 +238,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h3 class="modal-title"><i class="icon-film"></i>&nbsp;{{$ebook->product_name}}</h3>
+                  <h3 class="modal-title"><i class="icon-book"></i>&nbsp;{{$ebook->product_name}}</h3>
                 </div>
                 <div class="modal-body">
                  <h4>Ebook Description</h4><br />

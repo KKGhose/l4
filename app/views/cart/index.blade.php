@@ -151,6 +151,7 @@
 
       <div class="row">
 
+       <div class="col-lg-8"> 
        <table class="table table-hover">
        <thead>
        <tr>
@@ -163,18 +164,37 @@
        </tbody>
       @foreach ($cart_products as $cart_item)
         <tr>
-        <td><img src="{{url()}}/images/products_images/{{$cart_item->id}}.jpg" width="70" height="100"></td>
+        <!-- Button trigger modal -->
+        <td><a href="#myModal_{{$cart_item->id}}" data-toggle="modal"><img src="{{url()}}/images/products_images/{{$cart_item->id}}.jpg" width="70" height="100"></a></td>
         <td>{{$cart_item->product_name}}</td>
         <td>{{$cart_item->product_price}}</td>
         <td>{{$cart_item->quantity}}</td>
         </tr>
-         
-  
-          
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal_{{$cart_item->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{$cart_item->product_name}}</h4>
+              </div>
+              <div class="modal-body">
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        
       @endforeach
       </tbody>
       </table>
-      
+      <a href="" class="btn btn-default">Proceed to checkout</a>&nbsp;&nbsp;<a href="" class="btn btn-danger">Empty cart</a>
+
+       </div><!-- /.col-lg-8 -->
       </div>
       
       <hr>
