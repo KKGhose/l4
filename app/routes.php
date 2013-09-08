@@ -297,6 +297,17 @@ Route::group(array('before' => 'csrf'), function()
 
 //---------------------- END Routes With CSRF Filter--------------------------------------------------
 
+Route::get('cart-index', function() {
+
+	$cart_data = new CartItem;
+	
+	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
+
+	return View::make('cart.index', array('cart_items_count' => $cart_items_count,
+			                                          'total' => $total,
+			                                  'cart_products' => $cart_products
+			                                  ));
+});
 
 Route::get('generic-view', function () {
 	$cart_data = new CartItem;

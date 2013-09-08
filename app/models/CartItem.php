@@ -17,7 +17,7 @@ class CartItem extends Eloquent {
 
 	public function get_cart_data()
 	{
-		$cart_products = DB::select('SELECT products.product_name, products.product_type, products.product_price, cartItems.quantity
+		$cart_products = DB::select('SELECT products.id, products.product_name, products.product_type, products.product_price, cartItems.quantity
  							         FROM cartItems INNER JOIN products
  							         ON cartItems.product_id = products.id
  							         WHERE cartItems.cart_id LIKE ?', array( $this->_cart_id ));

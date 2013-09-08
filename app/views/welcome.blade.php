@@ -47,7 +47,7 @@
                     <li><a href="{{url('logout')}}"><i class="icon-off"></i>&nbsp;&nbsp;<strong>Logout</strong></a></li>
                    @endif 
                     <li><a href="{{url('account')}}"><i class="icon-cog"></i>&nbsp;&nbsp;<strong>Profile</strong></a></li>
-                    <li><a href="#"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;<strong>Cart</strong></a></li>
+                    <li><a href="{{url('cart-index')}}"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;<strong>Cart</strong></a></li>
                   </ul>
                 </li> 
                     @if (Auth::check())
@@ -58,7 +58,7 @@
                     @else
                       <p class="navbar-text pull-right">
                       <a href="{{url('login')}}"><i class="icon-signin"></i>&nbsp;Login</a>
-                      
+                      </p>
                     @endif       
                 </ul>
                 
@@ -91,7 +91,7 @@
                           <li>&nbsp;</li>
                           <li><strong>Total:</strong> {{$total}}&nbsp;<i class="icon-euro"></i></li>
                           <li>&nbsp;</li>
-                          <li><button type="button" class="btn btn-primary btn-xs">View Cart In Details</button>&nbsp;&nbsp;
+                          <li><a href="{{url('cart-index')}}" type="button" class="btn btn-primary btn-xs">View Cart In Details</button>&nbsp;&nbsp;</a>
                           <a href="{{url('empty_cart')}}" type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</a></li>
                          </ul>
                           

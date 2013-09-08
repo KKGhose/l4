@@ -2,15 +2,15 @@
 
 @section('head')
 @parent
+  {{ HTML::style('css/modal_img.css') }}
 @stop
 
 @section('content')
-<!-- NAVBAR
-================================================== -->
- {{--<div class="navbar-wrapper">--}}
-   {{--<div class="container">--}}
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+  <!-- NAVBAR
+================================================== -->
+
+        <nav class="navbar navbar-inverse navbar-fixed-top"  role="navigation"> 
           <div class="container">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
@@ -24,14 +24,18 @@
                 <li><a href="{{url('movies')}}"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
                 <li><a href="{{url('ebooks')}}"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
                 <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;&nbsp;Contact</a></li>
-
-                <li><a data-toggle="modal" href="#Cart_Modal"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;
-                @if ($cart_items_count == 0 || $cart_items_count > 1)
-                   Cart (you have {{$cart_items_count}} items)</a></li>
-                @else
-                   Cart (you have {{$cart_items_count}} item)</a></li>
-                @endif  
-              </ul>
+                {{--If cart is empty we don't activate the link--}}
+                @if (!$cart_products)
+                  <li class="active"><a href="#"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;Cart (you have 0 items)</a></li>
+                @else   
+                    <li class="active"><a data-toggle="modal" href="#Cart_Modal"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;
+                    @if ($cart_items_count == 1)
+                       Cart (you have {{$cart_items_count}} item)</a></li>
+                    @else
+                       Cart (you have {{$cart_items_count}} items)</a></li>
+                    @endif
+                @endif    
+                </ul>
 
                 <ul class="nav navbar-nav pull-right"> 
                 <li class="dropdown">
@@ -55,16 +59,16 @@
                       <p class="navbar-text pull-right">
                       <a href="{{url('login')}}"><i class="icon-signin"></i>&nbsp;Login</a>
                       </p>
-                    @endif              
+                    @endif       
                 </ul>
                 
-              </ul>
+              </ul>  
+              
             </div>
           </div>
-        </div>
+        </nav>
 
-      {{--</div></div>--}}
-
+      
     <!-- Cart Modal -->
                     <div class="modal fade" id="Cart_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
@@ -85,10 +89,10 @@
                           </li>
                           @endforeach
                           <li>&nbsp;</li>
-                          <li><strong>Total:</strong> {{$total}}</li>
+                          <li><strong>Total:</strong> {{$total}}&nbsp;<i class="icon-euro"></i></li>
                           <li>&nbsp;</li>
                           <li><a href="{{url('cart-index')}}" type="button" class="btn btn-primary btn-xs">View Cart In Details</button>&nbsp;&nbsp;</a>
-                          <a href="{{url('empty_cart')}}/ebooks" type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</a></li>
+                          <a href="{{url('empty_cart')}}" type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</a></li>
                          </ul>
                           
                           </div>
@@ -99,121 +103,80 @@
                       </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
 
-  <!-- CAROUSEL
-================================================== -->
-<div id="myCarousel" class="carousel slide">
+
+    <!-- Carousel
+    ================================================== --> 
+    <div id="myCarousel" class="carousel slide">
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
       </ol>
       <div class="carousel-inner">
+  
         <div class="item active">
-          <img src="{{url()}}/images/products_images/laravel_wp.jpg" alt="" width="1100" height="500" alt="">
+          <img src="{{url()}}/images/products_images/inception3_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
-              
-              <p></p>
+              <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
             </div>
           </div>
         </div>
-        
-       </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+
+        <div class="item">
+          <img src="{{url()}}/images/products_images/laravel_wp.jpg" alt="" width="1100" height="500" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
+            </div>
+          </div>
+        </div>
+
+      </div>      
+      
+      
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"></a>
     </div><!-- /.carousel -->
 
-    <!-- CONTAINER
-================================================== -->
-<div class="container marketing">
-<div class="row">
 
-<div class="col-lg-3"> 
-      <div class="well">
-        <ul class="nav nav-pills nav-stacked">
-              <li><h3><i class="icon-wrench"></i>&nbsp;Admin Menu</h3></li>
-              <li><a href="{{url('account')}}">Home</a></li>
-              <li><a href="{{url('admin-ptypes')}}">manage product types</a></li>
-              <li><a href="{{url('add-product')}}">add product</a></li>
-              <li><a href="#">update or remove product</a></li>
-              <li><a href="#">manage orders</a></li>
-              <li class="active"><a href="{{url('admin-view_log')}}">view access logs</a></li>
-              <li><a href="#">remove access logs</a></li>
-              <li><a href="{{url('logout')}}">logout</a></li>
-        </ul>
-      </div>     
-  </div>      
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+    
+    <div class="container">
 
-      <div class="col-lg-9">
+      <h1><i class="icon-shopping-cart"></i>&nbsp;&nbsp;My Cart</h1>
+      <br />
 
-       <table class="table table-striped">
+      <div class="row">
+
+       <table class="table table-hover">
+       <thead>
        <tr>
-          <th>Page url</th>
-          <th>Host</th>
-          <th>User Agent</th>
-          <th>Created at</th>
+          <th>Item(s)</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
        </tr>
-       @foreach ($logs as $log)
+       </thead>
+       </tbody>
+      @foreach ($cart_products as $cart_item)
         <tr>
-          <td>{{$log->page_url}}</td>
-          <td>{{$log->host}}</td>
-          <td>{{$log->user_agent}}</td>
-          <td>{{$log->created_at}}</td> 
+        <td><img src="{{url()}}/images/products_images/{{$cart_item->id}}.jpg" width="70" height="100"></td>
+        <td>{{$cart_item->product_name}}</td>
+        <td>{{$cart_item->product_price}}</td>
+        <td>{{$cart_item->quantity}}</td>
         </tr>
-       @endforeach 
-       </table>
-
-    {{--Pagination for logs--}}
-    <div class="row">
-      <div class="col-lg-1"></div>
-        <div class="col-lg-10">
-          <ul class="pagination pagination-lg">
-            @if ($page == 1)
-          <li class="disabled"><span>Prev</span></li>
-        @else
-           <li><a href="{{url('admin-view_log')}}/{{$page - 1}}">Prev</a></li>
-        @endif     
-           @for ($i = 1; $i <= $num_pages; $i++)
-              @if ($page == $i) 
-              <li class="disabled"><span>{{ $i }}</span></li>
-              @else
-                <li><a href="{{url('admin-view_log')}}/{{$i}}">{{ $i }}</a></li>
-              @endif    
-           @endfor
-        @if ($page == $num_pages)   
-          <li class="disabled"><span>Next</span></li>
-        @else
-          <li><a href="{{url('admin-view_log')}}/{{$page + 1}}">Next</a></li>
-        @endif  
-        </ul>
-      </div>
-     <div class="col-lg-1"></div>
-    </div>
-
-    </div>
-     
-</div> <!-- Row -->
-
-<div class="row">
-
-  <div class="col-lg-6">
+         
+  
+          
+      @endforeach
+      </tbody>
+      </table>
       
-      <form class="form-inline" role="form">
-      
-      <div class="form-group">
-        <label class="sr-only" for="log_del">log del</label>
-        <input type="text" class="form-control" name="log_del" placeholder="Enter date as: YYYY-MM-DD">
       </div>
-      <button type="submit" class="btn btn-default">Delete downward</button> 
-
-     </form>
-
-     <form><button type="submit" class="btn btn-danger">Truncate Logs Table</button> </form>
-
-  </div>
-
-</div>
-
-
-<hr class="featurette-divider">
-
-@stop
+      
+      <hr>
+      
+    @stop
