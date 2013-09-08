@@ -19,15 +19,21 @@ class HomeController extends BaseController {
 	{
 		$this->_log->save_log($this->_log, 'home.index');
 
-		$movies = Product::where('product_type','=', 11)->orderBy('id', 'desc')->take(3)->get();
-		$ebooks = Product::where('product_type','=', 10)->orderBy('id', 'desc')->take(3)->get();
+		//$movies = Product::where('product_type','=', 11)->orderBy('id', 'desc')->take(3)->get();
+		//$ebooks = Product::where('product_type','=', 10)->orderBy('id', 'desc')->take(3)->get();
 
-		/* $movies = DB::select('SELECT products.* productTypes.type_name
+		$movies = DB::select('SELECT products.*, productTypes.type_name
 							  FROM products INNER JOIN productTypes
-							  WHERE products.product_type IN (SELECT id FROM productTypes WHERE type_name LIKE ?)
-							  AND products.product_type = productTypes.id
-							  ORDER BY products.id DESC, LIMIT 3', array('Dvd'));
-									*/
+							  WHERE products.product_type = productTypes.id
+							  AND productTypes.type_name LIKE ?  
+							  ORDER BY products.id DESC LIMIT 3', array('Dvd'));
+
+		$ebooks = DB::select('SELECT products.*, productTypes.type_name
+							  FROM products INNER JOIN productTypes
+							  WHERE products.product_type = productTypes.id
+							  AND productTypes.type_name LIKE ?  
+							  ORDER BY products.id DESC LIMIT 3', array('Book'));
+									
 		
  		list( $cart_products, $cart_items_count, $total ) = $this->_cart_data->get_cart_data();
 
