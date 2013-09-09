@@ -116,7 +116,13 @@ Route::get('open-orders', function() {
 	$cart_data = new CartItem;	
 	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
 
-	return View::make('account.open_orders', array('cart_items_count' => $cart_items_count,
+	if (Auth::user()->admin)
+		return View::make('admin.open_orders', array('cart_items_count' => $cart_items_count,
+			                                          'total' => $total,
+			                                  'cart_products' => $cart_products
+			                                  ));
+	else	
+		return View::make('account.open_orders', array('cart_items_count' => $cart_items_count,
 			                                          'total' => $total,
 			                                  'cart_products' => $cart_products
 			                                  ));
@@ -158,7 +164,14 @@ Route::get('cart-checkout', function() {
 							
 	$AUTHCODE = strtoupper( md5($AUTHCODE) );
 
-	return View::make('account.cart_checkout', array('cart_items_count' => $cart_items_count,
+	if (Auth::user()->admin)
+		return View::make('admin.cart_checkout', array('cart_items_count' => $cart_items_count,
+			                                          'total' => $total,
+			                                  'cart_products' => $cart_products,
+			                                  	  'AUTHCODE'  => $AUTHCODE
+			                                  ));
+	else	
+		return View::make('account.cart_checkout', array('cart_items_count' => $cart_items_count,
 			                                          'total' => $total,
 			                                  'cart_products' => $cart_products,
 			                                  	  'AUTHCODE'  => $AUTHCODE
