@@ -2,15 +2,13 @@
 
 @section('head')
 @parent
-  {{ HTML::style('css/modal_img.css') }}
 @stop
 
 @section('content')
-
-  <!-- NAVBAR
+<!-- NAVBAR
 ================================================== -->
-
-        <nav class="navbar navbar-inverse navbar-fixed-top"  role="navigation"> 
+ 
+        <div class="navbar navbar-inverse navbar-fixed-top">
           <div class="container">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
@@ -24,12 +22,12 @@
                 <li><a href="{{url('movies')}}"><i class="icon-film icon-white"></i>&nbsp;&nbsp;Movies</a></li>
                 <li><a href="{{url('ebooks')}}"><i class="icon-book icon-white"></i>&nbsp;&nbsp;Ebooks</a></li>
                 <li><a href="#contact"><i class="icon-envelope icon-white"></i>&nbsp;&nbsp;Contact</a></li>
-                
+
                 {{--If cart is empty we don't activate the link--}}
                 @if (!$cart_products)
-                  <li class="active"><a href="#"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;Cart (you have 0 items)</a></li>
+                   <li><a href="#"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;Cart (you have 0 items)</a></li>
                 @else   
-                    <li class="active"><a data-toggle="modal" href="#Cart_Modal"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;
+                    <li><a data-toggle="modal" href="#Cart_Modal"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;
                     @if ($cart_items_count == 1)
                        Cart (you have {{$cart_items_count}} item)</a></li>
                     @else
@@ -60,16 +58,16 @@
                       <p class="navbar-text pull-right">
                       <a href="{{url('login')}}"><i class="icon-signin"></i>&nbsp;Login</a>
                       </p>
-                    @endif       
+                    @endif 
                 </ul>
-                
-              </ul>  
-              
+              </ul>
             </div>
           </div>
-        </nav>
+        </div>
 
-      
+
+     
+
     <!-- Cart Modal -->
                     <div class="modal fade" id="Cart_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
@@ -90,11 +88,11 @@
                           </li>
                           @endforeach
                           <li>&nbsp;</li>
-                          <li><strong>Total:</strong> {{$total}}&nbsp;<i class="icon-euro"></i></li>
+                          <li><strong>Total:</strong> {{$total}}</li>
                           <li>&nbsp;</li>
                           <li><a href="{{url('cart-index')}}" type="button" class="btn btn-primary btn-xs">View Cart In Details
                           </a>&nbsp;&nbsp;
-                          <a href="{{url('empty_cart')}}" type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</a></li>
+                          <a href="{{url('empty_cart')}}/ebooks" type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</a></li>
                          </ul>
                           
                           </div>
@@ -105,55 +103,58 @@
                       </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
 
-
-    <!-- Carousel
-    ================================================== --> 
-    <div id="myCarousel" class="carousel slide">
+  <!-- CAROUSEL
+================================================== -->
+<div id="myCarousel" class="carousel slide">
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
       </ol>
       <div class="carousel-inner">
-  
         <div class="item active">
-          <img src="{{url()}}/images/products_images/inception3_wp.jpg" alt="" width="1100" height="500" alt="">
-          <div class="container">
-            <div class="carousel-caption">
-              <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
           <img src="{{url()}}/images/products_images/laravel_wp.jpg" alt="" width="1100" height="500" alt="">
           <div class="container">
             <div class="carousel-caption">
-              <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
+              
+              <p></p>
             </div>
           </div>
         </div>
-
-      </div>      
-      
-      
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev"></a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next"></a>
+        
+       </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div><!-- /.carousel -->
 
+    <!-- CONTAINER
+================================================== -->
+<div class="container marketing">
 
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-    
-    <div class="container">
+<div class="row">
 
-      <h1><i class="icon-shopping-cart"></i>&nbsp;&nbsp;My Cart</h1>
+    <div class="col-lg-3"> 
+       <div class="well">  
+        <ul class="nav nav-pills nav-stacked">
+          <li><h3><i class="icon-user"></i>&nbsp;My Account</h3></li>
+          <li><a href="#">Home</a></li>
+          <li class="active"><a href="{{url('open-orders')}}">View open orders</a></li>
+          <li><a href="#">Change account settings</a></li>
+          <li><a href="{{url('logout')}}">Logout</a></li>
+        </ul>
+        </div>
+      </div>
+
+	    <div class="col-lg-9">
+      <h3><i class="icon-shopping-cart"></i>&nbsp;&nbsp;My Cart</h3>
       <br />
 
-      <div class="row"> 
+      <div class="row">
 
-       <div class="col-lg-8"> 
+       <div class="col-lg-8">
+
+  @if (!$cart_products)
+  <div class="alert alert-info">Heads up! Your cart is empty.</div>
+  @else 
        <table class="table table-hover">
        <thead>
        <tr>
@@ -194,12 +195,24 @@
       @endforeach
       </tbody>
       </table>
-      <a href="{{url('cart-checkout')}}" class="btn btn-default">Proceed to checkout</a>&nbsp;&nbsp;<a href="{{url('empty_cart')}}" class="btn btn-danger">Empty cart</a>
+      <a href="{{url('cart-checkout')}}" class="btn btn-default">Proceed to checkout</a>&nbsp;&nbsp;<a href="{{url('empty_cart')}}/open-orders" class="btn btn-danger">Empty cart</a>
 
        </div><!-- /.col-lg-8 -->
       </div>
       
-      <hr> 
-    
+      <hr>
+      
+    @stop
+            
+      </div>
+      
+      
+@endif	      
+        
+   
+</div> <!-- Row -->
+
+
+<hr class="featurette-divider">
 
 @stop

@@ -85,7 +85,8 @@ Route::get('logout', function()
 //------------------ End login and registration routes ----------------------------------
 
 
-//-------------------Admin routes------------------------------------------------------
+//-------------------User Account routes------------------------------------------------------
+
 Route::get('account', function() {
 
 	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
@@ -108,6 +109,22 @@ Route::get('account', function() {
 		
 });
 
+Route::get('open-orders', function() {
+
+	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
+	
+	$cart_data = new CartItem;	
+	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
+
+	return View::make('account.open_orders', array('cart_items_count' => $cart_items_count,
+			                                          'total' => $total,
+			                                  'cart_products' => $cart_products
+			                                  ));
+		
+});
+
+
+//-------------------Admin routes------------------------------------------------------
 Route::get('admin-view_log/{offset?}', function($page = 1) {
 
 	//We make sure that user is logged in.
@@ -298,6 +315,8 @@ Route::group(array('before' => 'csrf'), function()
 //---------------------- END Routes With CSRF Filter--------------------------------------------------
 
 Route::get('cart-index', function() {
+
+	if(Auth::check()) return Redirect::to('open-orders');
 
 	$cart_data = new CartItem;
 	

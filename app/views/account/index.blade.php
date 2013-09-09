@@ -92,7 +92,7 @@
                           <li>&nbsp;</li>
                           <li><a href="{{url('cart-index')}}" type="button" class="btn btn-primary btn-xs">View Cart In Details
                           </a>&nbsp;&nbsp;
-                          <a href="{{url('empty_cart')}}/ebooks" type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</a></li>
+                          <a href="{{url('empty_cart')}}/account" type="button" class="btn btn-danger btn-xs"><i class="icon-trash"></i>&nbsp;&nbsp;Empty Cart</a></li>
                          </ul>
                           
                           </div>
@@ -137,9 +137,9 @@
         <ul class="nav nav-pills nav-stacked">
           <li><h3><i class="icon-user"></i>&nbsp;My Account</h3></li>
           <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">View open orders</a></li>
+          <li><a href="{{url('open-orders')}}">View open orders</a></li>
           <li><a href="#">Change account settings</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a href="{{url('logout')}}">Logout</a></li>
         </ul>
         </div>
       </div>
