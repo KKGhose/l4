@@ -30,7 +30,7 @@ class CartItem extends Eloquent {
  	    {
  	    	foreach ($cart_products as $cart_product)
  	    	{
- 	    		$total += $cart_product->product_price;
+ 	    		$total += $cart_product->product_price * $cart_product->quantity;
  	    		$cart_items_count += $cart_product->quantity;
  	    	}	
  	    }

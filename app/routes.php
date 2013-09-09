@@ -123,8 +123,53 @@ Route::get('open-orders', function() {
 		
 });
 
+Route::get('cart-checkout', function() {
+
+	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
+	
+	$cart_data = new CartItem;	
+	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
+
+	$auth_code = array();
+
+	$auth_code = array( 'MERCHANT_ID' => '13466',
+						'AMOUNT' => $total,
+	   				    'ORDER_NUMBER' => '123456',
+						'REFERENCE_NUMBER' => '',
+						'ORDER_DESCRIPTION' => 'Online Store dummy buy',
+						'CURRENCY' => 'EUR',
+						'RETURN_ADDRESS' => url('checkout_success'),
+						'CANCEL_ADDRESS' => url('checkout_cancel'),
+						'PENDING_ADDRESS' => '',
+						'NOTIFY_ADDRESS' => url('checkout_notify'),
+						'TYPE' => 'S1',
+						'CULTURE' => 'fi_FI',
+						'PRESELECTED_METHOD' => '',
+						'MODE' =>  '1',
+						'VISIBLE_METHODS' => '',
+						'GROUP' => '' );
+							
+	$AUTHCODE = '6pKF4jkv97zmqBJ3ZL8gUw5DfT2NMQ';
+
+	foreach ($auth_code as $key => $value)
+	{
+		$AUTHCODE .= '|' . $value; 	
+	}
+							
+	$AUTHCODE = strtoupper( md5($AUTHCODE) );
+
+	return View::make('account.cart_checkout', array('cart_items_count' => $cart_items_count,
+			                                          'total' => $total,
+			                                  'cart_products' => $cart_products,
+			                                  	  'AUTHCODE'  => $AUTHCODE
+			                                  ));
+		
+});
+
+
 
 //-------------------Admin routes------------------------------------------------------
+
 Route::get('admin-view_log/{offset?}', function($page = 1) {
 
 	//We make sure that user is logged in.

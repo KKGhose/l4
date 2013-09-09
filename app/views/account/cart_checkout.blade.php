@@ -152,66 +152,38 @@
 
        <div class="col-lg-8">
 
-  @if (!$cart_products)
-  <div class="alert alert-info">Heads up! Your cart is empty.</div>
-  @else 
-       <table class="table table-hover">
-       <thead>
-       <tr>
-          <th>Item(s)</th>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Quantity</th>
-       </tr>
-       </thead>
-       </tbody>
-      @foreach ($cart_products as $cart_item)
-        <tr>
-        <!-- Button trigger modal -->
-        <td><a href="#myModal_{{$cart_item->id}}" data-toggle="modal"><img src="{{url()}}/images/products_images/{{$cart_item->id}}.jpg" width="70" height="100"></a></td>
-        <td>{{$cart_item->product_name}}</td>
-        <td>{{$cart_item->product_price}}</td>
-        <td>{{$cart_item->quantity}}</td>
-        </tr>
-
-        <!-- Modal -->
-        <div class="modal fade" id="myModal_{{$cart_item->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">{{$cart_item->product_name}}</h4>
-              </div>
-              <div class="modal-body">
+  	      <form id="payment">
+              
+              <input name="MERCHANT_ID" type="hidden" value="13466">
+              <input name="AMOUNT" type="hidden" value="{{$total}}">
+              <input name="ORDER_NUMBER" type="hidden" value="123456">
+              <input name="REFERENCE_NUMBER" type="hidden" value="">
+              <input name="ORDER_DESCRIPTION" type="hidden" value="Online Store dummy buy">
+              <input name="CURRENCY" type="hidden" value="EUR">
+              <input name="RETURN_ADDRESS" type="hidden" value="{{url('checkout_success')}}">
+              <input name="CANCEL_ADDRESS" type="hidden" value="{{url('checkout_cancel')}}">
+              <input name="PENDING_ADDRESS" type="hidden" value="">
+              <input name="NOTIFY_ADDRESS" type="hidden" value="{{url('checkout_notify')}}">
+              <input name="TYPE" type="hidden" value="S1">
+              <input name="CULTURE" type="hidden" value="fi_FI">
+              <input name="PRESELECTED_METHOD" type="hidden" value="">
+              <input name="MODE" type="hidden" value="1">
+              <input name="VISIBLE_METHODS" type="hidden" value="">
+              <input name="GROUP" type="hidden" value="">
+              
+              <input name="AUTHCODE" type="hidden" value="{{$AUTHCODE}}">
                 
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-        
-      @endforeach
-      </tbody>
-      </table>
-      <p><strong>Total:</strong> {{$total }}  &#8364;</p>
-      <a href="{{url('cart-checkout')}}" class="btn btn-default">Proceed to checkout</a>&nbsp;&nbsp;<a href="{{url('empty_cart')}}/open-orders" class="btn btn-danger">Empty cart</a>
+                </form>
 
-       </div><!-- /.col-lg-8 -->
-      </div>
-      
-      <hr>
-      
-    @stop
-            
-      </div>
-      
-      
-@endif	      
+              
+              <script type="text/javascript" src="//payment.verkkomaksut.fi/js/payment-widget-v1.0.min.js"></script>
+              <script type="text/javascript">
+                    SV.widget.initWithForm('payment', {charset:'ISO-8859-1'});
+              </script>
         
-   
-</div> <!-- Row -->
+       </div>
+
+      </div> <!-- Row -->
 
 
 <hr class="featurette-divider">

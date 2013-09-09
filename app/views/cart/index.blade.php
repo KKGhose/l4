@@ -151,7 +151,11 @@
       <h1><i class="icon-shopping-cart"></i>&nbsp;&nbsp;My Cart</h1>
       <br />
 
-      <div class="row"> 
+      <div class="row">
+
+  @if (!$cart_products)
+     <div class="alert alert-info">Heads up! Your cart is empty.</div>
+  @else 
 
        <div class="col-lg-8"> 
        <table class="table table-hover">
@@ -201,5 +205,6 @@
       
       <hr> 
     
+@endif
 
 @stop
