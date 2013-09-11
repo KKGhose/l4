@@ -3,6 +3,7 @@
 @section('head')
 @parent
   {{ HTML::style('css/modal_img.css') }}
+  {{ HTML::style('css/responsive-video.css') }}
 @stop
 
 @section('content')
@@ -193,18 +194,30 @@
                   <h3 class="modal-title"><i class="icon-film"></i>&nbsp;{{$movie->product_name}}</h3>
                 </div>
                 <div class="modal-body">
+
                  <h4>DVD Description</h4><br />
                 <div class="twist_img">
-              <img src="{{url()}}/images/products_images/{{$movie->id}}.jpg">
-              <p>{{$movie->product_description}}</p>
-              
-              </div><br />
-              <h4>DVD Details</h4><br />
-              <ul>
-              <li><strong>Language:</strong>&nbsp;{{$movie->product_language}}</li>  
-              <li><strong>ISBN-10:</strong>&nbsp;{{$movie->product_isbn10}}</li>
-              <li><strong>Price:</strong>&nbsp;{{$movie->product_price}}&nbsp;&euro;</li>
-              </ul>
+                <img src="{{url()}}/images/products_images/{{$movie->id}}.jpg">
+                <p>{{$movie->product_description}}</p>
+                </div>
+                <br />
+                  <h4>DVD Details</h4><br />
+                  <ul>
+                  <li><strong>Language:</strong>&nbsp;{{$movie->product_language}}</li>  
+                  <li><strong>ISBN-10:</strong>&nbsp;{{$movie->product_isbn10}}</li>
+                  <li><strong>Price:</strong>&nbsp;{{$movie->product_price}}&nbsp;&euro;</li>
+                  </ul>
+                    <h4>Movie Trailer</h4>
+                    <br />
+
+                    <div class="pull-center">
+                    <div class="flex-video">
+                    <iframe width="420" height="345"
+                        src="http://www.youtube.com/embed/HQ0iiqyJ7BU">
+                    </iframe>
+                    </div>
+                    </div> 
+
                 </div>
                 <div class="modal-footer">
                   <a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$movie->id}}">Add to cart &raquo;</a>&nbsp;&nbsp;
@@ -242,18 +255,20 @@
                   <h3 class="modal-title"><i class="icon-book"></i>&nbsp;{{$ebook->product_name}}</h3>
                 </div>
                 <div class="modal-body">
-                 <h4>Ebook Description</h4><br />
+                    
+                <h4>Ebook Description</h4><br />
                 <div class="twist_img">
-              <img src="{{url()}}/images/products_images/{{$ebook->id}}.jpg">
-              <p>{{$ebook->product_description}}</p>
-              
-              </div><br />
-              <h4>Ebook Details</h4><br />
-              <ul>
-              <li><strong>Language:</strong>&nbsp;{{$ebook->product_language}}</li>  
-              <li><strong>ISBN-10:</strong>&nbsp;{{$ebook->product_isbn10}}</li>
-              <li><strong>Price:</strong>&nbsp;{{$ebook->product_price}}&nbsp;&euro;</li>
-              </ul>
+                  <img src="{{url()}}/images/products_images/{{$ebook->id}}.jpg">
+                  <p>{{$ebook->product_description}}</p>
+                </div>
+                <br />
+                  <h4>Ebook Details</h4><br />
+                  <ul>
+                  <li><strong>Language:</strong>&nbsp;{{$ebook->product_language}}</li>  
+                  <li><strong>ISBN-10:</strong>&nbsp;{{$ebook->product_isbn10}}</li>
+                  <li><strong>Price:</strong>&nbsp;{{$ebook->product_price}}&nbsp;&euro;</li>
+                </ul>
+                
                 </div>
                 <div class="modal-footer">
                   <a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$ebook->id}}">Add to cart &raquo;</a>&nbsp;&nbsp;
@@ -267,6 +282,8 @@
         @endforeach
       </div><!-- /.row -->
 
+      
+      
 
       <!-- START THE FEATURETTES -->
 
@@ -297,5 +314,6 @@
       <hr class="featurette-divider">
 
       <!-- /END THE FEATURETTES -->
+
 
     @stop

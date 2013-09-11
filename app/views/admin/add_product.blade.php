@@ -219,6 +219,13 @@
         </div>
      </div>
 
+     <div class="form-group">
+       <label for="trailer" class="col-lg-3 control-label">Trailer</label> 
+      <div class="col-lg-4">    
+        <input type="text" class="form-control" name="trailer" placeholder="Enter trailer youtube code">           
+        </div>
+     </div>
+
       <div class="form-group"> 
       <label for="submit" class="col-lg-3 control-label"></label> 
       <div class="col-lg-3">  
