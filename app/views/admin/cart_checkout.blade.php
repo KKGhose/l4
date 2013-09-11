@@ -176,7 +176,7 @@
               
               <script type="text/javascript" src="//payment.verkkomaksut.fi/js/payment-widget-v1.0.min.js"></script>
               <script type="text/javascript">
-                    SV.widget.initWithForm('payment', {charset:'ISO-8859-1', width:'750'});
+                    SV.widget.initWithForm('payment', {charset:'ISO-8859-1'});
               </script>
         
        </div>
