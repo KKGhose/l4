@@ -3,6 +3,7 @@
 @section('head')
 @parent
   {{ HTML::style('css/modal_img.css') }}
+  {{ HTML::style('css/responsive-video.css') }}
 @stop
 
 
