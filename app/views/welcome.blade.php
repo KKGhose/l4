@@ -189,40 +189,53 @@
           <div class="modal fade" id="myModal_{{$movie->id}}">
             <div class="modal-dialog">
               <div class="modal-content">
+
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                   <h3 class="modal-title"><i class="icon-film"></i>&nbsp;{{$movie->product_name}}</h3>
                 </div>
+
                 <div class="modal-body">
 
                  <h4>DVD Description</h4><br />
-                <div class="twist_img">
-                <img src="{{url()}}/images/products_images/{{$movie->id}}.jpg">
-                <p>{{$movie->product_description}}</p>
-                </div>
-                <br />
+                    <div class="twist_img">
+                      <img src="{{url()}}/images/products_images/{{$movie->id}}.jpg">
+                      <p>{{$movie->product_description}}</p>
+                    </div>
+                  <br />
+                  
                   <h4>DVD Details</h4><br />
-                  <ul>
-                  <li><strong>Language:</strong>&nbsp;{{$movie->product_language}}</li>  
-                  <li><strong>ISBN-10:</strong>&nbsp;{{$movie->product_isbn10}}</li>
-                  <li><strong>Price:</strong>&nbsp;{{$movie->product_price}}&nbsp;&euro;</li>
-                  </ul>
+                    
+                    <ul>
+                      <li><strong>Language:</strong>&nbsp;{{$movie->product_language}}</li>  
+                      <li><strong>ISBN-10:</strong>&nbsp;{{$movie->product_isbn10}}</li>
+                      <li><strong>Price:</strong>&nbsp;{{$movie->product_price}}&nbsp;&euro;</li>
+                    </ul>
+
                     <h4>Movie Trailer</h4>
                     <br />
 
+                    @if ($movie->code)
                     <div class="pull-center">
-                    <div class="flex-video">
-                    <iframe width="420" height="345"
-                        src="http://www.youtube.com/embed/HQ0iiqyJ7BU">
-                    </iframe>
+                      <div class="flex-video">
+                        <iframe width="400" height="300"
+                            src="http://www.youtube.com/embed/{{$movie->code}}">
+                        </iframe>
+                      </div>
                     </div>
-                    </div> 
+                    @else
+                    <div class="alert alert-success">
+                    <strong>Sorry!</strong> No trailer at this time!
+                    </div>
+                    @endif 
 
                 </div>
+
                 <div class="modal-footer">
                   <a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$movie->id}}">Add to cart &raquo;</a>&nbsp;&nbsp;
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
+
               </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
           </div><!-- /.modal -->

@@ -19,10 +19,12 @@ class HomeController extends BaseController {
 	{
 		$this->_log->save_log($this->_log, 'home.index');
 
-		$movies = DB::select('SELECT products.*, productTypes.type_name
+		$movies = DB::select('SELECT products.*, productTypes.type_name, trailers.code
 							  FROM products INNER JOIN productTypes
+							  INNER JOIN trailers
 							  WHERE products.product_type = productTypes.id
-							  AND productTypes.type_name LIKE ?  
+							  AND productTypes.type_name LIKE ?
+							  AND products.id = trailers.movie_id  
 							  ORDER BY products.id DESC LIMIT 3', array('Dvd'));
 
 		$ebooks = DB::select('SELECT products.*, productTypes.type_name
