@@ -249,7 +249,7 @@ Route::group(array('before' => 'csrf'), function()
 	
 
 	$rules = array( 'email' => 'required|email|exists:users,email',
-					'password' => 'required|exists:users,password'
+					'password' => 'required'
 					);
 
 	$validator = Validator::make($data, $rules);
@@ -270,6 +270,8 @@ Route::group(array('before' => 'csrf'), function()
 
 			Redirect::to('account');
 		}
+
+		return Redirect::to('login')->with('wrong_password','The selected password is incorrect!')->withInput(Input::except('password'));
 		
 	}
 

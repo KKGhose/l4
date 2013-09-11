@@ -139,6 +139,12 @@
          </div>
 		    @endforeach
 
+      @if ( Session::has('wrong_password') )
+        <div class="alert alert-danger">
+            <strong>Warning!</strong> {{Session::get('wrong_password')}}
+        </div>
+      @endif
+
 			{{ Form::open( array( 'route' => 'login',
 					              'class' => 'form-signin') )}}
       
