@@ -249,7 +249,7 @@ Route::group(array('before' => 'csrf'), function()
 	
 
 	$rules = array( 'email' => 'required|email|exists:users,email',
-					'password' => 'required'
+					'password' => 'required|exists:users,password'
 					);
 
 	$validator = Validator::make($data, $rules);
