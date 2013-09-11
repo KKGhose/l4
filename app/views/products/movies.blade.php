@@ -180,6 +180,25 @@
              <li><strong>ISBN-10:</strong>&nbsp;{{$movie->product_isbn10}}</li>
              <li><strong>Price:</strong>&nbsp;{{$movie->product_price}}&nbsp;&euro;</li>
            </ul>
+
+           <h4>Movie Trailer</h4>
+                    <br />
+
+                    @if ($movie->code)
+                    <div class="pull-center">
+                      <div class="flex-video">
+                        <iframe width="400" height="300"
+                            src="http://www.youtube.com/embed/{{$movie->code}}">
+                        </iframe>
+                      </div>
+                    </div>
+                    @else
+                    <div class="alert alert-success">
+                    <strong>Sorry!</strong> No trailer at this time!
+                    </div>
+                    @endif 
+
+
             </div>
             <div class="modal-footer">
               <a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$movie->id}}/movies">Add to cart &raquo;</a>&nbsp;&nbsp;

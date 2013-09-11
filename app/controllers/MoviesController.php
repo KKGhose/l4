@@ -42,9 +42,11 @@ class MoviesController extends BaseController {
 
 		//$movies = Product::where('product_type','=', 11)->skip($skip)->orderBy('id', 'desc')->take($this->items_per_page)->get();
 
-		$movies = DB::select('SELECT products.*, productTypes.type_name
+		$movies = DB::select('SELECT products.*, productTypes.type_name, trailers.code
 							  FROM products INNER JOIN productTypes
+							  INNER JOIN trailers
 							  WHERE products.product_type = productTypes.id
+							  AND trailers.movie_id = products.id 
 							  AND productTypes.type_name LIKE ?  
 							  ORDER BY products.id DESC LIMIT ?, ?', array('Dvd', $skip, $this->items_per_page));
 		
