@@ -149,14 +149,8 @@
       </div>
 
 	    <div class="col-lg-9">
-      <h3><i class="icon-shopping-cart"></i>&nbsp;&nbsp;My Cart</h3>
-      <br />
 
-      <div class="row">
-
-       <div class="col-lg-8">
-
-  	      <form id="payment">
+           <form id="payment">
               
               <input name="MERCHANT_ID" type="hidden" value="13466">
               <input name="AMOUNT" type="hidden" value="{{$total}}">
@@ -182,12 +176,12 @@
               
               <script type="text/javascript" src="//payment.verkkomaksut.fi/js/payment-widget-v1.0.min.js"></script>
               <script type="text/javascript">
-                    SV.widget.initWithForm('payment', {charset:'ISO-8859-1'});
+                    SV.widget.initWithForm('payment', {charset:'ISO-8859-1', width:'750'});
               </script>
         
        </div>
 
-      </div> <!-- Row -->
+  </div> <!-- Row -->
 
 
 <hr class="featurette-divider">
