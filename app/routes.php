@@ -240,6 +240,25 @@ Route::get('add-product', function() {
 				                                  ));
 });
 
+Route::get('update-product', function() {
+
+	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
+
+    //If user is not admin we redirect away.
+	if(!Auth::user()->admin) return Redirect::to('/');
+
+	$cart_data = new CartItem;
+	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
+
+	$p_types = DB::select('SELECT id, type_name FROM productTypes WHERE parent_id = ? ORDER BY id DESC', array(0));
+	    
+	return View::make('admin.update_product', array('cart_items_count' => $cart_items_count,
+				                                          'total' => $total,
+				                                  'cart_products' => $cart_products,
+				                                  	  'p_types'  => $p_types
+				                                  ));
+});
+
 
 //----------------------- END Admin routes --------------------------------------------------
 
