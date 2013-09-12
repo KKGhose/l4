@@ -27,6 +27,9 @@ Route::get('login', function() {
 	if(Auth::check()) return Redirect::to('account');
 	
 	$cart_data = new CartItem;
+
+	$log = new AccessLog;
+	$log->save_log($log, 'Login->index');
 	
 	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
 
@@ -41,6 +44,9 @@ Route::get('registration', function() {
 	if(Auth::check()) return Redirect::to('account');
 
 	$cart_data = new CartItem;
+
+	$log = new AccessLog;
+	$log->save_log($log, 'Login->register');
 	
 	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
 
@@ -379,6 +385,7 @@ Route::get('cart-index', function() {
 	if(Auth::check()) return Redirect::to('open-orders');
 
 	$cart_data = new CartItem;
+
 	
 	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
 

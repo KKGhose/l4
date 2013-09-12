@@ -3,10 +3,12 @@
 class CartController extends BaseController {
 
 	private $_cart_data;
+	private $_log;
 
 	public function __construct()
 	{
 		$this->_cart_data = new CartItem;
+		$this->_log = new AccessLog;
 	}
 
 	/**
@@ -16,6 +18,7 @@ class CartController extends BaseController {
 	 */
 	public function add_item($product_id, $uri = '/')
 	{
+		$this->_log->save_log($this->_log, 'cart->add');
 		
 		$this->_cart_data->add_item_to_cart( $product_id );
 
@@ -30,6 +33,8 @@ class CartController extends BaseController {
 	 */
 	public function empty_cart($uri = '/')
 	{
+		$this->_log->save_log($this->_log, 'cart->empty');
+
 		$this->_cart_data->empty_cart();
 
 		return Redirect::to($uri);
