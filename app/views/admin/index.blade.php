@@ -136,7 +136,7 @@
               <li class="active"><a href="{{url('account')}}">Home</a></li>
               <li><a href="{{url('admin-ptypes')}}">manage product types</a></li>
               <li><a href="{{url('add-product')}}">add product</a></li>
-              <li><a href="#">update or remove product</a></li>
+              <li><a href="{{url('update-product')}}">update or remove product</a></li>
                <li><a href="#">manage orders</a></li>
               <li><a href="{{url('admin-view_log')}}">view access logs</a></li>
               <li><a href="#">remove access logs</a></li>

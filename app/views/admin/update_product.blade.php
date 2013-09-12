@@ -136,7 +136,7 @@
               <li><a href="{{url('account')}}">Home</a></li>
               <li><a href="{{url('admin-ptypes')}}">manage product types</a></li>
               <li><a href="{{url('add-product')}}">add product</a></li>
-              <li class="active"><a href="#">update or remove product</a></li>
+              <li class="active"><a href="{{url('update-product')}}">update or remove product</a></li>
               <li><a href="#">manage orders</a></li>
               <li><a href="{{url('admin-view_log')}}">view access logs</a></li>
               <li><a href="#">remove access logs</a></li>
@@ -146,6 +146,16 @@
   </div>     
 
  <div class="col-lg-9">
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#movies" data-toggle="tab"><i class="icon-film"></i>&nbsp;Movies</a></li>
+    <li><a href="#ebooks" data-toggle="tab"><i class="icon-book"></i>&nbsp;Ebooks</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="movies">...</div>
+    <div class="tab-pane" id="ebooks">...</div>
+  </div>
 
  </div>
     
