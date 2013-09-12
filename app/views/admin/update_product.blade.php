@@ -153,8 +153,27 @@
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane active" id="movies">...</div>
-    <div class="tab-pane" id="ebooks">...</div>
+    
+    <div class="tab-pane active" id="movies">
+    <br>
+      <div class="row">
+
+      <div class="col-lg-8">
+        @foreach ($movies as $movie)
+          <div class="col-sm-3 col-md-3">
+            <a href="#" class="thumbnail">
+             <div class="clearfix">
+              <img class="img-rounded" src="{{url()}}/images/products_images/{{$movie->id.'.jpg'}}" height="160" width="100">
+             </div>
+            </a>
+          </div>     
+        @endforeach
+      </div>
+      
+      </div>  
+    </div>
+    
+    <div class="tab-pane" id="ebooks"></div>
   </div>
 
  </div>

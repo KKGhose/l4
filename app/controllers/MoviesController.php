@@ -40,8 +40,6 @@ class MoviesController extends BaseController {
 
 		$skip = ($page - 1) * $this->items_per_page;
 
-		//$movies = Product::where('product_type','=', 11)->skip($skip)->orderBy('id', 'desc')->take($this->items_per_page)->get();
-
 		$movies = DB::select('SELECT products.*, productTypes.type_name, trailers.code
 							  FROM products INNER JOIN productTypes
 							  INNER JOIN trailers

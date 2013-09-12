@@ -247,6 +247,9 @@ Route::get('update-product', function() {
     //If user is not admin we redirect away.
 	if(!Auth::user()->admin) return Redirect::to('/');
 
+	$products = new Product;
+	$movies = $products->getProducts('Dvd', 0, 8);
+
 	$cart_data = new CartItem;
 	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
 
@@ -255,7 +258,8 @@ Route::get('update-product', function() {
 	return View::make('admin.update_product', array('cart_items_count' => $cart_items_count,
 				                                          'total' => $total,
 				                                  'cart_products' => $cart_products,
-				                                  	  'p_types'  => $p_types
+				                                  	  'p_types'  => $p_types,
+				                                  	  'movies' => $movies
 				                                  ));
 });
 
