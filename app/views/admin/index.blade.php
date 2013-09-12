@@ -146,6 +146,9 @@
   </div>     
 
  <div class="col-lg-9">
+ <h3>Welcome Home Admin</h3>
+ <br />
+ <p>Your last login was: {{ Auth::user()->updated_at }}</p>
  </div>
     
    
