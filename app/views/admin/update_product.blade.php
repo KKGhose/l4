@@ -152,35 +152,48 @@
     <li><a href="#ebooks" data-toggle="tab"><i class="icon-book"></i>&nbsp;Ebooks</a></li>
   </ul>
 
-  <div class="tab-content">
+<div class="tab-content">
     
-    <div class="tab-pane active" id="movies">
-    <br>
-      <div class="row">
-
-      <div class="col-lg-8">
+  <div class="tab-pane active" id="movies">
+    <br>  
+      <div class="row">    
         @foreach ($movies as $movie)
-          <div class="col-sm-3 col-md-3">
+        
+
+          <div class="col-sm-2 col-md-2">
             <a href="#" class="thumbnail">
              <div class="clearfix">
               <img class="img-rounded" src="{{url()}}/images/products_images/{{$movie->id.'.jpg'}}" height="160" width="100">
              </div>
             </a>
           </div>     
+         
         @endforeach
-      </div>
-      
-      </div>  
-    </div>
-    
-    <div class="tab-pane" id="ebooks"></div>
+   </div>        
   </div>
+    
+  <div class="tab-pane" id="ebooks">
+     <br>  
+      <div class="row">    
+        @foreach ($ebooks as $ebook)
+      
+          <div class="col-sm-2 col-md-2">
+            <a href="#" class="thumbnail">
+             <div class="clearfix">
+              <img class="img-rounded" src="{{url()}}/images/products_images/{{$ebook->id.'.jpg'}}" height="160" width="100">
+             </div>
+            </a>
+          </div>     
+         
+        @endforeach
+   </div>        
+  </div>
+</div> <!-- //tab-content -->
 
- </div>
+</div>
     
    
 </div> <!-- Row -->
-
 
 <hr class="featurette-divider">
 

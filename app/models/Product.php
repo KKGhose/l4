@@ -15,13 +15,26 @@ class Product extends Eloquent {
 
 	public static $rules = array();
 
-	function getProducts($productType, $offset, $numOfItems) {
+	function getMovies($productType, $offset, $numOfItems) {
 
 		$this->products = DB::select('SELECT products.*, productTypes.type_name, trailers.code
 							  FROM products INNER JOIN productTypes
 							  INNER JOIN trailers
 							  WHERE products.product_type = productTypes.id
 							  AND trailers.movie_id = products.id 
+							  AND productTypes.type_name LIKE ?  
+							  ORDER BY products.id DESC LIMIT ?, ?', array($productType, $offset, $numOfItems));
+
+		return $this->products;
+		
+	}//End method getMoviess
+
+
+	function getProducts($productType, $offset, $numOfItems) {
+
+		$this->products = DB::select('SELECT products.*, productTypes.type_name
+							  FROM products INNER JOIN productTypes
+							  WHERE products.product_type = productTypes.id
 							  AND productTypes.type_name LIKE ?  
 							  ORDER BY products.id DESC LIMIT ?, ?', array($productType, $offset, $numOfItems));
 

@@ -248,7 +248,8 @@ Route::get('update-product', function() {
 	if(!Auth::user()->admin) return Redirect::to('/');
 
 	$products = new Product;
-	$movies = $products->getProducts('Dvd', 0, 8);
+	$movies = $products->getMovies('Dvd', 0, 12);
+	$ebooks = $products->getProducts('Book', 0, 12);
 
 	$cart_data = new CartItem;
 	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
@@ -259,7 +260,8 @@ Route::get('update-product', function() {
 				                                          'total' => $total,
 				                                  'cart_products' => $cart_products,
 				                                  	  'p_types'  => $p_types,
-				                                  	  'movies' => $movies
+				                                  	  'movies' => $movies,
+				                                  	  'ebooks' => $ebooks
 				                                  ));
 });
 
