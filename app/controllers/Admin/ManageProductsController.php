@@ -17,7 +17,10 @@ class ManageProductsController extends BaseController {
 	public function index($page = 1)
 	{
 		$movies = $this->products->getMovies('Dvd', 0, 12);
+		$moviesCount = $this->products->getProductCount('Dvd');
+
 	    $ebooks = $this->products->getProducts('Book', 0, 12);
+	    $ebooksCount = $this->products->getProductCount('Book');
 
 		$skip = ($page - 1) * $this->items_per_page;
 		
@@ -27,7 +30,9 @@ class ManageProductsController extends BaseController {
 							                                          'total' => $total,
 							                                  'cart_products' => $cart_products,
 							                                  	     'movies' => $movies,
-							                                  	     'ebooks' => $ebooks
+							                                  	     'moviesCount' => $moviesCount,
+							                                  	     'ebooks' => $ebooks,
+							                                  	     'ebooksCount' => $ebooksCount
 				                                              ));
 	}
 

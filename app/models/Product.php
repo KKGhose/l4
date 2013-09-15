@@ -42,4 +42,11 @@ class Product extends Eloquent {
 		
 	}//End method getProducts
 
+	function getProductCount($productType) {
+
+		$typeId = DB::select('SELECT id FROM productTypes WHERE type_name = ?', array($productType));
+
+		return $product = DB::select('SELECT COUNT(*) as count FROM products 
+						   			  WHERE product_type = ?', array($typeId[0]->id));
+	}
 }//End class Product
