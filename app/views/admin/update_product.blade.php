@@ -148,8 +148,14 @@
  <div class="col-lg-9">
 
   <ul class="nav nav-tabs">
+  @if ($type == 'Dvd')
     <li class="active"><a href="#movies" data-toggle="tab"><i class="icon-film"></i>&nbsp;Movies</a></li>
     <li><a href="#ebooks" data-toggle="tab"><i class="icon-book"></i>&nbsp;Ebooks</a></li>
+  @elseif ($type == 'Book')
+    <li><a href="#movies" data-toggle="tab"><i class="icon-film"></i>&nbsp;Movies</a></li>
+    <li class="active"><a href="#ebooks" data-toggle="tab"><i class="icon-book"></i>&nbsp;Ebooks</a></li>
+  @endif    
+    
   </ul>
 
 <div class="tab-content">
@@ -169,7 +175,38 @@
           </div>     
          
         @endforeach
-   </div>        
+   </div> 
+
+      {{--Movies Pagination--}}
+          <div class="row">
+          
+          <div class="col-lg-3"></div>
+            <div class="col-lg-4">
+              <ul class="pagination pagination-lg">
+                @if ($moviesNumPages == 1)
+              <li class="disabled"><span>Prev</span></li>
+            @else
+               <li><a href="{{url('update-product')}}/{{$moviePage - 1}}">Prev</a></li>
+            @endif     
+               @for ($i = 1; $i <= $moviesNumPages; $i++)
+                  @if ($moviePage == $i) 
+                  <li class="disabled"><span>{{ $i }}</span></li>
+                  @else
+                    <li><a href="{{url('update-product')}}/{{$i}}">{{ $i }}</a></li>
+                  @endif    
+               @endfor
+            @if ($moviePage == $moviesNumPages)   
+              <li class="disabled"><span>Next</span></li>
+            @else
+              <li><a href="{{url('update-product')}}/{{$moviePage + 1}}">Next</a></li>
+            @endif  
+            </ul>
+          </div>
+         
+
+        </div>
+      {{--End Movies Pagination--}}
+
   </div>
     
   <div class="tab-pane" id="ebooks">
