@@ -200,7 +200,7 @@ Route::get('admin-view_log/{offset?}', function($page = 1) {
 	return Redirect::action('AccessLogsController@index', array($page));
 });
 
-Route::get('admin-viewLogs/{offset?}', 'AccessLogsController@index');
+Route::get('admin-view-logs/{offset?}', 'AccessLogsController@index');
 
 Route::get('admin-ptypes', function() {
 
@@ -240,30 +240,19 @@ Route::get('add-product', function() {
 				                                  ));
 });
 
-Route::get('update-product', function() {
+Route::get('update-product/{offset?}', function($page = 1) {
 
 	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
 
     //If user is not admin we redirect away.
 	if(!Auth::user()->admin) return Redirect::to('/');
 
-	$products = new Product;
-	$movies = $products->getMovies('Dvd', 0, 12);
-	$ebooks = $products->getProducts('Book', 0, 12);
+	return Redirect::action('ManageProductsController@index', array($page));
 
-	$cart_data = new CartItem;
-	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
-
-	$p_types = DB::select('SELECT id, type_name FROM productTypes WHERE parent_id = ? ORDER BY id DESC', array(0));
-	    
-	return View::make('admin.update_product', array('cart_items_count' => $cart_items_count,
-				                                          'total' => $total,
-				                                  'cart_products' => $cart_products,
-				                                  	  'p_types'  => $p_types,
-				                                  	  'movies' => $movies,
-				                                  	  'ebooks' => $ebooks
-				                                  ));
+	
 });
+
+Route::get('admin-update-products/{offset?}', 'ManageProductsController@index');
 
 
 //----------------------- END Admin routes --------------------------------------------------
