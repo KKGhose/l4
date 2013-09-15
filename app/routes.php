@@ -240,19 +240,19 @@ Route::get('add-product', function() {
 				                                  ));
 });
 
-Route::get('update-product/{offset?}/{type?}', function($page = 1, $type = 'Dvd') {
+Route::get('update-product/{offset_1?}/{offset_2?}/{type?}', function($page_1 = 1, $page_2 = 1, $type = 'Dvd') {
 
 	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
 
     //If user is not admin we redirect away.
 	if(!Auth::user()->admin) return Redirect::to('/');
 
-	return Redirect::action('ManageProductsController@index', array($page));
+	return Redirect::action('ManageProductsController@index', array($page_1, $page_2, $type));
 
 	
 });
 
-Route::get('admin-update-products/{offset?}/{type?}', 'ManageProductsController@index');
+Route::get('admin-update-products/{offset_1?}/{offset_2?}/{type?}', 'ManageProductsController@index');
 
 
 //----------------------- END Admin routes --------------------------------------------------

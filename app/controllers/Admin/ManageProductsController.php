@@ -9,6 +9,9 @@ class ManageProductsController extends BaseController {
 	private $moviesNumPages = 0;
 	private $moviesCount;
 
+	private $ebooksNumPages = 0;
+	private $ebooksCount;
+
 	private $_cart_data;
 
 	public function __construct() {
@@ -17,14 +20,15 @@ class ManageProductsController extends BaseController {
 		$this->initialize();
 	}
 
-	public function index($moviePage = 1, $type = 'Dvd')
+	public function index($moviePage = 1, $ebookPage = 1, $type = 'Dvd')
 	{
 		$movieSkip = ($moviePage - 1) * $this->itemsPerPage;
+		$ebookSkip = ($ebookPage - 1) * $this->itemsPerPage;
 
 		$movies = $this->products->getMovies('Dvd', $movieSkip, $this->itemsPerPage);
 		
-	    $ebooks = $this->products->getProducts('Book', 0, $this->itemsPerPage);
-	    $ebooksCount = $this->products->getProductCount('Book');
+	    $ebooks = $this->products->getProducts('Book', $ebookSkip, $this->itemsPerPage);
+	    
 
 		
 		
@@ -34,11 +38,13 @@ class ManageProductsController extends BaseController {
 							                                          'total' => $total,
 							                                  'cart_products' => $cart_products,
 							                                  	     'movies' => $movies,
-							                                  	     'moviesCount' => $this->moviesCount,
 							                                  	     'ebooks' => $ebooks,
-							                                  	     'ebooksCount' => $ebooksCount,
-							                                  	     'moviePage' => $moviePage,
+							                                  	     'moviesCount' => $this->moviesCount,
+							                                  	     'ebooksCount' => $this->ebooksCount,
 							                                  	     'moviesNumPages' => $this->moviesNumPages,
+							                                  	     'ebooksNumPages' => $this->ebooksNumPages,
+							                                  	     'moviePage' => $moviePage,
+							                                         'ebookPage' =>  $ebookPage,
 							                                  	     'type' => $type
 				                                              ));
 	}
@@ -46,10 +52,12 @@ class ManageProductsController extends BaseController {
 	private function initialize()
 	{
 		$this->moviesCount = $this->products->getProductCount('Dvd');
-
 		$this->moviesNumPages = (int)( $this->moviesCount[0]->count / $this->itemsPerPage );	
-
 		if ($this->moviesCount[0]->count % $this->itemsPerPage) $this->moviesNumPages += 1;
+
+		$this->ebooksCount = $this->products->getProductCount('Book');
+		$this->ebooksNumPages = (int)( $this->ebooksCount[0]->count / $this->itemsPerPage );	
+		if ($this->ebooksCount[0]->count % $this->itemsPerPage) $this->ebooksNumPages += 1;
 	}
 
 
