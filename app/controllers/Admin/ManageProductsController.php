@@ -24,9 +24,7 @@ class ManageProductsController extends BaseController {
 
 	public function index($moviePage = 1, $ebookPage = 1, $type = 'Dvd')
 	{
-		$this->getMovies($moviePage);
-
-	    $this->getEbooks($ebookPage);
+		$this->initialize_all($moviePage, $ebookPage);
 
 	    return $this->displayView($moviePage, $ebookPage, $type);		
 	}
@@ -49,6 +47,13 @@ class ManageProductsController extends BaseController {
 							                                  	     'type' => $type
 				                                              ));	
 
+	}
+
+	private function initialize_all($moviePage, $ebookPage)
+	{
+		$this->getMovies($moviePage);
+
+	    $this->getEbooks($ebookPage);
 	}
 
 	private function getMovies($moviePage) {
