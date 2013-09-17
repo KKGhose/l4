@@ -402,6 +402,16 @@ Route::group(array('before' => 'csrf'), function()
 
 	}));
 
+	Route::post('update-product-db', function() {
+
+
+		if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
+
+		//If user is not admin we redirect away.
+		if(!Auth::user()->admin) return Redirect::to('/');
+
+	});
+
 });
 
 //---------------------- END Routes With CSRF Filter--------------------------------------------------

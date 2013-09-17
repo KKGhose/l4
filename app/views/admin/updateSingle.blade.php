@@ -147,7 +147,89 @@
 
  <div class="col-lg-9">
 
-  {{dump($product)}}
+  <form action="" method="post" class="form-horizontal" role="form" enctype="multipart/form-data"> 
+      @if ( Session::has('update_success') )
+        <div class="alert alert-success">
+            <strong>Well done!</strong> {{Session::get('update_success')}}
+        </div>
+      @endif
+       
+       {{ Form::token() }}
+
+     <div class="form-group">
+       <label for="product_name" class="col-lg-3 control-label">Title</label> 
+      <div class="col-lg-4">    
+        <input type="text" class="form-control" name="product_name" placeholder="Enter product name">           
+        </div>
+     </div>  
+
+      <div class="form-group">
+       <label for="price" class="col-lg-3 control-label">Price</label> 
+      <div class="col-lg-4">    
+        <input type="text" class="form-control" name="price" placeholder="Enter price, e.g. 13.90">           
+        </div>
+     </div>  
+
+     <div class="form-group">
+       <label for="language" class="col-lg-3 control-label">Language</label> 
+      <div class="col-lg-4">    
+        <input type="text" class="form-control" name="language" placeholder="Enter language">           
+        </div>
+     </div>  
+
+     <div class="form-group">
+       <label for="product_type" class="col-lg-3 control-label">Product type</label>         
+       <div class="col-lg-4">
+          <select name="product_type" class="form-control">
+            @foreach ($p_types as $p_type)
+              <option value="{{$p_type->id}}">{{$p_type->type_name}}</option>
+            @endforeach
+          </select>
+      </div>
+     </div>    
+
+     <div class="form-group">
+       <label for="description" class="col-lg-3 control-label">Description</label> 
+      <div class="col-lg-4">  
+        <textarea class="form-control" name="description" rows="8" placeholder="Enter description"></textarea>  
+        </div>
+     </div> 
+
+     <div class="form-group">
+       <label for="cover" class="col-lg-3 control-label">Cover</label> 
+      <div class="col-lg-4">    
+        <input type="file" class="form-control" name="cover" placeholder="Enter cover">           
+        </div>
+     </div>              
+       
+    <div class="form-group">
+       <label for="author" class="col-lg-3 control-label">Author</label> 
+      <div class="col-lg-4">    
+        <input type="text" class="form-control" name="author" placeholder="Enter author's name">           
+        </div>
+     </div>  
+
+     <div class="form-group">
+       <label for="isbn" class="col-lg-3 control-label">ISBN-10</label> 
+      <div class="col-lg-4">    
+        <input type="text" class="form-control" name="isbn" placeholder="Enter ISBN-10">           
+        </div>
+     </div>
+
+     <div class="form-group">
+       <label for="trailer" class="col-lg-3 control-label">Trailer</label> 
+      <div class="col-lg-4">    
+        <input type="text" class="form-control" name="trailer" placeholder="Enter trailer youtube code">           
+        </div>
+     </div>
+
+      <div class="form-group"> 
+      <label for="submit" class="col-lg-3 control-label"></label> 
+      <div class="col-lg-3">  
+        <button type="submit" class="btn btn-default">Update product</button>              
+      </div>
+     </div>
+     </form>
 
 </div>
     
