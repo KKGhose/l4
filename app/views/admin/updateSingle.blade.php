@@ -147,126 +147,14 @@
 
  <div class="col-lg-9">
 
-  <ul class="nav nav-tabs">
-  @if ($type == 'Dvd')
-    <li class="active"><a href="#movies" data-toggle="tab"><i class="icon-film"></i>&nbsp;Movies</a></li>
-    <li><a href="#ebooks" data-toggle="tab"><i class="icon-book"></i>&nbsp;Ebooks</a></li>
-  @elseif ($type == 'Book')
-    <li><a href="#movies" data-toggle="tab"><i class="icon-film"></i>&nbsp;Movies</a></li>
-    <li class="active"><a href="#ebooks" data-toggle="tab"><i class="icon-book"></i>&nbsp;Ebooks</a></li>
-  @endif    
-    
-  </ul>
-
-<div class="tab-content">
-
- @if ($type == 'Dvd') 
-  <div class="tab-pane active" id="movies">
- @else
-  <div class="tab-pane" id="movies">
- @endif  
-    <br>  
-      <div class="row">    
-        @foreach ($movies as $movie)
-
-          <div class="col-sm-2 col-md-2">
-            <a href="{{url('update-single-product')}}/{{$movie->id}}" class="thumbnail">
-             <div class="clearfix">
-              <input type="image" class="img-rounded" value="submit" src="{{url()}}/images/products_images/{{$movie->id.'.jpg'}}" height="160" width="100">
-             </div>
-            </a>
-          </div>
-
-        @endforeach
-   </div> 
-
-      {{--Movies Pagination--}}
-          <div class="row">
-          
-          <div class="col-lg-3"></div>
-            <div class="col-lg-4">
-              <ul class="pagination pagination-lg">
-                @if ($moviesNumPages == 1)
-              <li class="disabled"><span>Prev</span></li>
-            @else
-               <li><a href="{{url('update-product')}}/{{$moviePage - 1}}/1">Prev</a></li>
-            @endif     
-               @for ($i = 1; $i <= $moviesNumPages; $i++)
-                  @if ($moviePage == $i) 
-                  <li class="disabled"><span>{{ $i }}</span></li>
-                  @else
-                    <li><a href="{{url('update-product')}}/{{$i}}/1">{{ $i }}</a></li>
-                  @endif    
-               @endfor
-            @if ($moviePage == $moviesNumPages)   
-              <li class="disabled"><span>Next</span></li>
-            @else
-              <li><a href="{{url('update-product')}}/{{$moviePage + 1}}/1">Next</a></li>
-            @endif  
-            </ul>
-          </div>
-         
-
-        </div>
-      {{--End Movies Pagination--}}
-
-  </div>
-  
- @if ($type == 'Book')   
-  <div class="tab-pane active" id="ebooks">
- @else
-   <div class="tab-pane" id="ebooks">
- @endif 
-     <br>  
-      <div class="row">    
-        @foreach ($ebooks as $ebook)
-      
-          <div class="col-sm-2 col-md-2">
-            <a href="#" class="thumbnail">
-             <div class="clearfix">
-              <img class="img-rounded" src="{{url()}}/images/products_images/{{$ebook->id.'.jpg'}}" height="160" width="100">
-             </div>
-            </a>
-          </div>     
-         
-        @endforeach
-   </div>
-   {{--eBooks Pagination--}}
-          <div class="row">
-          
-          <div class="col-lg-3"></div>
-            <div class="col-lg-4">
-              <ul class="pagination pagination-lg">
-                @if ($ebooksNumPages == 1)
-              <li class="disabled"><span>Prev</span></li>
-            @else
-               <li><a href="{{url('update-product')}}/1/{{$ebookPage - 1}}/Book">Prev</a></li>
-            @endif     
-               @for ($ii = 1; $ii <= $ebooksNumPages; $ii++)
-                  @if ($ebookPage == $ii) 
-                  <li class="disabled"><span>{{ $ii }}</span></li>
-                  @else
-                    <li><a href="{{url('update-product')}}/1/{{$ii}}/Book">{{ $ii }}</a></li>
-                  @endif    
-               @endfor
-            @if ($ebookPage == $ebooksNumPages)   
-              <li class="disabled"><span>Next</span></li>
-            @else
-              <li><a href="{{url('update-product')}}/1/{{$ebookPage + 1}}/Book">Next</a></li>
-            @endif  
-            </ul>
-          </div>
-         
-
-        </div>
-      {{--End eBooks Pagination--}}        
-  </div>
-</div> <!-- //tab-content -->
+  {{var_dump($product)}}
 
 </div>
     
    
 </div> <!-- Row -->
+
+
 
 <hr class="featurette-divider">
 

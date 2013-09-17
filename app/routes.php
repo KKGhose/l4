@@ -254,6 +254,18 @@ Route::get('update-product/{offset_1?}/{offset_2?}/{type?}', function($page_1 = 
 
 Route::get('admin-update-products/{offset_1?}/{offset_2?}/{type?}', 'ManageProductsController@index');
 
+Route::get('update-single-product/{id}', function($id) {
+
+	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
+
+    //If user is not admin we redirect away.
+	if(!Auth::user()->admin) return Redirect::to('/');
+
+	return Redirect::action('UpdateProductController@index', array($id)); 
+}); 
+
+Route::get('update-single/{id?}', 'UpdateProductController@index');
+
 
 //----------------------- END Admin routes --------------------------------------------------
 
