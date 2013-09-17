@@ -148,7 +148,7 @@
  <div class="col-lg-9">
 
 
-  <form action="" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+  <form action="{{url('update-product-db')}}" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
 
       @if ( Session::has('update_success') )
         <div class="alert alert-success">
@@ -165,6 +165,8 @@
         </div>
      </div>  
 
+     <input type="hidden" name="prodId" value="{{$product[0]->id}}">
+ 
      <div class="form-group">
        <label for="cover" class="col-lg-3 control-label">New cover</label> 
       <div class="col-lg-4">    
@@ -242,11 +244,13 @@
      </form>
 
 </div>
+
+
     
    
 </div> <!-- Row -->
 
-
+{{dump( Input::all() )}}
 
 <hr class="featurette-divider">
 

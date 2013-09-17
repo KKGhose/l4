@@ -254,7 +254,7 @@ Route::get('update-product/{offset_1?}/{offset_2?}/{type?}', function($page_1 = 
 
 Route::get('admin-update-products/{offset_1?}/{offset_2?}/{type?}', 'ManageProductsController@index');
 
-Route::get('update-single-product/{id}', function($id) {
+Route::get('update-single-product/{id?}', function($id = null) {
 
 	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
 
@@ -409,6 +409,10 @@ Route::group(array('before' => 'csrf'), function()
 
 		//If user is not admin we redirect away.
 		if(!Auth::user()->admin) return Redirect::to('/');
+
+		return Input::all();
+
+		return Redirect::action('UpdateProductController@index', array( Input::get('prodId') ))->with('update_success', 'Product updated successfully!');
 
 	});
 
