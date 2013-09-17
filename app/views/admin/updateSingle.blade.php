@@ -147,7 +147,7 @@
 
  <div class="col-lg-9">
 
-  {{var_dump($product)}}
+  {{dump($product)}}
 
 </div>
     
