@@ -3,22 +3,46 @@
 class UpdateProductController extends BaseController {
 
 	protected $cart_data;
+	protected $product;
+	protected $cart_products;
+	protected $cart_items_count;
+	protected $total;
 
 	public function __construct()
 	{
-		$this->cart_data = new CartItem;	
+		$this->cart_data = new CartItem;
+		$this->product = new Product;	
 	}
 
 	public function index($id)
 	{
-		$product = DB::select('SELECT * FROM products WHERE id = ?', array($id));
+		$this->initialize_all($id);
 		
-		list( $cart_products, $cart_items_count, $total ) = $this->cart_data->get_cart_data();
+		return $this->display_view();
+	}
 
-		return View::make('admin.updateSingle', array('cart_items_count' => $cart_items_count,
-						                                          'total' => $total,
-						                                  'cart_products' => $cart_products,
-						                                  'product' => $product			        		            
+	protected function initialize_all($id)
+	{
+		$this->initialize_cart();
+		$this->initialize_product($id);
+	}
+
+	protected function initialize_cart()
+	{
+		list( $this->cart_products, $this->cart_items_count, $this->total ) = $this->cart_data->get_cart_data();
+	}
+
+	protected function initialize_product($id)
+	{
+		$this->product = DB::select('SELECT * FROM products WHERE id = ?', array($id));
+	}
+
+	protected function display_view()
+	{
+		return View::make('admin.updateSingle', array('cart_items_count' => $this->cart_items_count,
+						                                          'total' => $this->total,
+						                                  'cart_products' => $this->cart_products,
+						                                  'product' => $this->product			        		            
 						                                ));
 	}
 
