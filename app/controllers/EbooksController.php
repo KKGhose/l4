@@ -32,7 +32,7 @@ class EbooksController extends BaseController {
 
 		$this->num_pages = (int)( $this->count[0]->cnt / $this->items_per_page );	
 
-		if ($this->count % $this->items_per_page) $this->num_pages += 1;
+		if ($this->count[0]->cnt % $this->items_per_page) $this->num_pages += 1;
 	}
 
 	public function index($page = 1)
