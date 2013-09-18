@@ -392,10 +392,18 @@ Route::group(array('before' => 'csrf'), function()
 		$product->product_author = $data['author'];
 		$product->product_isbn10 = $data['isbn'];
 		$product->save();
+
+    	$pdo = DB::connection()->getPdo();
+    	$id = $pdo->lastInsertId();
+		
+		$trailer = new Trailer;
+		$trailer->movie_id = $id;
+		$trailer->code = $product['trailer'];
+		$trailer->save();
          
         $name = $product->id.'.jpg';
 
-        if ( Input::has('cover') )
+        if ( Input::hasFile('cover') )
         {
         	Input::file('cover')->move('images/products_images', $name);
         } 
@@ -424,6 +432,17 @@ Route::group(array('before' => 'csrf'), function()
 												$data['product_name'], $data['product_price'], $data['product_language'], $data['product_type'],
 												$data['product_description'], $data['product_author'], $data['product_isbn10'], $data['prodId']	
 										));
+
+		$oldCover = 'images/products_images/'.$data['prodId'].'.jpg';
+		$cover = $data['prodId'].'.jpg';
+
+		if ( Input::hasFile('cover') )
+        {
+        	if (file_exists($oldCover))
+        		unlink($oldCover);
+        	
+        	Input::file('cover')->move('images/products_images', $cover);
+        } 
 
 		return Redirect::action('UpdateProductController@index', array( Input::get('prodId') ))->with('update_success', 'Product updated successfully!');
 

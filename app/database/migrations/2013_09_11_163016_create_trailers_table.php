@@ -16,7 +16,7 @@ class CreateTrailersTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('movie_id');
-			$table->string('code');
+			$table->string('code')->nullable();
 			$table->timestamps();
 		});
 	}

@@ -159,7 +159,7 @@
        {{ Form::token() }}
 
      <div class="form-group">
-       <label for="product_image" class="col-lg-3 control-label">Current cover</label> 
+       <label for="cover" class="col-lg-3 control-label">Current cover</label> 
       <div class="col-lg-4">    
         <img src="{{url()}}/images/products_images/{{$product[0]->id.'.jpg'}}">     
         </div>
@@ -201,7 +201,11 @@
        <div class="col-lg-4">
           <select name="product_type" class="form-control">
             @foreach ($p_types as $p_type)
-              <option value="{{$p_type->id}}">{{$p_type->type_name}}</option>
+            	@if ($p_type->id == $product[0]->product_type )
+              		<option value="{{$p_type->id}}" selected="selected">{{$p_type->type_name}}</option>
+            	@else
+            		<option value="{{$p_type->id}}">{{$p_type->type_name}}</option>
+            	@endif
             @endforeach
           </select>
       </div>
