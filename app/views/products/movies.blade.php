@@ -150,9 +150,9 @@
 
 <div class="row">
         <h1><i class="icon-film"></i>&nbsp;DVD Movies:</h1><br />
-        @foreach ($movies as $movie)
+        @foreach ($movies as $movie) 
         <div class="col-lg-4">
-          <img class="img-rounded" src="{{url()}}/images/products_images/{{$movie->id.'.jpg'}}" height="300" width="200">
+          <img class="img-rounded" data-toggle="tooltip" title="{{$movie->product_name}}" src="{{url()}}/images/products_images/{{$movie->id.'.jpg'}}" height="300" width="200">
           <p></p>
           <p><a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$movie->id}}/movies">Add to cart &raquo;</a>&nbsp;&nbsp;
           <a data-toggle="modal" href="#myModal_{{$movie->id}}" class="btn btn-default">View details &raquo;</a></p>

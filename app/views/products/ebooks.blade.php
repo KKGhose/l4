@@ -136,7 +136,7 @@
         <h1><i class="icon-book"></i>&nbsp;IT-Ebooks:</h1><br />
         @foreach ($ebooks as $ebook)
         <div class="col-lg-4">
-          <img class="img-rounded" src="{{url()}}/images/products_images/{{$ebook->id.'.jpg'}}" height="300" width="200">
+          <img data-toggle="tooltip" title="{{$ebook->product_name}}" class="img-rounded" src="{{url()}}/images/products_images/{{$ebook->id.'.jpg'}}" height="300" width="200">
           <p></p>
           <p><a class="btn btn-primary" href="{{url('add_to_cart')}}/{{$ebook->id}}/ebooks">Add to cart &raquo;</a>&nbsp;&nbsp;
           <a data-toggle="modal" href="#myModal_{{$ebook->id}}" class="btn btn-default">View details &raquo;</a></p>
