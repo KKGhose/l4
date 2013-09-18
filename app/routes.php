@@ -426,11 +426,11 @@ Route::group(array('before' => 'csrf'), function()
 		$data = Input::all();
 
 		DB::update('UPDATE products SET product_name = ?, product_price = ?, product_language = ?, product_type = ?,
-										product_description = ?, product_author = ?, product_isbn10 = ?
+										product_description = ?, product_author = ?, product_isbn10 = ?, updated_at = ?
 										WHERE id = ?', 
 										array(
 												$data['product_name'], $data['product_price'], $data['product_language'], $data['product_type'],
-												$data['product_description'], $data['product_author'], $data['product_isbn10'], $data['prodId']	
+												$data['product_description'], $data['product_author'], $data['product_isbn10'], 'CURRENT_TIMESTAMP', $data['prodId']	
 										));
 
 		$oldCover = 'images/products_images/'.$data['prodId'].'.jpg';
@@ -442,6 +442,13 @@ Route::group(array('before' => 'csrf'), function()
         		unlink($oldCover);
         	
         	Input::file('cover')->move('images/products_images', $cover);
+        }
+
+        if (Input::has('trailer'))
+        {
+        	$code = Input::get('trailer');
+
+        	DB::update('UPDATE trailers SET code = ?, updated_at = ? WHERE movie_id = ?', array($code, 'CURRENT_TIMESTAMP', $data['prodId']));
         } 
 
 		return Redirect::action('UpdateProductController@index', array( Input::get('prodId') ))->with('update_success', 'Product updated successfully!');
