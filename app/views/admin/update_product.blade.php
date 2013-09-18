@@ -170,7 +170,7 @@
         @foreach ($movies as $movie)
 
           <div class="col-sm-2 col-md-2">
-            <a href="{{url('update-single-product')}}/{{$movie->id}}" class="thumbnail">
+            <a href="{{url('update-single-product')}}/{{$movie->id}}"  data-toggle="tooltip" title="{{$movie->product_name}}" class="thumbnail">
              <div class="clearfix">
               <input type="image" class="img-rounded" value="submit" src="{{url()}}/images/products_images/{{$movie->id.'.jpg'}}" height="160" width="100">
              </div>
@@ -222,7 +222,7 @@
         @foreach ($ebooks as $ebook)
       
           <div class="col-sm-2 col-md-2">
-            <a href="#" class="thumbnail">
+            <a href="#" class="thumbnail" data-toggle="tooltip" title="{{$ebook->product_name}}" >
              <div class="clearfix">
               <img class="img-rounded" src="{{url()}}/images/products_images/{{$ebook->id.'.jpg'}}" height="160" width="100">
              </div>
