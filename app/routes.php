@@ -410,7 +410,14 @@ Route::group(array('before' => 'csrf'), function()
 		//If user is not admin we redirect away.
 		if(!Auth::user()->admin) return Redirect::to('/');
 
-		return Input::all();
+		$data = Input::all();
+
+		DB::update('UPDATE products SET product_name = ?, product_price = ?, product_language = ?, product_type = ?,
+										product_description = ?, product_author = ?, product_isbn10 = ?', 
+										array(
+												$data['product_name'], $data['product_price'], $data['product_language'], $data['product_type'],
+												$data['product_description'], $data['product_author'], $data['product_isbn10']	
+										));
 
 		return Redirect::action('UpdateProductController@index', array( Input::get('prodId') ))->with('update_success', 'Product updated successfully!');
 

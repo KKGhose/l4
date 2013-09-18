@@ -185,14 +185,14 @@
       <div class="form-group">
        <label for="price" class="col-lg-3 control-label">Price</label> 
       <div class="col-lg-4">    
-        <input type="text" class="form-control" value="{{$product[0]->product_price}}" name="price" placeholder="Enter price, e.g. 13.90">           
+        <input type="text" class="form-control" value="{{$product[0]->product_price}}" name="product_price" placeholder="Enter price, e.g. 13.90">           
         </div>
      </div>  
 
      <div class="form-group">
        <label for="language" class="col-lg-3 control-label">Language</label> 
       <div class="col-lg-4">    
-        <input type="text" class="form-control" value="{{$product[0]->product_language}}" name="language" placeholder="Enter language">           
+        <input type="text" class="form-control" value="{{$product[0]->product_language}}" name="product_language" placeholder="Enter language">           
         </div>
      </div>  
 
@@ -210,21 +210,21 @@
      <div class="form-group">
        <label for="description" class="col-lg-3 control-label">Description</label> 
       <div class="col-lg-4">  
-        <textarea class="form-control" name="description" rows="8" placeholder="Enter description">{{$product[0]->product_description}}"</textarea>  
+        <textarea class="form-control" name="product_description" rows="8" placeholder="Enter description">{{$product[0]->product_description}}"</textarea>  
         </div>
      </div> 
 
     <div class="form-group">
        <label for="author" class="col-lg-3 control-label">Author</label> 
       <div class="col-lg-4">    
-        <input type="text" class="form-control" value="{{$product[0]->product_author}}" name="author" placeholder="Enter author's name">           
+        <input type="text" class="form-control" value="{{$product[0]->product_author}}" name="product_author" placeholder="Enter author's name">           
         </div>
      </div>  
 
      <div class="form-group">
        <label for="isbn" class="col-lg-3 control-label">ISBN-10</label> 
       <div class="col-lg-4">    
-        <input type="text" class="form-control" value="{{$product[0]->product_isbn10}}" name="isbn" placeholder="Enter ISBN-10">           
+        <input type="text" class="form-control" value="{{$product[0]->product_isbn10}}" name="product_isbn10" placeholder="Enter ISBN-10">           
         </div>
      </div>
 
