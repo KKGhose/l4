@@ -49,4 +49,19 @@ class Product extends Eloquent {
 		return $product = DB::select('SELECT COUNT(*) as count FROM products 
 						   			  WHERE product_type = ?', array($typeId[0]->id));
 	}
+
+
+	function getProduct($productId) {
+
+		$this->products = DB::select('SELECT products.*, productTypes.type_name, trailers.code
+							  FROM products INNER JOIN productTypes
+							  INNER JOIN trailers
+							  WHERE products.id = ?
+							  AND trailers.movie_id = products.id 
+							  AND productTypes.id = products.product_type ', array($productId));
+
+		return $this->products;
+		
+	}//End method getMoviess
+
 }//End class Product

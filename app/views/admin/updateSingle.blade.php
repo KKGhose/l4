@@ -231,7 +231,7 @@
      <div class="form-group">
        <label for="trailer" class="col-lg-3 control-label">Trailer</label> 
       <div class="col-lg-4">    
-        <input type="text" class="form-control" name="trailer" placeholder="Enter trailer youtube code">           
+        <input type="text" class="form-control" name="trailer" value="{{$product[0]->code}}" placeholder="Enter trailer youtube code">           
         </div>
      </div>
 

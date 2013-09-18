@@ -3,16 +3,19 @@
 class UpdateProductController extends BaseController {
 
 	protected $cart_data;
-	protected $product;
 	protected $cart_products;
 	protected $cart_items_count;
 	protected $total;
+	
 	protected $product_types;
+
+	protected $product_m;
+	protected $product;
 
 	public function __construct()
 	{
 		$this->cart_data = new CartItem;
-		$this->product = new Product;	
+		$this->product_m = new Product;	
 	}
 
 	public function index($id)
@@ -36,7 +39,7 @@ class UpdateProductController extends BaseController {
 
 	protected function initialize_product($id)
 	{
-		$this->product = DB::select('SELECT * FROM products WHERE id = ?', array($id));
+		$this->product = $this->product_m->getProduct($id);
 	}
 
 	protected function initialize_ptypes()
