@@ -393,8 +393,13 @@ Route::group(array('before' => 'csrf'), function()
 		$product->product_isbn10 = $data['isbn'];
 		$product->save();
          
-        $name = $product->id.'.jpg'; 
-		Input::file('cover')->move('images/products_images', $name);
+        $name = $product->id.'.jpg';
+
+        if ( Input::has('cover') )
+        {
+        	Input::file('cover')->move('images/products_images', $name);
+        } 
+		
 
 
 		return Redirect::to('add-product')->with('add_success', 'Product added successfully!');	
@@ -413,10 +418,11 @@ Route::group(array('before' => 'csrf'), function()
 		$data = Input::all();
 
 		DB::update('UPDATE products SET product_name = ?, product_price = ?, product_language = ?, product_type = ?,
-										product_description = ?, product_author = ?, product_isbn10 = ?', 
+										product_description = ?, product_author = ?, product_isbn10 = ?
+										WHERE id = ?', 
 										array(
 												$data['product_name'], $data['product_price'], $data['product_language'], $data['product_type'],
-												$data['product_description'], $data['product_author'], $data['product_isbn10']	
+												$data['product_description'], $data['product_author'], $data['product_isbn10'], $data['prodId']	
 										));
 
 		return Redirect::action('UpdateProductController@index', array( Input::get('prodId') ))->with('update_success', 'Product updated successfully!');
