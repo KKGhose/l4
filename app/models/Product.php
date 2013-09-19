@@ -51,7 +51,17 @@ class Product extends Eloquent {
 	}
 
 
-	function getProduct($productId) {
+	function getProduct($productId, $type = null) {
+
+		if ($type)
+		{
+			$this->products = DB::select('SELECT products.*, productTypes.type_name
+							  FROM products INNER JOIN productTypes
+							  WHERE products.id = ?
+							  AND productTypes.id = products.product_type ', array($productId));
+
+			return $this->products;
+		}
 
 		$this->products = DB::select('SELECT products.*, productTypes.type_name, trailers.code
 							  FROM products INNER JOIN productTypes

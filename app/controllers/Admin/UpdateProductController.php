@@ -18,17 +18,18 @@ class UpdateProductController extends BaseController {
 		$this->product_m = new Product;	
 	}
 
-	public function index($id)
+	public function index($id, $type = null)
 	{
-		$this->initialize_all($id);
+		$this->initialize_all($id, $type);
 
 		return $this->display_view();
 	}
 
-	protected function initialize_all($id)
+	protected function initialize_all($id, $type)
 	{
+
+		$this->initialize_product($id, $type);
 		$this->initialize_cart();
-		$this->initialize_product($id);
 		$this->initialize_ptypes();
 	}
 
@@ -37,9 +38,9 @@ class UpdateProductController extends BaseController {
 		list( $this->cart_products, $this->cart_items_count, $this->total ) = $this->cart_data->get_cart_data();
 	}
 
-	protected function initialize_product($id)
+	protected function initialize_product($id, $type)
 	{
-		$this->product = $this->product_m->getProduct($id);
+		$this->product = $this->product_m->getProduct($id, $type);
 	}
 
 	protected function initialize_ptypes()

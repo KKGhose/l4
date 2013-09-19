@@ -161,7 +161,7 @@
      <div class="form-group">
        <label for="cover" class="col-lg-3 control-label">Current cover</label> 
       <div class="col-lg-4">    
-        <img src="{{url()}}/images/products_images/{{$product[0]->id.'.jpg'}}">     
+        <img class="img-rounded" src="{{url()}}/images/products_images/{{$product[0]->id.'.jpg'}}">     
         </div>
      </div>  
 
@@ -232,12 +232,16 @@
         </div>
      </div>
 
-     <div class="form-group">
-       <label for="trailer" class="col-lg-3 control-label">Trailer</label> 
-      <div class="col-lg-4">    
-        <input type="text" class="form-control" name="trailer" value="{{$product[0]->code}}" placeholder="Enter trailer youtube code">           
-        </div>
-     </div>
+     @if ($product[0]->product_type == 'Dvd')
+
+       <div class="form-group">
+         <label for="trailer" class="col-lg-3 control-label">Trailer</label> 
+        <div class="col-lg-4">    
+          <input type="text" class="form-control" name="trailer" value="{{$product[0]->code}}" placeholder="Enter trailer youtube code">           
+          </div>
+       </div>
+     
+     @endif
 
       <div class="form-group"> 
       <label for="submit" class="col-lg-3 control-label"></label> 

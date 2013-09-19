@@ -222,9 +222,9 @@
         @foreach ($ebooks as $ebook)
       
           <div class="col-sm-2 col-md-2">
-            <a href="#" class="thumbnail" data-toggle="tooltip" title="{{$ebook->product_name}}" >
+            <a href="{{url('update-single-product')}}/{{$ebook->id}}/ebook" class="thumbnail" data-toggle="tooltip" title="{{$ebook->product_name}}" >
              <div class="clearfix">
-              <img class="img-rounded" src="{{url()}}/images/products_images/{{$ebook->id.'.jpg'}}" height="160" width="100">
+              <input type="image" class="img-rounded" value="submit" src="{{url()}}/images/products_images/{{$ebook->id.'.jpg'}}" height="160" width="100">
              </div>
             </a>
           </div>     

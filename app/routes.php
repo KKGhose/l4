@@ -4,8 +4,6 @@
 
 Route::get('/', 'HomeController@index');
 
-
-
 Route::get('movies/{offset?}', 'MoviesController@index');
 
 Route::get('ebooks/{offset?}', 'EbooksController@index');
@@ -254,17 +252,17 @@ Route::get('update-product/{offset_1?}/{offset_2?}/{type?}', function($page_1 = 
 
 Route::get('admin-update-products/{offset_1?}/{offset_2?}/{type?}', 'ManageProductsController@index');
 
-Route::get('update-single-product/{id?}', function($id = null) {
+Route::get('update-single-product/{id?}/{type?}', function($id = null, $type = null) {
 
 	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
 
     //If user is not admin we redirect away.
 	if(!Auth::user()->admin) return Redirect::to('/');
 
-	return Redirect::action('UpdateProductController@index', array($id)); 
+	return Redirect::action('UpdateProductController@index', array($id, $type)); 
 }); 
 
-Route::get('update-single/{id?}', 'UpdateProductController@index');
+Route::get('update-single/{id?}/{type?}', 'UpdateProductController@index');
 
 
 //----------------------- END Admin routes --------------------------------------------------
@@ -296,7 +294,7 @@ Route::group(array('before' => 'csrf'), function()
 			//Logged flag is set to 1
 			//$user = User();
 
-			DB::update('UPDATE users SET logged = 1 , updated_at = CURRENT_TIMESTAMP WHERE email LIKE ?', array( Auth::user()->email ));
+			DB::update('UPDATE users SET logged = 1 WHERE email LIKE ?', array( Auth::user()->email ));
 
 			//$user->touch();
 
