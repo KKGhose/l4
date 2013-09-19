@@ -155,15 +155,27 @@
           <th>Host</th>
           <th>User Agent</th>
           <th>Created at</th>
+          <th>
+            <div class="checkbox">
+              <input type="checkbox" onclick="toggleChecked(this.checked)"/>
+            </div>
+          </th>
        </tr>
+       <div id="checkboxes">
        @foreach ($logs as $log)
         <tr>
           <td>{{$log->page_url}}</td>
           <td>{{$log->host}}</td>
           <td>{{$log->user_agent}}</td>
-          <td>{{$log->created_at}}</td> 
+          <td>{{$log->created_at}}</td>
+          <td>
+            <div class="checkbox">
+              <input type="checkbox"/>
+            </div>
+          </td>
         </tr>
        @endforeach 
+       </div>
        </table>
 
     {{--Pagination for logs--}}
@@ -197,27 +209,12 @@
      
 </div> <!-- Row -->
 
-<div class="row">
-
-  <div class="col-lg-6">
-      
-      <form class="form-inline" role="form">
-      
-      <div class="form-group">
-        <label class="sr-only" for="log_del">log del</label>
-        <input type="text" class="form-control" name="log_del" placeholder="Enter date as: YYYY-MM-DD">
-      </div>
-      <button type="submit" class="btn btn-default">Delete downward</button> 
-
-     </form>
-
-     <form><button type="submit" class="btn btn-danger">Truncate Logs Table</button> </form>
-
-  </div>
-
-</div>
-
-
+<script>
+  function toggleChecked(status) {
+$("#checkboxes input").each( function() {
+$(this).attr("checked",status);
+});
+</script>
 <hr class="featurette-divider">
 
 @stop

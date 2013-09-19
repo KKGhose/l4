@@ -147,7 +147,6 @@
 
  <div class="col-lg-9">
 
-
   <form action="{{url('update-product-db')}}" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
 
       @if ( Session::has('update_success') )
