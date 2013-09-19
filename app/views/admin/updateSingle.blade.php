@@ -163,8 +163,15 @@
       <div class="col-lg-4">    
         <img class="img-rounded" src="{{url()}}/images/products_images/{{$product[0]->id.'.jpg'}}">     
         </div>
-     </div>  
+     </div>
 
+     {{--A token value based on content of product type is sent to the receiving end, wich will decide the use of right query in the product model for the queried product after the update--}}
+     @if ($product[0]->type_name == 'Book')
+        <input type="hidden" value="{{$product[0]->type_name}}" name="type_token">
+     @else 
+        <input type="hidden" value="" name="type_token">     
+     @endif
+     
      <input type="hidden" name="prodId" value="{{$product[0]->id}}">
  
      <div class="form-group">

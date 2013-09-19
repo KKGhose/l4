@@ -449,7 +449,9 @@ Route::group(array('before' => 'csrf'), function()
         	DB::update('UPDATE trailers SET code = ?, updated_at = ? WHERE movie_id = ?', array($code, 'CURRENT_TIMESTAMP', $data['prodId']));
         } 
 
-		return Redirect::action('UpdateProductController@index', array( Input::get('prodId') ))->with('update_success', 'Product updated successfully!');
+        $token = Input::get('type_token'); 
+        $id = Input::get('prodId');
+		return Redirect::action('UpdateProductController@index', array($id, $token))->with('update_success', 'Product updated successfully!');
 
 	});
 
