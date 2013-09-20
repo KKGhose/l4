@@ -461,11 +461,14 @@ Route::group(array('before' => 'csrf'), function()
 
 		unset($data['_token']);
 
-		$logId = array();
+		/*$logId = array();
 		foreach ($data as $key => $value)
-			$logId[] = $value;
+			$logId[] = $value;*/
 
-		return dump($logId);
+		foreach ($data as $key => $value)
+			DB::delete('DELETE FROM accessLogs WHERE id = ?', array($value));
+
+		return Redirect::to('admin-view_log');
 
 	});
 
