@@ -216,6 +216,7 @@
      
 </div> <!-- Row -->
 
+<!-- Le javascript! -->
 <script language="javascript">
 $(function () {
     $('th input[type="checkbox"]').click(function(){
