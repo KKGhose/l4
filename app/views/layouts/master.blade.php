@@ -19,6 +19,9 @@
       
     <!-- Font-Awesome CDN-->  
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+    
     
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -47,7 +50,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-     {{ HTML::script('js/jquery-1.10.2.min.js') }}
+     
      {{ HTML::script('js/bootstrap.js') }}
      {{ HTML::script('js/holder.js') }}
      

@@ -2,6 +2,7 @@
 
 @section('head')
 @parent
+
 @stop
 
 @section('content')
@@ -148,7 +149,7 @@
   </div>      
 
       <div class="col-lg-9">
-
+      
        <table class="table table-striped">
        <tr>
           <th>Page url</th>
@@ -156,12 +157,12 @@
           <th>User Agent</th>
           <th>Created at</th>
           <th>
-            <div class="checkbox">
-              <input type="checkbox" onclick="toggleChecked(this.checked)"/>
-            </div>
+           <div class="checkbox">
+             <input type="checkbox"/>
+           </div>
           </th>
        </tr>
-       <div id="checkboxes">
+       
        @foreach ($logs as $log)
         <tr>
           <td>{{$log->page_url}}</td>
@@ -175,9 +176,10 @@
           </td>
         </tr>
        @endforeach 
-       </div>
+       
        </table>
 
+       
     {{--Pagination for logs--}}
     <div class="row">
       <div class="col-lg-1"></div>
@@ -209,12 +211,17 @@
      
 </div> <!-- Row -->
 
-<script>
-  function toggleChecked(status) {
-$("#checkboxes input").each( function() {
-$(this).attr("checked",status);
+<script language="javascript">
+$(function () {
+    $('th input[type="checkbox"]').click(function(){
+        if ( $(this).is(':checked') )
+            $('td input[type="checkbox"]').prop('checked', true);
+        else
+            $('td input[type="checkbox"]').prop('checked', false);
+    })
 });
 </script>
+
 <hr class="featurette-divider">
 
 @stop
