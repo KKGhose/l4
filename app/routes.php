@@ -455,6 +455,23 @@ Route::group(array('before' => 'csrf'), function()
 
 	});
 
+	Route::post('remove-logs', function() {
+
+		$data = Input::all();
+
+		unset($data['_token']);
+
+		/*$logId = array();
+		foreach ($data as $key => $value)
+			$logId[] = $value;*/
+
+		foreach ($data as $key => $value)
+			DB::delete('DELETE FROM accessLogs WHERE id = ?', array($value));
+
+		return Redirect::to('admin-view_log');
+
+	});
+
 });
 
 //---------------------- END Routes With CSRF Filter--------------------------------------------------

@@ -2,6 +2,7 @@
 
 @section('head')
 @parent
+
 @stop
 
 @section('content')
@@ -148,26 +149,53 @@
   </div>      
 
       <div class="col-lg-9">
-
+      
        <table class="table table-striped">
        <tr>
           <th>Page url</th>
           <th>Host</th>
           <th>User Agent</th>
           <th>Created at</th>
+<<<<<<< HEAD
        </tr>
        
+=======
+          <th>
+           <div class="checkbox">
+             <input type="checkbox"/>
+           </div>
+          </th>
+       </tr>
+       <form action="{{url('remove-logs')}}" method="post">
+        {{ Form::token() }}
+>>>>>>> accessLogs
        @foreach ($logs as $log)
         <tr>
           <td>{{$log->page_url}}</td>
           <td>{{$log->host}}</td>
           <td>{{$log->user_agent}}</td>
           <td>{{$log->created_at}}</td>
+<<<<<<< HEAD
         </tr>
        @endforeach 
       
+=======
+          <td>
+            <div class="checkbox">
+              <input type="checkbox" name="logId{{$log->id}}" value="{{$log->id}}"/>
+            </div>
+          </td>
+        </tr>
+       @endforeach 
+       
+>>>>>>> accessLogs
        </table>
-
+       <div class="pull-right">
+       <input type="submit" class="btn btn-danger" value="Delete checked log(s)"/>
+       </div>
+       
+       </form>
+       
     {{--Pagination for logs--}}
     <div class="row">
       <div class="col-lg-1"></div>
@@ -199,6 +227,19 @@
      
 </div> <!-- Row -->
 
+<<<<<<< HEAD
+=======
+<script language="javascript">
+$(function () {
+    $('th input[type="checkbox"]').click(function(){
+        if ( $(this).is(':checked') )
+            $('td input[type="checkbox"]').prop('checked', true);
+        else
+            $('td input[type="checkbox"]').prop('checked', false);
+    })
+});
+</script>
+>>>>>>> accessLogs
 
 <hr class="featurette-divider">
 
