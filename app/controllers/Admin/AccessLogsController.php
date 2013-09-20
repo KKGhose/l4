@@ -13,7 +13,7 @@ class AccessLogsController extends BaseController {
 	{
 		$this->count = DB::select('SELECT COUNT(*) as num FROM accessLogs');
 		$this->num_pages = (int)($this->count[0]->num / $this->items_per_page);	
-		if ($this->count % $this->items_per_page) $this->num_pages += 1;
+		if ($this->count[0]->num % $this->items_per_page) $this->num_pages += 1;
 	}
 
 	public function __construct()
