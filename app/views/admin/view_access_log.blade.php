@@ -155,27 +155,17 @@
           <th>Host</th>
           <th>User Agent</th>
           <th>Created at</th>
-          <th>
-            <div class="checkbox">
-              <input type="checkbox" onclick="toggleChecked(this.checked)"/>
-            </div>
-          </th>
        </tr>
-       <div id="checkboxes">
+       
        @foreach ($logs as $log)
         <tr>
           <td>{{$log->page_url}}</td>
           <td>{{$log->host}}</td>
           <td>{{$log->user_agent}}</td>
           <td>{{$log->created_at}}</td>
-          <td>
-            <div class="checkbox">
-              <input type="checkbox"/>
-            </div>
-          </td>
         </tr>
        @endforeach 
-       </div>
+      
        </table>
 
     {{--Pagination for logs--}}
@@ -209,12 +199,7 @@
      
 </div> <!-- Row -->
 
-<script>
-  function toggleChecked(status) {
-$("#checkboxes input").each( function() {
-$(this).attr("checked",status);
-});
-</script>
+
 <hr class="featurette-divider">
 
 @stop
