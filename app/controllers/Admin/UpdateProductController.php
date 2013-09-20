@@ -18,7 +18,7 @@ class UpdateProductController extends BaseController {
 		$this->product_m = new Product;	
 	}
 
-	public function index($id, $type = null)
+	public function index($id, $type)
 	{
 		$this->initialize_all($id, $type);
 

@@ -51,9 +51,9 @@ class Product extends Eloquent {
 	}
 
 
-	function getProduct($productId, $type = null) {
+	function getProduct($productId, $type) {
 
-		if ($type)
+		if ($type == 'Book')
 		{
 			$this->products = DB::select('SELECT products.*, productTypes.type_name
 							  FROM products INNER JOIN productTypes
@@ -62,15 +62,20 @@ class Product extends Eloquent {
 
 			return $this->products;
 		}
-
-		$this->products = DB::select('SELECT products.*, productTypes.type_name, trailers.code
+		elseif ($type == 'Dvd')
+		{
+			$this->products = DB::select('SELECT products.*, productTypes.type_name, trailers.code
 							  FROM products INNER JOIN productTypes
 							  INNER JOIN trailers
 							  WHERE products.id = ?
 							  AND trailers.movie_id = products.id 
 							  AND productTypes.id = products.product_type ', array($productId));
 
-		return $this->products;
+			return $this->products;
+		}
+
+		return null;	
+		
 		
 	}//End method getMoviess
 

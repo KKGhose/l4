@@ -442,16 +442,17 @@ Route::group(array('before' => 'csrf'), function()
         	Input::file('cover')->move('images/products_images', $cover);
         }
 
-        if (Input::has('trailer'))
-        {
-        	$code = Input::get('trailer');
+        
+       //Update trailers table 
+        $code = Input::get('trailer');
+       	DB::update('UPDATE trailers SET code = ?, updated_at = ? WHERE movie_id = ?', array($code, 'CURRENT_TIMESTAMP', $data['prodId']));
+         
 
-        	DB::update('UPDATE trailers SET code = ?, updated_at = ? WHERE movie_id = ?', array($code, 'CURRENT_TIMESTAMP', $data['prodId']));
-        } 
+        //return dump($data);
 
-        $token = Input::get('type_token'); 
-        $id = Input::get('prodId');
-		return Redirect::action('UpdateProductController@index', array($id, $token))->with('update_success', 'Product updated successfully!');
+        $type = $data['productType'];
+        $id = $data['prodId'];
+		return Redirect::action('UpdateProductController@index', array($id, $type))->with('update_success', 'Product updated successfully!');
 
 	});
 

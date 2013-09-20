@@ -163,14 +163,8 @@
         <img class="img-rounded" src="{{url()}}/images/products_images/{{$product[0]->id.'.jpg'}}">     
         </div>
      </div>
-
-     {{--A token value based on content of product type is sent to the receiving end, wich will decide the use of right query in the product model for the queried product after the update--}}
-     @if ($product[0]->type_name == 'Book')
-        <input type="hidden" value="{{$product[0]->type_name}}" name="type_token">
-     @else 
-        <input type="hidden" value="" name="type_token">     
-     @endif
-     
+    
+     <input type="hidden" name="productType" value="{{$product[0]->type_name}}">     
      <input type="hidden" name="prodId" value="{{$product[0]->id}}">
  
      <div class="form-group">
@@ -238,7 +232,7 @@
         </div>
      </div>
 
-     @if ($product[0]->product_type == 'Dvd')
+     @if ($product[0]->type_name == 'Dvd')
 
        <div class="form-group">
          <label for="trailer" class="col-lg-3 control-label">Trailer</label> 
@@ -264,7 +258,7 @@
    
 </div> <!-- Row -->
 
-{{dump( Input::all() )}}
+{{dump( $product )}}
 
 <hr class="featurette-divider">
 
