@@ -162,7 +162,8 @@
            </div>
           </th>
        </tr>
-       
+       <form action="{{url('remove-logs')}}" method="post">
+        {{ Form::token() }}
        @foreach ($logs as $log)
         <tr>
           <td>{{$log->page_url}}</td>
@@ -171,14 +172,18 @@
           <td>{{$log->created_at}}</td>
           <td>
             <div class="checkbox">
-              <input type="checkbox"/>
+              <input type="checkbox" name="logId{{$log->id}}" value="{{$log->id}}"/>
             </div>
           </td>
         </tr>
        @endforeach 
        
        </table>
-
+       <div class="pull-right">
+       <input type="submit" class="btn btn-danger" value="Delete checked log(s)"/>
+       </div>
+       
+       </form>
        
     {{--Pagination for logs--}}
     <div class="row">
