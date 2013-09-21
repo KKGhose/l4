@@ -22,6 +22,8 @@ class UpdateProductController extends BaseController {
 	{
 		$this->initialize_all($id, $type);
 
+		//return dump($this->product);
+
 		return $this->display_view();
 	}
 
