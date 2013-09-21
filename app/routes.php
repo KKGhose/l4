@@ -607,13 +607,19 @@ Route::get('redis', function() {
 
 Route::get('memcached-products', function() {
 
-	$data = DB::select('SELECT * FROM products ORDER BY id DESC');
+	$movies = DB::select('SELECT products.*, productTypes.type_name, trailers.code
+						 		   FROM products INNER JOIN productTypes
+							       INNER JOIN trailers
+							       WHERE trailers.movie_id = products.id 
+							       AND productTypes.id = products.product_type 
+							       AND productTypes.type_name LIKE ?', array('Dvd'));
 
-	//return dump($data);
+
+	//return dump($movies);
 
 	//$product = array();
 
-	foreach ($data as $key)
+	foreach ($movies as $key)
 	{
 		$productKey = 'product_'.$key->id;
 		//echo $productKey . ', ' . $key->product_name . '<br />';
@@ -622,11 +628,33 @@ Route::get('memcached-products', function() {
    			               'product_price' => $key->product_price, 'product_language' => $key->product_language, 
    			               'product_description' => $key->product_description, 'product_author' => $key->product_author, 
    			               'product_isbn10' => $key->product_isbn10, 'quantity' => $key->quantity, 
-   			               'created_at' => $key->created_at, 'updated_at' => $key->updated_at
+   			               'created_at' => $key->created_at, 'updated_at' => $key->updated_at, 'type_name' => $key->type_name,
+   			               'code' => $key->code
    			              );
 
 		//We cache the product
-		Cache::add($productKey, $product, 30); 
+		Cache::forever($productKey, $product); 
+	}
+
+	$ebooks = DB::select('SELECT products.*, productTypes.type_name
+						 		   FROM products INNER JOIN productTypes
+							       WHERE  productTypes.id = products.product_type 
+							       AND productTypes.type_name LIKE ?', array('Book'));
+
+	foreach ($ebooks as $key)
+	{
+		$productKey = 'product_'.$key->id;
+		//echo $productKey . ', ' . $key->product_name . '<br />';
+
+		$product = array('id' => $key->id, 'product_type' => $key->product_type, 'product_name' =>  $key->product_name, 
+   			               'product_price' => $key->product_price, 'product_language' => $key->product_language, 
+   			               'product_description' => $key->product_description, 'product_author' => $key->product_author, 
+   			               'product_isbn10' => $key->product_isbn10, 'quantity' => $key->quantity, 
+   			               'created_at' => $key->created_at, 'updated_at' => $key->updated_at, 'type_name' => $key->type_name
+   			              );
+
+		//We cache the product
+		Cache::forever($productKey, $product); 
 	}
 
 	return 'Memcached ready!';
