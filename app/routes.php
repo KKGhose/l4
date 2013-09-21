@@ -393,12 +393,38 @@ Route::group(array('before' => 'csrf'), function()
 
     	$pdo = DB::connection()->getPdo();
     	$id = $pdo->lastInsertId();
+
+    	// Cache newly inserted data.
+    	// We build a unique key that we can build again later
+		// We will use the word 'product' plus our product's id (eg. "product_12")
+		$productKey = 'product_' . $id;
+
+		// We store an associative array containing our product data
+   		$productCache = array('id' => $id, 'product_type' => $data['product_type'], 'product_name' =>  $data['product_name'], 
+   			                  'product_price' => $data['price'], 'product_language' => $data['language'], 'product_description' => $data['description'],
+   			                  'product_author' => $data['author'], 'product_isbn10' => $data['isbn']);
 		
+		//We cache the product
+		Cache::add($productKey, $productCache, 30);   	
+		
+
+
 		$trailer = new Trailer;
 		$trailer->movie_id = $id;
 		$trailer->code = $product['trailer'];
 		$trailer->save();
-         
+
+		$trailerId = $pdo->lastInsertId();
+
+		//We cache trailer code
+		$trailerKey = 'trailer_' . $trailerId;
+		$trailerCache = array('id' => $trailerId, 'movie_id' => $id, 'code' => $product['trailer']);
+
+		//We cache the trailer
+		Cache::add($trailerKey, $trailerCache, 30);
+
+
+        //We fetch new cover if it was updated 
         $name = $product->id.'.jpg';
 
         if ( Input::hasFile('cover') )
@@ -577,4 +603,11 @@ Route::get('redis', function() {
 	return $redis->llen('movies_id').', '.$redis->llen('ebooks_id');
 	return 'Redis: hashes ready!';
 
+});
+
+Route::get('memcached', function() {
+
+	$data = DB::select('SELECT * FROM products ORDER BY id DESC');
+
+	return dump($data);
 });
