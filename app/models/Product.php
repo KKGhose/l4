@@ -59,7 +59,12 @@ class Product extends Eloquent {
 
 			//We fetch product from cache
 			$key = 'product_' . $productId;
-			$product = Cache::get($key); 
+
+			if ( Cache::has($key))
+			{
+				$product = Cache::get($key); 
+			}	
+			
 
 			//If found we return it otherwise we fetch it from database
 			if ($product) return $product;
@@ -78,7 +83,11 @@ class Product extends Eloquent {
 
 			//We fetch product from cache
 			$key = 'product_' . $productId;
-			$product = Cache::get($key); 
+		
+			if ( Cache::has($key))
+			{
+				$product = Cache::get($key); 
+			}	
 
 			//If found we return it otherwise we fetch it from database
 			if ($product) return $product;
