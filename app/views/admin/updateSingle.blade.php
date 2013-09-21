@@ -5,6 +5,7 @@
 @stop
 
 @section('content')
+
 <!-- NAVBAR
 ================================================== -->
      <div class="navbar navbar-inverse navbar-fixed-top">
@@ -147,6 +148,8 @@
 
  <div class="col-lg-9">
 
+
+
   <form action="{{url('update-product-db')}}" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
 
       @if ( Session::has('update_success') )
@@ -160,12 +163,12 @@
      <div class="form-group">
        <label for="cover" class="col-lg-3 control-label">Current cover</label> 
       <div class="col-lg-4">    
-        <img class="img-rounded" src="{{url()}}/images/products_images/{{$product[0]->id.'.jpg'}}">     
+        <img class="img-rounded" src="{{url()}}/images/products_images/{{$product['id'].'.jpg'}}">     
         </div>
      </div>
     
-     <input type="hidden" name="productType" value="{{$product[0]->type_name}}">     
-     <input type="hidden" name="prodId" value="{{$product[0]->id}}">
+     <input type="hidden" name="productType" value="{{$product['type_name']}}">     
+     <input type="hidden" name="prodId" value="{{$product['id']}}">
  
      <div class="form-group">
        <label for="cover" class="col-lg-3 control-label">New cover</label> 
@@ -178,21 +181,21 @@
      <div class="form-group">
        <label for="product_name" class="col-lg-3 control-label">Title</label> 
       <div class="col-lg-4">    
-        <input type="text" class="form-control" name="product_name" value="{{$product[0]->product_name}}" placeholder="Enter product name">           
+        <input type="text" class="form-control" name="product_name" value="{{$product['product_name']}}" placeholder="Enter product name">           
         </div>
      </div>  
 
       <div class="form-group">
        <label for="price" class="col-lg-3 control-label">Price</label> 
       <div class="col-lg-4">    
-        <input type="text" class="form-control" value="{{$product[0]->product_price}}" name="product_price" placeholder="Enter price, e.g. 13.90">           
+        <input type="text" class="form-control" value="{{$product['product_price']}}" name="product_price" placeholder="Enter price, e.g. 13.90">           
         </div>
      </div>  
 
      <div class="form-group">
        <label for="language" class="col-lg-3 control-label">Language</label> 
       <div class="col-lg-4">    
-        <input type="text" class="form-control" value="{{$product[0]->product_language}}" name="product_language" placeholder="Enter language">           
+        <input type="text" class="form-control" value="{{$product['product_language']}}" name="product_language" placeholder="Enter language">           
         </div>
      </div>  
 
@@ -201,7 +204,7 @@
        <div class="col-lg-4">
           <select name="product_type" class="form-control">
             @foreach ($p_types as $p_type)
-            	@if ($p_type->id == $product[0]->product_type )
+            	@if ($p_type->id == $product['product_type'] )
               		<option value="{{$p_type->id}}" selected="selected">{{$p_type->type_name}}</option>
             	@else
             		<option value="{{$p_type->id}}">{{$p_type->type_name}}</option>
@@ -214,30 +217,31 @@
      <div class="form-group">
        <label for="description" class="col-lg-3 control-label">Description</label> 
       <div class="col-lg-4">  
-        <textarea class="form-control" name="product_description" rows="8" placeholder="Enter description">{{$product[0]->product_description}}"</textarea>  
+        <textarea class="form-control" name="product_description" rows="8" placeholder="Enter description">
+        {{$product['product_description']}}"</textarea>  
         </div>
      </div> 
 
     <div class="form-group">
        <label for="author" class="col-lg-3 control-label">Author</label> 
       <div class="col-lg-4">    
-        <input type="text" class="form-control" value="{{$product[0]->product_author}}" name="product_author" placeholder="Enter author's name">           
+        <input type="text" class="form-control" value="{{$product['product_author']}}" name="product_author" placeholder="Enter author's name">           
         </div>
      </div>  
 
      <div class="form-group">
        <label for="isbn" class="col-lg-3 control-label">ISBN-10</label> 
       <div class="col-lg-4">    
-        <input type="text" class="form-control" value="{{$product[0]->product_isbn10}}" name="product_isbn10" placeholder="Enter ISBN-10">           
+        <input type="text" class="form-control" value="{{$product['product_isbn10']}}" name="product_isbn10" placeholder="Enter ISBN-10">           
         </div>
      </div>
 
-     @if ($product[0]->type_name == 'Dvd')
+     @if ($product['type_name'] == 'Dvd')
 
        <div class="form-group">
          <label for="trailer" class="col-lg-3 control-label">Trailer</label> 
         <div class="col-lg-4">    
-          <input type="text" class="form-control" name="trailer" value="{{$product[0]->code}}" placeholder="Enter trailer youtube code">           
+          <input type="text" class="form-control" name="trailer" value="{{$product['code']}}" placeholder="Enter trailer youtube code">           
           </div>
        </div>
      
@@ -250,6 +254,8 @@
       </div>
      </div>
      </form>
+
+
 
 </div>
 
