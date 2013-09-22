@@ -201,7 +201,8 @@
      <div class="form-group">
        <label for="cover" class="col-lg-3 control-label">Cover</label> 
       <div class="col-lg-4">    
-        <input type="file" class="form-control" name="cover" placeholder="Enter cover">           
+        <input type="file" name="cover"> 
+        <p class="help-block">Select a cover for your product.</p>          
         </div>
      </div>              
        
