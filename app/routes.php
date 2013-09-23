@@ -187,12 +187,12 @@ Route::get('change-account', function() {
 
 	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
 	
-	$id = Auth::users()->id;
+	$id = (int) Auth::user()->id;
 
 	return Redirect::action('ChangeAccountController@index', array($id));
 });
 
-Route::get('ChangeAccountController/{id}', array($id));
+Route::get('change-user-account/{id}', 'ChangeAccountController@index');
 
 
 //-------------------Admin routes------------------------------------------------------
