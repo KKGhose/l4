@@ -2,6 +2,7 @@
 
 @section('head')
 @parent
+{{ HTML::style('css/modal_img.css') }}
 @stop
 
 @section('content')
@@ -168,7 +169,7 @@
       @foreach ($cart_products as $cart_item)
         <tr>
         <!-- Button trigger modal -->
-        <td><a href="#myModal_{{$cart_item->id}}" data-toggle="modal"><img src="{{url()}}/images/products_images/{{$cart_item->id}}.jpg" width="70" height="100"></a></td>
+        <td><a href="#myModal_{{$cart_item->id}}" data-toggle="modal"><img class="img-rounded" src="{{url()}}/images/products_images/{{$cart_item->id}}.jpg" width="70" height="100"></a></td>
         <td>{{$cart_item->product_name}}</td>
         <td>{{$cart_item->product_price}}</td>
         <td>{{$cart_item->quantity}}</td>
@@ -183,7 +184,19 @@
                 <h4 class="modal-title">{{$cart_item->product_name}}</h4>
               </div>
               <div class="modal-body">
-                
+                <h4>DVD Description</h4><br />
+            <div class="twist_img">
+          <img src="{{url()}}/images/products_images/{{$cart_item->id}}.jpg">
+          <p>{{$cart_item->product_description}}</p>
+          
+          </div><br />
+          <h4>DVD Details</h4><br />
+           <ul>
+             <li><strong>Language:</strong>&nbsp;{{$cart_item->product_language}}</li>  
+             <li><strong>ISBN-10:</strong>&nbsp;{{$cart_item->product_isbn10}}</li>
+             <li><strong>Price:</strong>&nbsp;{{$cart_item->product_price}}&nbsp;&euro;</li>
+           </ul>
+
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
