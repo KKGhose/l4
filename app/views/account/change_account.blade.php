@@ -147,13 +147,24 @@
 
 	    <div class="col-lg-9">
       
+        <ul class="nav nav-tabs" id="myTab">
+          <li class="active"><a href="#info" data-toggle="tab"><i class="icon-male"></i>&nbsp;Change Personal Info</a></li>
+          <li><a href="#password" data-toggle="tab"><i class="icon-lock"></i>&nbsp;Change Password</a></li>
+          <li><a href="#address" data-toggle="tab"><i class="icon-home"></i>&nbsp;Change Address</a></li>
+        </ul>
 
+        <div class="tab-content">
+          <div class="tab-pane active" id="info">Hello info</div>
+          <div class="tab-pane" id="password">Hello password</div>
+          <div class="tab-pane" id="address">Hello address</div>
+        </div>
       
-        
-   
-</div> <!-- Row -->
+      </div> <!-- Row -->
 
-
-<hr class="featurette-divider">
+<div class="row">
+<div class="col-lg-12">
+ <hr class="featurette-divider">
+</div>
+</div>
 
 @stop
