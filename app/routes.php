@@ -183,6 +183,20 @@ Route::get('cart-checkout', function() {
 		
 });
 
+Route::get('change-account', function() {
+
+	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
+	
+	$cart_data = new CartItem;	
+	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
+
+	return View::make('account.change_account', array('cart_items_count' => $cart_items_count,
+			                                          'total' => $total,
+			                                  'cart_products' => $cart_products
+			                                  ));
+
+});
+
 
 
 //-------------------Admin routes------------------------------------------------------
