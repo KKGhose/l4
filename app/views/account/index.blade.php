@@ -138,7 +138,7 @@
           <li><h3><i class="icon-user"></i>&nbsp;My Account</h3></li>
           <li class="active"><a href="{{url('account')}}">Home</a></li>
           <li><a href="{{url('open-orders')}}">View open orders</a></li>
-          <li><a href="#">Change account settings</a></li>
+          <li><a href="{{url('change-account')}}">Change account settings</a></li>
           <li><a href="{{url('logout')}}">Logout</a></li>
         </ul>
         </div>
