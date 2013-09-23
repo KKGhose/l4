@@ -187,16 +187,12 @@ Route::get('change-account', function() {
 
 	if(!Auth::check()) return Redirect::to('login')->with('not_logged', 'You should be logged in!');
 	
-	$cart_data = new CartItem;	
-	list( $cart_products, $cart_items_count, $total ) = $cart_data->get_cart_data();
+	$id = Auth::users()->id;
 
-	return View::make('account.change_account', array('cart_items_count' => $cart_items_count,
-			                                          'total' => $total,
-			                                  'cart_products' => $cart_products
-			                                  ));
-
+	return Redirect::action('ChangeAccountController@index', array($id));
 });
 
+Route::get('ChangeAccountController/{id}', array($id));
 
 
 //-------------------Admin routes------------------------------------------------------
