@@ -148,7 +148,8 @@
 	    <div class="col-lg-9">
       <h3><i class="icon-shopping-cart"></i>&nbsp;&nbsp;My Cart</h3>
       <br />
-
+      </div>
+      
       <div class="row">
 
        <div class="col-lg-8">
@@ -225,8 +226,13 @@
         
    
 </div> <!-- Row -->
+</div>
 
 
-<hr class="featurette-divider">
+<div class="row">
+<div class="col-lg-12">
+ <hr class="featurette-divider">
+</div>
+</div>
 
 @stop
