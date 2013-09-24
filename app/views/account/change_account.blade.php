@@ -154,9 +154,58 @@
         </ul>
 
         <div class="tab-content">
-          <div class="tab-pane active" id="info">Hello info</div>
-          <div class="tab-pane" id="password">Hello password</div>
-          <div class="tab-pane" id="address">Hello address</div>
+          
+        <div class="tab-pane active" id="info">
+        <br /><br />
+          <form action="{{url('update-account-info')}}" method="post" class="form-horizontal" role="form">
+
+            @if ( Session::has('update_success') )
+              <div class="alert alert-success">
+                  <strong>Well done!</strong> {{Session::get('update_success')}}
+              </div>
+            @endif
+
+            {{ Form::token() }}
+
+            <input type="hidden" name="userId" value="{{$user->id}}">
+
+            <div class="form-group">
+             <label for="email" class="col-lg-3 control-label">My Email Is(*):</label> 
+                <div class="col-lg-4">    
+                <input type="text" class="form-control" name="email" value="{{$user->email}}" readonly="readonly">           
+                </div>
+           </div>
+
+           <div class="form-group">
+             <label for="firstname" class="col-lg-3 control-label">My Firstname Is(*):</label> 
+                <div class="col-lg-4">    
+                <input type="text" class="form-control" name="firstname" value="{{$user->firstname}}">           
+                </div>
+           </div>  
+
+           <div class="form-group">
+             <label for="lastname" class="col-lg-3 control-label">My Lastname Is(*):</label> 
+                <div class="col-lg-4">    
+                <input type="text" class="form-control" name="lastname" value="{{$user->lastname}}">           
+                </div>
+           </div>  
+
+           <div class="form-group"> 
+            <label for="submit" class="col-lg-3 control-label"></label> 
+              <div class="col-lg-3">  
+                <button type="submit" class="btn btn-danger"><i class="icon-pencil"></i>&nbsp;Update Personal Info</button>              
+              </div>
+           </div>
+
+          </form> 
+
+        </div>
+          
+          <div class="tab-pane" id="password">
+          Hello password</div>
+          
+          <div class="tab-pane" id="address">
+          Hello address</div>
         </div>
       
       </div> <!-- Row -->
