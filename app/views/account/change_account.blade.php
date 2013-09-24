@@ -154,8 +154,12 @@
         </ul>
 
         <div class="tab-content">
-          
-        <div class="tab-pane active" id="info">
+        
+        @if (Session::get('tab') == 'info')  
+            <div class="tab-pane active" id="info">
+        @else
+            <div class="tab-pane" id="info">
+        @endif    
         <br /><br />
           <form action="{{url('update-account-info')}}" method="post" class="form-horizontal" role="form">
 
@@ -168,6 +172,7 @@
             {{ Form::token() }}
 
             <input type="hidden" name="userId" value="{{$user->id}}">
+            <input type="hidden" name="tab" value="info">
 
             <div class="form-group">
              <label for="email" class="col-lg-3 control-label">My Email Is(*):</label> 
