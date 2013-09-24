@@ -615,9 +615,11 @@ Route::get('redis', function() {
 
 });
 
-Route::get('memcached-product-id', function() {
+Route::get('memcached-movies-id', function() {
 
-	$productIds = DB::select('SELECT id FROM products ORDER BY id DESC');
+	$productIds = DB::select('SELECT products.id FROM products INNER JOIN productTypes
+							  WHERE products.product_type = productTypes.id
+							  AND productTypes.type_name LIKE ? ORDER BY products.id DESC', array('Dvd'));
 
 	$id = array();
 
