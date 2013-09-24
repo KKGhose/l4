@@ -108,4 +108,14 @@ class Product extends Eloquent {
 		
 	}//End method getMoviess
 
+	function getCount($productType)
+	{
+		$count = DB::select('SELECT COUNT(*) AS num FROM products 
+							 INNER JOIN productTypes
+							 WHERE products.product_type = productTypes.id
+							 AND productType.type_name LIKE ?', array($productType));
+		
+		return $count[0]->num;
+	}
+
 }//End class Product
