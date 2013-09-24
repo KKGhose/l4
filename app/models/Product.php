@@ -113,9 +113,9 @@ class Product extends Eloquent {
 		$count = DB::select('SELECT COUNT(*) AS num FROM products 
 							 INNER JOIN productTypes
 							 WHERE products.product_type = productTypes.id
-							 AND productType.type_name LIKE ?', array($productType));
-		
-		return $count[0]->num;
+							 AND productTypes.type_name LIKE ?', array($productType));
+
+		return (int) $count[0]->num;
 	}
 
 }//End class Product
