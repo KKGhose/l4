@@ -15,7 +15,33 @@ class Product extends Eloquent {
 
 	public static $rules = array();
 
+	protected $productIds;
+
+	public function __construct()
+	{
+		$this->productIds = Cache::get('productIds');
+	}
+
 	function getMovies($productType, $offset, $numOfItems) {
+
+		//We fetch all movie id's from memcached
+		$movieIds = Cache::get('movieIds');
+
+		//We fetch movies data from memcached 
+		if($movieIds)
+		{
+			for ($i = $offset; $i < $offset + $numOfItems && $i < sizeof($movieIds); $i++)
+			{
+				$movieId[] = $movieIds[$i];
+			}
+
+			foreach ($movieId as $key => $value) 
+			{
+				$this->products[] = (object) Cache::get('product_' . $value);
+			}
+
+			return $this->products;
+		}
 
 		$this->products = DB::select('SELECT products.*, productTypes.type_name, trailers.code
 							  FROM products INNER JOIN productTypes
