@@ -615,6 +615,22 @@ Route::get('redis', function() {
 
 });
 
+Route::get('memcached-product-id', function() {
+
+	$productIds = DB::select('SELECT id FROM products ORDER BY id DESC');
+
+	$id = array();
+
+	foreach($productIds as $productId)
+	{
+		$id[] = $productId->id;	
+	}
+
+	Cache::forever('productIds', $id);
+
+	return dump( Cache::get('productIds') );
+});
+
 Route::get('memcached-products', function() {
 
 	$movies = DB::select('SELECT products.*, productTypes.type_name, trailers.code
