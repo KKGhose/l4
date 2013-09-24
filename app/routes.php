@@ -189,6 +189,9 @@ Route::get('change-account', function() {
 	
 	$id = (int) Auth::user()->id;
 
+	if( ! Session::has('tab'))
+		Session::put('tab', 'info');
+
 	return Redirect::action('ChangeAccountController@index', array($id));
 });
 
@@ -498,15 +501,23 @@ Route::group(array('before' => 'csrf'), function()
 
 		unset($data['_token']);
 
-		/*$logId = array();
-		foreach ($data as $key => $value)
-			$logId[] = $value;*/
-
 		foreach ($data as $key => $value)
 			DB::delete('DELETE FROM accessLogs WHERE id = ?', array($value));
 
 		return Redirect::to('admin-view_log');
 
+	});
+
+	Route::post('update-account-info', function() {
+
+		$data = Input::all();
+
+		DB::update('UPDATE users SET firstname = ?, lastname = ? 
+			        WHERE id = ?', array($data['firstname'], $data['lastname'], $data['userId']));
+
+		Session::put('tab', $data['tab']);
+
+		return Redirect::action('ChangeAccountController@index', array( $data['userId'] ))->with('update_success', 'Your data was updated successfully!');
 	});
 
 });
@@ -628,9 +639,9 @@ Route::get('memcached-movies-id', function() {
 		$id[] = $productId->id;	
 	}
 
-	Cache::forever('productIds', $id);
+	Cache::forever('movieIds', $id);
 
-	return dump( Cache::get('productIds') );
+	return dump( Cache::get('movieIds') );
 });
 
 Route::get('memcached-products', function() {
