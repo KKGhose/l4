@@ -217,8 +217,52 @@
             <div class="tab-pane active" id="password">
         @else
             <div class="tab-pane" id="password">
-        @endif    
-          Hello password</div>
+        @endif
+          <br /><br />  
+          <form action="{{url('update-account-info')}}" method="post" class="form-horizontal" role="form">
+
+            @if ( Session::has('update_success') )
+              <div class="alert alert-success">
+                  <strong>Well done!</strong> {{Session::get('update_success')}}
+              </div>
+            @endif
+
+            {{ Form::token() }}
+
+            <input type="hidden" name="userId" value="{{$user->id}}">
+            <input type="hidden" name="tab" value="password">
+
+            <div class="form-group">
+             <label for="currentPassword" class="col-lg-3 control-label">Current Password:</label> 
+                <div class="col-lg-4">    
+                <input type="password" class="form-control" name="currentPassword" value="{{substr($user->password, 0, 10)}}" readonly="readonly">           
+                </div>
+            </div>
+
+            <div class="form-group">
+             <label for="newPassword" class="col-lg-3 control-label">New Password:</label> 
+                <div class="col-lg-4">    
+                <input type="password" class="form-control" name="newPassword">           
+                </div>
+            </div>
+
+            <div class="form-group">
+             <label for="newPasswordCheck" class="col-lg-3 control-label">Re-enter Password:</label> 
+                <div class="col-lg-4">    
+                <input type="password" class="form-control" name="newPasswordCheck">           
+                </div>
+            </div>
+
+             <div class="form-group"> 
+            <label for="submit" class="col-lg-3 control-label"></label> 
+              <div class="col-lg-3">  
+                <button type="submit" class="btn btn-danger"><i class="icon-pencil"></i>&nbsp;Update Password</button>              
+              </div>
+           </div>
+
+          </form> 
+
+          </div>
           
           <div class="tab-pane" id="address">
           Hello address</div>
