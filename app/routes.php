@@ -508,16 +508,31 @@ Route::group(array('before' => 'csrf'), function()
 
 	});
 
+
 	Route::post('update-account-info', function() {
 
 		$data = Input::all();
 
-		DB::update('UPDATE users SET firstname = ?, lastname = ? 
-			        WHERE id = ?', array($data['firstname'], $data['lastname'], $data['userId']));
+		$rules = array( 'firstname' => 'required|alpha|min:3',
+					    'lastname' => 'required|alpha|min:3'
+					    );
 
-		Session::put('tab', $data['tab']);
+		$validator = Validator::make($data, $rules);
+		
+		if ( $validator->passes() )
+		{
 
-		return Redirect::action('ChangeAccountController@index', array( $data['userId'] ))->with('update_success', 'Your data was updated successfully!');
+			DB::update('UPDATE users SET firstname = ?, lastname = ? 
+				        WHERE id = ?', array($data['firstname'], $data['lastname'], $data['userId']));
+
+			Session::put('tab', $data['tab']);
+
+			return Redirect::action('ChangeAccountController@index', array( $data['userId'] ))
+									->with('update_success', 'Your data was updated successfully!');
+		}
+		 //else we redirect to registration form
+		return Redirect::action('ChangeAccountController@index', array( $data['userId'] ))
+								->withErrors($validator)->withInput(Input::all());
 	});
 
 });
