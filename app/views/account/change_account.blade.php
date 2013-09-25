@@ -167,7 +167,7 @@
               <strong>Warning!</strong> {{$message}}
           </div>
           @endforeach
-                  
+
           <form action="{{url('update-account-info')}}" method="post" class="form-horizontal" role="form">
 
             @if ( Session::has('update_success') )
@@ -213,7 +213,11 @@
 
         </div>
           
-          <div class="tab-pane" id="password">
+        @if (Session::get('tab') == 'password')  
+            <div class="tab-pane active" id="password">
+        @else
+            <div class="tab-pane" id="password">
+        @endif    
           Hello password</div>
           
           <div class="tab-pane" id="address">
