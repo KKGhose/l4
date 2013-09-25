@@ -161,6 +161,13 @@
             <div class="tab-pane" id="info">
         @endif    
         <br /><br />
+
+          @foreach($errors->all() as $message)
+          <div class="alert alert-danger">
+              <strong>Warning!</strong> {{$message}}
+          </div>
+          @endforeach
+                  
           <form action="{{url('update-account-info')}}" method="post" class="form-horizontal" role="form">
 
             @if ( Session::has('update_success') )
